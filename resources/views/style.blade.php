@@ -12,7 +12,7 @@
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-transcluent"/>
-    <title>Lester - Creative HTML5 Portfolio Template</title>
+    <title> {{ __('title') }}</title>
 
     <!-- css-files -->
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css')}}">

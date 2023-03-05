@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col d-flex justify-content-center">
                     <h2 class="section-title text-center title-divider"
-                        style="color: white">What We Do <span class="highlight">.</span>
+                        style="color: white">{{$about[8]}}<span class="highlight">.</span>
                     </h2>
                 </div>
             </div>

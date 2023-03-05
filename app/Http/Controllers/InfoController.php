@@ -49,6 +49,7 @@ class InfoController extends Controller
                         , 'sub_title_en' => $request->sub_title_en
                         , 'title_ar' => $request->title_ar
                         , 'sub_title_ar' => $request->sub_title_ar
+
                     ])
                 ]);
                 return ['message' => 'added Successfully',
@@ -77,6 +78,9 @@ class InfoController extends Controller
                         , 'sub_title_en3' => $request->sub_title_en3
                         , 'title_ar3' => $request->title_ar3
                         , 'sub_title_ar3' => $request->sub_title_ar3
+
+                        , 'section_title' => $request->section_title
+                        , 'section_title_ar' => $request->section_title_ar
                     ])
                 ]);
                 return ['message' => 'added Successfully',

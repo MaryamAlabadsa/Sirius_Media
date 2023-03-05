@@ -54,6 +54,7 @@ class Info extends Model
             $sub_title2 = $array['sub_title_ar2'];
             $title3 = $array['title_ar3'];
             $sub_title3 = $array['sub_title_ar3'];
+            $section_title = $array['section_title_ar'];
         } else {
             $title1 = $array['title_en1'];
             $sub_title1 = $array['sub_title_en1'];
@@ -61,8 +62,9 @@ class Info extends Model
             $sub_title2 = $array['sub_title_en2'];
             $title3 = $array['title_en3'];
             $sub_title3 = $array['sub_title_en3'];
+            $section_title = $array['section_title'];
         }
-        return [$title1, $sub_title1, $title2, $sub_title2, $title3, $sub_title3, $image1, $image2];
+        return [$title1, $sub_title1, $title2, $sub_title2, $title3, $sub_title3, $image1, $image2,$section_title];
 
     }
 }
