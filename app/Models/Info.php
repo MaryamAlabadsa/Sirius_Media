@@ -23,12 +23,11 @@ class Info extends Model
     public function getSliderAttribute()
     {
         $array = json_decode($this->json_data, true);
-//        dd( $array);
 
         $currentLocale = app()->getLocale();
-//        if (isset($this->json_data['image']) && is_array($array['image'])) {
-        $image = url('/public/Image/' . $array['image']);
-//        }
+
+        $image = url('/public/Imagcce/' . $array['image']) ??  url('assets/video/basic_video.mp4');
+
         if ($currentLocale === 'ar') {
             $title = $array['title_ar'];
             $sub_title = $array['sub_title_ar'];
@@ -64,7 +63,7 @@ class Info extends Model
             $sub_title3 = $array['sub_title_en3'];
             $section_title = $array['section_title'];
         }
-        return [$title1, $sub_title1, $title2, $sub_title2, $title3, $sub_title3, $image1, $image2,$section_title];
+        return [$title1, $sub_title1, $title2, $sub_title2, $title3, $sub_title3, $image1, $image2, $section_title];
 
     }
 }
