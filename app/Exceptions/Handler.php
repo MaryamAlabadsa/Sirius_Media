@@ -7,6 +7,14 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
+//    public function report(Exception $exception)
+//    {
+//        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+//            return response()->view('errors.404', [], 404);
+//        }
+//
+//        parent::report($exception);
+//    }
     /**
      * A list of the exception types that are not reported.
      *

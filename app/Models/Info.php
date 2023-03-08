@@ -26,7 +26,7 @@ class Info extends Model
 
         $currentLocale = app()->getLocale();
 
-        $image = url('/public/Imagcce/' . $array['image']) ??  url('assets/video/basic_video.mp4');
+        $image = url('/public/Image/' . $array['image']) ;
 
         if ($currentLocale === 'ar') {
             $title = $array['title_ar'];
@@ -35,10 +35,24 @@ class Info extends Model
             $title = $array['title_en'];
             $sub_title = $array['sub_title_en'];
         }
+
         return [$title, $sub_title, $image];
 
     }
 
+    public function getNoteAttribute()
+    {
+        $currentLocale = app()->getLocale();
+        $array = json_decode($this->json_data, true);
+
+        if ($currentLocale === 'ar') {
+            $title = $array['title_ar'];
+        } else {
+            $title = $array['title_en'];
+        }
+        return [$title];
+
+    }
     public function getAboutAttribute()
     {
         $currentLocale = app()->getLocale();

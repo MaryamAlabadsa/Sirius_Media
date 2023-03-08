@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="icon-boxes-type-4 row d-flex justify-content-center">
             <div class="col-md-4 icon-box-wrapper large-section dark_overlay bg_img"
-                 style="background-image: url('http://via.placeholder.com/1920x1080')"
+                 style="background-image: url('public/Image/pexels-felix-mittermeier-1459534.jpg')"
                  data-aos="zoom-in"
                  data-aos-delay="100"
                  data-aos-anchor-placement="top-bottom"
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="col-md-4 icon-box-wrapper large-section dark_overlay bg_img"
-                 style="background-image: url('http://via.placeholder.com/1920x1080')"
+                 style="background-image: url('public/Image/pexels-erik-mclean-5662839.jpg')"
                  data-aos="zoom-in"
                  data-aos-delay="150"
                  data-aos-anchor-placement="top-bottom"
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="col-md-4 icon-box-wrapper large-section dark_overlay bg_img"
-                 style="background-image: url('http://via.placeholder.com/1920x1080')"
+                 style="background-image: url('public/Image/pexels-paul-basel-1816699.jpg')"
                  data-aos="zoom-in"
                  data-aos-delay="200"
                  data-aos-anchor-placement="top-bottom"

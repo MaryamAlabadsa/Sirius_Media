@@ -1,7 +1,7 @@
 <section class="hero-header hero-default color_overlay bg_img">
     <div class="html-video">
         <video autoplay muted loop>
-            <source src="{{ $slider[2]}}" type="video/mp4">
+            <source src="{{ $slider[2]??  url('assets/video/basic_video.mp4')}}" type="video/mp4">
         </video>
     </div>
     <div class="container hero-content hero-center d-flex align-items-center">

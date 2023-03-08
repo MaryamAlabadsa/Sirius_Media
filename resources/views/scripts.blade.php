@@ -1,4 +1,3 @@
-
 <script src="{{ asset('assets/js/jquery-3.3.1.min.js')}}"></script>
 <!-- AOS -->
 <script src="{{ asset('assets/js/aos.min.js')}}"></script>
@@ -40,10 +39,10 @@
 <script src="{{ asset('assets/js/main.js')}}"></script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('img').attr('loading', 'lazy');
     });
-    $(function() {
+    $(function () {
         var isRTL = $('html').attr('dir') === 'rtl'; // check if language is RTL
         var container = $('.image-container');
 
@@ -53,31 +52,73 @@
             container.addClass('left').removeClass('right'); // align to the left
         }
     });
-    // --------------------------------------------------
-    // custom dropdown
-    // --------------------------------------------------
-    // dropdown = function(e){
-    //     var obj = $(e+'.dropdown');
-    //     var btn = obj.find('.btn-selector');
-    //     var dd = obj.find('ul');
-    //     var opt = dd.find('li');
-    //
-    //     obj.on("mouseenter", function() {
-    //         dd.show();
-    //     }).on("mouseleave", function() {
-    //         dd.hide();
-    //     })
-    //
-    //     opt.on("click", function() {
-    //         dd.hide();
-    //         var txt = $(this).text();
-    //         opt.removeClass("active");
-    //         $(this).addClass("active");
-    //         btn.text(txt);
-    //     });
-    // }
-    // dropdown('#lang-selector');
-    //
+
+</script>
+
+<script>
+    const showMoreBtn = document.getElementById("show-more-btn");
+    const showLessBtn = document.getElementById("show-less-btn");
+    const tabTriggers = document.querySelectorAll(".tab-trigger");
+    const tabsHeader = document.querySelector(".tabs-header");
+
+    let currentTabIndex = 3;
+    let numTabsToShow = 3;
+
+    showMoreBtn.addEventListener("click", () => {
+        // show the next tab
+        tabTriggers[currentTabIndex].style.display = "inline-block";
+
+        // increment the current tab index
+        currentTabIndex++;
+
+        // enable the "Show Less" button
+        showLessBtn.disabled = false;
+
+        // disable the "Show More" button if all tabs are shown
+        if (currentTabIndex >= tabTriggers.length) {
+            showMoreBtn.disabled = true;
+        }
+
+        // hide the first tab if the maximum number of tabs to show is reached
+        if (currentTabIndex - numTabsToShow >= 0) {
+            tabTriggers[currentTabIndex - numTabsToShow].style.display = "none";
+        }
+    });
+
+    showLessBtn.addEventListener("click", () => {
+        // hide the last tab
+        tabTriggers[currentTabIndex - 1].style.display = "none";
+
+        // decrement the current tab index
+        currentTabIndex--;
+
+        // enable the "Show More" button
+        showMoreBtn.disabled = false;
+
+        // disable the "Show Less" button if all tabs are hidden
+        if (currentTabIndex == numTabsToShow) {
+            showLessBtn.disabled = true;
+        }
+
+        // show the first hidden tab if applicable
+        if (currentTabIndex - numTabsToShow >= 0) {
+            tabTriggers[currentTabIndex - numTabsToShow].style.display = "inline-block";
+        }
+    });
+
+    // hide all tabs except the first few
+    for (let i = numTabsToShow; i < tabTriggers.length; i++) {
+        tabTriggers[i].style.display = "none";
+    }
+
+    // adjust the width of the tab trigger wrappers to fit in the same row
+    const tabTriggerWrappers = document.querySelectorAll(".tab-trigger-wrapper");
+    const totalWidth = tabsHeader.clientWidth - (showMoreBtn.clientWidth + showLessBtn.clientWidth);
+    const wrapperWidth = totalWidth / numTabsToShow;
+
+    tabTriggerWrappers.forEach(wrapper => {
+        wrapper.style.width = `${wrapperWidth}px`;
+    });
 
 </script>
 

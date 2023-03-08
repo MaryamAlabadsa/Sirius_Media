@@ -36,9 +36,12 @@ class InfoController extends Controller
      */
     public function store(StoreInfoRequest $request)
     {
-        $file = $request->file('image');
-        $filename = date('YmdHi') . $file->getClientOriginalName();
-        $file->move(public_path('public/Image'), $filename);
+        if ($request->file('image')){
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('public/Image'), $filename);
+        }
+
         switch ($request->json_key) {
             case 'slider':
                 $info = Info::create([
@@ -50,6 +53,17 @@ class InfoController extends Controller
                         , 'title_ar' => $request->title_ar
                         , 'sub_title_ar' => $request->sub_title_ar
 
+                    ])
+                ]);
+                return ['message' => 'added Successfully',
+                    'data' => $info,
+                ];
+            case 'note':
+                $info = Info::create([
+                    'json_key' => $request->json_key,
+                    'json_data' =>json_encode([
+                         'title_en' => $request->title_en
+                        , 'title_ar' => $request->title_ar
                     ])
                 ]);
                 return ['message' => 'added Successfully',

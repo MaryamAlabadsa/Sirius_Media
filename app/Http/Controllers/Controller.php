@@ -28,7 +28,10 @@ class Controller extends BaseController
         $about = Info::select('json_data')
             ->where('json_key', 'about')
             ->first()->about;
+        $note = Info::select('json_data')
+            ->where('json_key', 'note')
+            ->first()->note;
         $services=Service::all();
-        return view('home', compact('slider','about','services'));
+        return view('home', compact('slider','about','note','services'));
     }
 }
