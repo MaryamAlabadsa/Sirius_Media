@@ -63,9 +63,12 @@
                                     </div>
                                 </div>
                             </div>
+                            
 
 
-{{--                            <div class="row">--}}
+
+
+                            {{--                            <div class="row">--}}
 {{--                                <div class="col tabs-header d-flex justify-content-center">--}}
 {{--                                    <div class="tab-trigger-wrapper">--}}
 {{--                                        <div class="tab-trigger active" data-tab=".tab-body-6">--}}
