@@ -37,6 +37,7 @@
 <script src="{{ asset('assets/js/swiper.min.js')}}"></script>
 <!-- Main JS-file -->
 <script src="{{ asset('assets/js/main.js')}}"></script>
+<script src="{{ asset('assets/js/custom.js')}}"></script>
 
 <script>
     $(document).ready(function () {
@@ -58,67 +59,45 @@
 <script>
     const showMoreBtn = document.getElementById("show-more-btn");
     const showLessBtn = document.getElementById("show-less-btn");
-    const tabTriggers = document.querySelectorAll(".tab-trigger");
-    const tabsHeader = document.querySelector(".tabs-header");
+    const cards = document.querySelectorAll(".card_maryam");
 
-    let currentTabIndex = 3;
-    let numTabsToShow = 3;
+    let currentCardIndex = 4;
 
     showMoreBtn.addEventListener("click", () => {
-        // show the next tab
-        tabTriggers[currentTabIndex].style.display = "inline-block";
+        // hide the first shown card
+        cards[currentCardIndex - 4].style.display = "none";
 
-        // increment the current tab index
-        currentTabIndex++;
+        // show the next hidden card
+        cards[currentCardIndex].style.display = "block";
 
-        // enable the "Show Less" button
-        showLessBtn.disabled = false;
+        // increment the current card index
+        currentCardIndex++;
 
-        // disable the "Show More" button if all tabs are shown
-        if (currentTabIndex >= tabTriggers.length) {
+        // disable the button if all cards are shown
+        if (currentCardIndex >= cards.length) {
             showMoreBtn.disabled = true;
         }
 
-        // hide the first tab if the maximum number of tabs to show is reached
-        if (currentTabIndex - numTabsToShow >= 0) {
-            tabTriggers[currentTabIndex - numTabsToShow].style.display = "none";
-        }
+        // enable the "Show Less" button
+        showLessBtn.disabled = false;
     });
 
     showLessBtn.addEventListener("click", () => {
-        // hide the last tab
-        tabTriggers[currentTabIndex - 1].style.display = "none";
+        // hide the last shown card
+        cards[currentCardIndex - 3].style.display = "none";
 
-        // decrement the current tab index
-        currentTabIndex--;
+        // show the first hidden card
+        cards[currentCardIndex - 5].style.display = "block";
 
-        // enable the "Show More" button
-        showMoreBtn.disabled = false;
+        // decrement the current card index
+        currentCardIndex--;
 
-        // disable the "Show Less" button if all tabs are hidden
-        if (currentTabIndex == numTabsToShow) {
+        // disable the button if the first two cards are shown
+        if (currentCardIndex == 4) {
             showLessBtn.disabled = true;
         }
 
-        // show the first hidden tab if applicable
-        if (currentTabIndex - numTabsToShow >= 0) {
-            tabTriggers[currentTabIndex - numTabsToShow].style.display = "inline-block";
-        }
+        // enable the "Show More" button
+        showMoreBtn.disabled = false;
     });
-
-    // hide all tabs except the first few
-    for (let i = numTabsToShow; i < tabTriggers.length; i++) {
-        tabTriggers[i].style.display = "none";
-    }
-
-    // adjust the width of the tab trigger wrappers to fit in the same row
-    const tabTriggerWrappers = document.querySelectorAll(".tab-trigger-wrapper");
-    const totalWidth = tabsHeader.clientWidth - (showMoreBtn.clientWidth + showLessBtn.clientWidth);
-    const wrapperWidth = totalWidth / numTabsToShow;
-
-    tabTriggerWrappers.forEach(wrapper => {
-        wrapper.style.width = `${wrapperWidth}px`;
-    });
-
 </script>
-

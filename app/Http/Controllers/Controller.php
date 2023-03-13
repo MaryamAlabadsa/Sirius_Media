@@ -32,6 +32,7 @@ class Controller extends BaseController
             ->where('json_key', 'note')
             ->first()->note;
         $services=Service::all();
+//        $services=Service::paginate(4);
         return view('home', compact('slider','about','note','services'));
     }
 }

@@ -35,124 +35,47 @@
                 <div class="tabs-section-type-2">
                     <div class="container">
                         <div class="tabs-wrapper">
-                            <div class="row">
-                                <div class="col tabs-header d-flex justify-content-center">
-                                    <div class="tab-trigger-wrapper">
-                                        <div class="tab-trigger active" data-tab=".tab-body-0">
-                                            <i class="fa fa-th"></i>
-                                            <h6>Planning</h6>
-                                        </div>
-                                    </div>
-                                    <div class="tab-trigger-wrapper">
-                                        <div class="tab-trigger" data-tab=".tab-body-1">
-                                            <i class="fa fa-tint"></i>
-                                            <h6>Design</h6>
-                                        </div>
-                                    </div>
-                                    <div class="tab-trigger-wrapper">
-                                        <div class="tab-trigger" data-tab=".tab-body-8">
-                                            <i class="fa fa-terminal"></i>
-                                            <h6>UI/UX</h6>
-                                        </div>
-                                    </div>
-                                    <div class="tab-trigger-wrapper">
-                                        <div class="tab-trigger" data-tab=".tab-body-9">
-                                            <i class="fa fa-chart-pie"></i>
-                                            <h6>Marketing</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-
-
-
-
-                            {{--                            <div class="row">--}}
-{{--                                <div class="col tabs-header d-flex justify-content-center">--}}
-{{--                                    <div class="tab-trigger-wrapper">--}}
-{{--                                        <div class="tab-trigger active" data-tab=".tab-body-6">--}}
-{{--                                            <i class="fa fa-th"></i>--}}
-{{--                                            <h6>Planning</h6>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="tab-trigger-wrapper">--}}
-{{--                                        <div class="tab-trigger active" data-tab=".tab-body-6">--}}
-{{--                                            <i class="fa fa-th"></i>--}}
-{{--                                            <h6>Planning</h6>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="tab-trigger-wrapper">--}}
-{{--                                        <div class="tab-trigger" data-tab=".tab-body-7">--}}
-{{--                                            <i class="fa fa-tint"></i>--}}
-{{--                                            <h6>Design</h6>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="tab-trigger-wrapper">--}}
-{{--                                        <div class="tab-trigger" data-tab=".tab-body-7">--}}
-{{--                                            <i class="fa fa-tint"></i>--}}
-{{--                                            <h6>Design</h6>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="tab-trigger-wrapper">--}}
-{{--                                        <div class="tab-trigger" data-tab=".tab-body-8">--}}
-{{--                                            <i class="fa fa-terminal"></i>--}}
-{{--                                            <h6>UI/UX</h6>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="tab-trigger-wrapper">--}}
-{{--                                        <div class="tab-trigger" data-tab=".tab-body-9">--}}
-{{--                                            <i class="fa fa-chart-pie"></i>--}}
-{{--                                            <h6>Marketing</h6>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <button id="show-more-btn">Show More</button>--}}
-{{--                                    <button id="show-less-btn" style="display: none">Show Less</button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-
-
-
-
-
-
-                            {{--                            <div class="row">--}}
-{{--                                <div class="col tabs-header d-flex justify-content-center">--}}
-{{--                                    @foreach($services as $service)--}}
-{{--                                        <div class="tab-trigger-wrapper">--}}
-{{--                                            @if($service->id===1)--}}
-{{--                                                <div class="tab-trigger active" data-tab=".tab-body-{{$service->id}}">--}}
-{{--                                                    @else--}}
-{{--                                                        <div class="tab-trigger " data-tab=".tab-body-{{$service->id}}">--}}
-{{--                                                            @endif--}}
-{{--                                                            <i class="fa fa-th"></i>--}}
-{{--                                                            <h6>{{$service->title_lang}}</h6>--}}
-{{--                                                        </div>--}}
-{{--                                                        @endforeach--}}
-{{--                                                </div>--}}
-{{--                                        </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-                            <div class="tabs-body-wrapper">
+                            <div class="card-container-maryam">
+                                <div id="show-less-btn" class="swiper-button-prev-testimonials"><i
+                                        class="fa fa-angle-left"></i></div>
                                 @foreach($services as $service)
-                                    @if($service->id===1)
-                                        <div class="tab-body{{$service->id}} active-body">
-                                            @else
-                                                <div class="tab-body {{$service->id}} ">
-                                                    @endif
 
-                                                    <div class="row">
-                                                        <p class="description">{{$service->decription_lang}}</p>
+                                    <div class="card_maryam">
+                                        @if($service->id===1)
+                                            <div class="tab-trigger active" data-tab=".tab-body-{{$service->id}}">
+                                                @else
+                                                    <div class="tab-trigger " data-tab=".tab-body-{{$service->id}}">
+                                                        @endif
+                                                        <i class="fa fa-th"></i>
+                                                        <h6>{{$service->title_lang}}</h6>
                                                     </div>
+
+                                            </div>
+                                            @endforeach
+
+                                            <div id="show-more-btn" class="swiper-button-prev-testimonials"><i
+                                                    class="fa fa-angle-right"></i></div>
+                                    </div>
+
+                                    <div class="tabs-body-wrapper">
+                                        @foreach($services as $service)
+                                            @if($service->id===1)
+                                                <div class="tab-body-{{$service->id}} active-body">
+                                                    @else
+                                                        <div class="tab-body-{{$service->id}} ">
+                                                            @endif
+
+                                                            <div class="row">
+                                                                <p class="description">{{$service->decription_lang}}</p>
+                                                            </div>
+                                                        </div>
+                                                        @endforeach
                                                 </div>
-                                                @endforeach
-                                        </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
