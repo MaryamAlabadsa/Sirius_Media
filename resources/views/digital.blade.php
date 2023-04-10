@@ -35,47 +35,120 @@
                 <div class="tabs-section-type-2">
                     <div class="container">
                         <div class="tabs-wrapper">
-                            <div class="card-container-maryam">
-                                <div id="show-less-btn" class="swiper-button-prev-testimonials"><i
-                                        class="fa fa-angle-left"></i></div>
-                                @foreach($services as $service)
+{{--                            <div class="card-container-maryam">--}}
+{{--                                <div id="show-less-btn" class="swiper-button-prev-testimonials"><i--}}
+{{--                                        class="fa fa-angle-left"></i></div>--}}
+{{--                                @foreach($services as $service)--}}
 
-                                    <div class="card_maryam">
-                                        @if($service->id===1)
-                                            <div class="tab-trigger active" data-tab=".tab-body-{{$service->id}}">
-                                                @else
-                                                    <div class="tab-trigger " data-tab=".tab-body-{{$service->id}}">
-                                                        @endif
-                                                        <i class="fa fa-th"></i>
-                                                        <h6>{{$service->title_lang}}</h6>
-                                                    </div>
+{{--                                    <div class="card_maryam">--}}
+{{--                                        @if($service->id===1)--}}
+{{--                                            <div class="tab-trigger active" data-tab=".tab-body-{{$service->id}}">--}}
+{{--                                                @else--}}
+{{--                                                    <div class="tab-trigger " data-tab=".tab-body-{{$service->id}}">--}}
+{{--                                                        @endif--}}
+{{--                                                        <i class="fa fa-th"></i>--}}
+{{--                                                        <h6>{{$service->title_lang}}</h6>--}}
+{{--                                                    </div>--}}
 
-                                            </div>
-                                            @endforeach
+{{--                                            </div>--}}
+{{--                                            @endforeach--}}
 
-                                            <div id="show-more-btn" class="swiper-button-prev-testimonials"><i
-                                                    class="fa fa-angle-right"></i></div>
+{{--                                            <div id="show-more-btn" class="swiper-button-prev-testimonials"><i--}}
+{{--                                                    class="fa fa-angle-right"></i></div>--}}
+{{--                                  --}}
+                            <div class="row">
+                                <div class="col tabs-header d-flex justify-content-center">
+                                    <div class="tab-trigger-wrapper">
+                                        <div class="tab-trigger active" data-tab=".tab-body-6">
+                                            <i class="fa fa-th"></i>
+                                            <h6>Planning</h6>
+                                        </div>
                                     </div>
-
-                                    <div class="tabs-body-wrapper">
-                                        @foreach($services as $service)
-                                            @if($service->id===1)
-                                                <div class="tab-body-{{$service->id}} active-body">
-                                                    @else
-                                                        <div class="tab-body-{{$service->id}} ">
-                                                            @endif
-
-                                                            <div class="row">
-                                                                <p class="description">{{$service->decription_lang}}</p>
-                                                            </div>
-                                                        </div>
-                                                        @endforeach
-                                                </div>
+                                    <div class="tab-trigger-wrapper">
+                                        <div class="tab-trigger" data-tab=".tab-body-7">
+                                            <i class="fa fa-tint"></i>
+                                            <h6>Design</h6>
+                                        </div>
                                     </div>
+                                    <div class="tab-trigger-wrapper">
+                                        <div class="tab-trigger" data-tab=".tab-body-8">
+                                            <i class="fa fa-terminal"></i>
+                                            <h6>UI/UX</h6>
+                                        </div>
+                                    </div>
+                                    <div class="tab-trigger-wrapper">
+                                        <div class="tab-trigger" data-tab=".tab-body-9">
+                                            <i class="fa fa-chart-pie"></i>
+                                            <h6>Marketing</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabs-body-wrapper">
+                                <div class="tab-body tab-body-6 active-body">
+                                    <div class="row">
+                                        <p class="description">Fusce ac turpis quis ligula lacinia aliquet mauris
+                                            ipsum.
+                                            Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh.
+                                            Quisque
+                                            volutpat condimentum velit. Class aptent taciti sociosqu ad litora
+                                            torquent per
+                                            conubia nostra, per inceptos himenaeos</p>
+                                    </div>
+                                </div>
+                                <div class="tab-body tab-body-7">
+                                    <div class="row">
+                                        <p class="description">Proin quam. Etiam ultrices. Suspendisse in justo eu
+                                            magna
+                                            luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque
+                                            cursus,
+                                            metus vitae pharetra auctor, sem massa mattis sem, at interdum magna
+                                            augue eget
+                                            diam</p>
+                                    </div>
+                                </div>
+                                <div class="tab-body tab-body-8">
+                                    <div class="row">
+                                        <p class="description">Ut ultrices ultrices enim. Curabitur sit amet mauris.
+                                            Morbi
+                                            in dui quis est pulvinar ullamcorper nulla facilisi. Integer lacinia
+                                            sollicitudin massa. Cras metus. Sed porta mauris massa aliquet risus a
+                                            tortor.
+                                            Integer id quamorbi mi</p>
+                                    </div>
+                                </div>
+                                <div class="tab-body tab-body-9">
+                                    <div class="row">
+                                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                            elit.
+                                            Integer nec odio praesent libero sed cursus ante dapibus diam sed nisi.
+                                            Nulla
+                                            quis sem at nibh elementum imperdiet duis sagittis ipsum praesent
+                                            maurisusce nec tellus sed augue semper</p>
+                                    </div>
+                                </div>
+                            </div>
+
+{{--                                    <div class="tabs-body-wrapper">--}}
+{{--                                        @foreach($services as $service)--}}
+{{--                                            @if($service->id===1)--}}
+{{--                                                <div class="tab-body-{{$service->id}} active-body">--}}
+{{--                                                    @else--}}
+{{--                                                        <div class="tab-body-{{$service->id}} ">--}}
+{{--                                                            @endif--}}
+
+{{--                                                            <div class="row">--}}
+{{--                                                                <p class="description">{{$service->decription_lang}}</p>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                        @endforeach--}}
+{{--                                                </div>--}}
+{{--                                    </div>--}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
