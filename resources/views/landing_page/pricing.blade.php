@@ -1,4 +1,4 @@
-@extends('master')
+@extends('landing_page.master')
 @section('content')
     <!-- [4] Pricing table -->
     <section class="pricing-table-type-1 large-section gray-section">
@@ -106,7 +106,8 @@
                         We'd love to hear about your project
                     </h2>
                     <p class="message">
-                        Eum ea dolorum ceteros mea ullum errem oportere eu, usu ei epicuri omittam satatus, ne mei doctus appetere. Pro
+                        Eum ea dolorum ceteros mea ullum errem oportere eu, usu ei epicuri omittam satatus, ne mei
+                        doctus appetere. Pro
 
                     </p>
                     <div class="button-wrapper d-flex justify-content-center">

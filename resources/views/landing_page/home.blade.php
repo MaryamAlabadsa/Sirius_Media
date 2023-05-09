@@ -5,13 +5,13 @@
     <!-- [5] Digital Services -->
     @include('digital')
     <!-- [6] Icon-Section -->
-    @include('creative-about')
+{{--    @include('creative-about')--}}
     <!-- [7] Counter Section -->
     @include('counter')
     <!-- [8] Blockquote Section -->
     @include('Blockquote')
     <!-- [9] Content Section -->
-    @include('content')
+{{--    @include('content')--}}
     <!-- [10] Recent Projects -->
     @include('recent-projects')
     <!-- [11] Testimonials -->

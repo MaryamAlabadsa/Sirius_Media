@@ -38,6 +38,9 @@
                 <a class="social-box linkedin-h" href="https://www.linkedin.com/company/siriusmediaco">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
+                <a class="social-box linkedin-h" href="https://www.linkedin.com/company/siriusmediaco">
+                    contact us </i>
+                </a>
                 {{--                <a class="social-box twitter-h" href="mailto:info@siriusmediaco.com">--}}
                 {{--                    <i class="fab fa-envelope"></i>--}}
                 {{--                </a>--}}

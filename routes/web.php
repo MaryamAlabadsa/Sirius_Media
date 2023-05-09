@@ -13,22 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\Controller::class,'index']);
-Route::get('/contact-us', function () {
-    return view('contact-us');
-});
-Route::get('/pricing', function () {
-    return view('pricing');
-});
-Route::get('/faq', function () {
-    return view('faq');
-});
-Route::get('/clients', function () {
-    return view('clients');
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::get('language/{locale}', function ($locale) {
-    app()->setLocale($locale);
-    session()->put('locale', $locale);
-    return redirect()->back();
-});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

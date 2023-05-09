@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
 <script src="{{ asset('assets/js/jquery-3.3.1.min.js')}}"></script>
 <!-- AOS -->
 <script src="{{ asset('assets/js/aos.min.js')}}"></script>
@@ -55,49 +57,72 @@
     });
 
 </script>
-
 <script>
-    const showMoreBtn = document.getElementById("show-more-btn");
-    const showLessBtn = document.getElementById("show-less-btn");
-    const cards = document.querySelectorAll(".card_maryam");
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
 
-    let currentCardIndex = 4;
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
 
-    showMoreBtn.addEventListener("click", () => {
-        // hide the first shown card
-        cards[currentCardIndex - 4].style.display = "none";
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
 
-        // show the next hidden card
-        cards[currentCardIndex].style.display = "block";
-
-        // increment the current card index
-        currentCardIndex++;
-
-        // disable the button if all cards are shown
-        if (currentCardIndex >= cards.length) {
-            showMoreBtn.disabled = true;
-        }
-
-        // enable the "Show Less" button
-        showLessBtn.disabled = false;
-    });
-
-    showLessBtn.addEventListener("click", () => {
-        // hide the last shown card
-        cards[currentCardIndex - 3].style.display = "none";
-
-        // show the first hidden card
-        cards[currentCardIndex - 5].style.display = "block";
-
-        // decrement the current card index
-        currentCardIndex--;
-
-        // disable the button if the first two cards are shown
-        if (currentCardIndex == 4) {
-            showLessBtn.disabled = true;
-        }
-
-        // enable the "Show More" button
-        showMoreBtn.disabled = false;
+        // And if we need scrollbar
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
     });
 </script>
+
+{{--<script>--}}
+{{--    const showMoreBtn = document.getElementById("show-more-btn");--}}
+{{--    const showLessBtn = document.getElementById("show-less-btn");--}}
+{{--    const cards = document.querySelectorAll(".card_maryam");--}}
+
+{{--    let currentCardIndex = 4;--}}
+
+{{--    showMoreBtn.addEventListener("click", () => {--}}
+{{--        // hide the first shown card--}}
+{{--        cards[currentCardIndex - 4].style.display = "none";--}}
+
+{{--        // show the next hidden card--}}
+{{--        cards[currentCardIndex].style.display = "block";--}}
+
+{{--        // increment the current card index--}}
+{{--        currentCardIndex++;--}}
+
+{{--        // disable the button if all cards are shown--}}
+{{--        if (currentCardIndex >= cards.length) {--}}
+{{--            showMoreBtn.disabled = true;--}}
+{{--        }--}}
+
+{{--        // enable the "Show Less" button--}}
+{{--        showLessBtn.disabled = false;--}}
+{{--    });--}}
+
+{{--    showLessBtn.addEventListener("click", () => {--}}
+{{--        // hide the last shown card--}}
+{{--        cards[currentCardIndex - 3].style.display = "none";--}}
+
+{{--        // show the first hidden card--}}
+{{--        cards[currentCardIndex - 5].style.display = "block";--}}
+
+{{--        // decrement the current card index--}}
+{{--        currentCardIndex--;--}}
+
+{{--        // disable the button if the first two cards are shown--}}
+{{--        if (currentCardIndex == 4) {--}}
+{{--            showLessBtn.disabled = true;--}}
+{{--        }--}}
+
+{{--        // enable the "Show More" button--}}
+{{--        showMoreBtn.disabled = false;--}}
+{{--    });--}}
+{{--</script>--}}
