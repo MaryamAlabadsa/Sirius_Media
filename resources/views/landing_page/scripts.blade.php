@@ -93,7 +93,7 @@
                 spaceBetween: 30
             }
         }
-    });
+    }); 
 </script>
 
 {{--<script>--}}
