@@ -1,5 +1,4 @@
-<section class="tabs-section-type-2 tabs-creative large-section gray-section bg-attachment-fixed bg_img"
-         style="background-image: url('https://jk-studio-dev.com/templates/lester/assets/img/assets/cubes.png')">
+<section class="tabs-section-type-2 tabs-creative large-section gray-section bg-attachment-fixed bg_img">
     <div class="container">
         <div class="row">
             <div class="col d-flex justify-content-center">
