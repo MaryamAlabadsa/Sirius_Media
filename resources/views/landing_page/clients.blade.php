@@ -1,4 +1,4 @@
-@extends('master')
+@extends('landing_page.master')
 @section('content')
     <section class="clients-type-2 large-section white-section">
         <div class="container">

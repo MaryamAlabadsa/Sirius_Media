@@ -1,4 +1,4 @@
-@extends('master')
+@extends('landing_page.master')
 @section('content')
     <!-- [4] FAQ section -->
     <section class="faq-section large-section gray-section" style="background-image: url('assets/img/assets/absurdity.png')">

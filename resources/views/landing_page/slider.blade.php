@@ -38,13 +38,15 @@
                 <a class="social-box linkedin-h" href="https://www.linkedin.com/company/siriusmediaco">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a class="social-box linkedin-h" href="https://www.linkedin.com/company/siriusmediaco">
-                    contact us </i>
-                </a>
+
                 {{--                <a class="social-box twitter-h" href="mailto:info@siriusmediaco.com">--}}
                 {{--                    <i class="fab fa-envelope"></i>--}}
                 {{--                </a>--}}
             </div>
+            <div class="button-wrapper d-flex justify-content-center" data-aos="zoom-in" style="margin-top: 16px">
+                <a href="#" class="button-default-color-2">Start new Projects</a>
+            </div>
+
         </div>
         <div class="angle-down"
              data-aos="zoom-in"

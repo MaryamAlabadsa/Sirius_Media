@@ -33,6 +33,6 @@ class Controller extends BaseController
             ->first()->note;
         $services=Service::all();
 //        $services=Service::paginate(4);
-        return view('home', compact('slider','about','note','services'));
+        return view('landing_page.home', compact('slider','about','note','services'));
     }
 }

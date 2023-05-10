@@ -1,4 +1,4 @@
-@extends('master')
+@extends('landing_page.master')
 @section('content')
     <section class="contact-form-section parallax-window color_overlay dark_overlay_gradient"
              data-src="http://via.placeholder.com/1920x1080" data-speed="0.5">

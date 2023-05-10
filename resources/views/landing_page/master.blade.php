@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zxx">
-@include('style')
+@include('landing_page.style')
 <!--
 [Home Page]
 [1] Page Loader
@@ -22,16 +22,16 @@
 {{--@include('page-loader')--}}
 <div id="main-wrapper" class="wrapper-hidden z-index-100">
     <!-- [2] Navigation-Menu -->
-    @include('Navigation-Menu')
+    @include('landing_page.Navigation-Menu')
     <!-- [3] slider -->
-    @include('slider')
+    @include('landing_page.slider')
 
    @yield('content')
     <!-- [13] Footer -->
-    @include('footer')
+    @include('landing_page.footer')
 </div>
 <!-- js-files -->
 <!-- JQuery -->
-@include('scripts')
+@include('landing_page.scripts')
 </body>
 </html>

@@ -1,21 +1,21 @@
-@extends('master')
+@extends('landing_page.master')
 @section('content')
     <!-- [4] About Section -->
-    @include('about')
+    @include('landing_page.about')
     <!-- [5] Digital Services -->
-    @include('digital')
+    @include('landing_page.digital')
     <!-- [6] Icon-Section -->
 {{--    @include('creative-about')--}}
     <!-- [7] Counter Section -->
-    @include('counter')
+    @include('landing_page.counter')
     <!-- [8] Blockquote Section -->
-    @include('Blockquote')
+    @include('landing_page.Blockquote')
     <!-- [9] Content Section -->
 {{--    @include('content')--}}
     <!-- [10] Recent Projects -->
-    @include('recent-projects')
+    @include('landing_page.recent-projects')
     <!-- [11] Testimonials -->
-    @include('testimonials')
+    @include('landing_page.testimonials')
     <!-- [12] Recent Posts -->
-    @include('blog')
+    @include('landing_page.blog')
 @endsection
