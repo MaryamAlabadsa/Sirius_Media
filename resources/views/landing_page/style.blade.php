@@ -116,4 +116,44 @@
 {{--            }--}}
 {{--        }--}}
 {{--    </style>--}}
+
+    <style>
+        .swiper-button-next, .swiper-button-prev
+        {
+            position: relative;
+            color: #f3b01b;
+            background: none;
+            height: 30px;
+            left: unset;
+            right: unset;
+            top: unset;
+            bottom: unset;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            background: #ffffffef;
+            border-radius: 3px;
+            box-shadow: 1px 1px 8px 0px #00000029;
+            transition: all .3s ease-in-out;
+        }
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background: #f3b01b;
+            color: #fff;
+        }
+
+        .swiper-button-next:after,.swiper-button-prev:after {
+            transform: scale(.35);
+        }
+
+        .swiper-control {
+            gap: 20px;
+            margin-top: 35px;
+            justify-content: center;
+        }
+
+        @media (max-width: 991px) {
+            .swiper-control {
+              display: none;
+            }
+        }
+    </style>
 </head>

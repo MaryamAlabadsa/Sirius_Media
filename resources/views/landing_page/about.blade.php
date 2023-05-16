@@ -12,7 +12,7 @@
         <div class="row images-wrapper">
             <div class="col-lg-8 col-12 d-flex align-items-center">
                 <div class="img-wrapper">
-                    <img loading="lazy" style="height: 486px;" src="{{$about[6]}}" alt="" class="img-fluid">
+                    <img loading="lazy" style="height: 486px;" src="{{$about[6]}}" alt="" class="img-fluid object-fit-cover">
                 </div>
             </div>
             <div class="col-lg-4 two-side align-items-center">

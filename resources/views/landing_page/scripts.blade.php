@@ -44,6 +44,21 @@
 <script>
     $(document).ready(function () {
         $('img').attr('loading', 'lazy');
+
+        $('.tab-trigger').click(function () {
+            $('.tab-trigger').removeClass('active');
+            var img = $(this).find('.service-content').attr('data-img');
+            $('#service-img').attr('src', img);
+            $('#service-description').text($(this).find('.service-content').text());
+
+            $('#service-img').addClass('fade-up');
+            $('#service-description').addClass('fade-up');
+            // remove animation after 2 second
+            setTimeout(function () {
+                $('#service-img').removeClass('fade-up');
+                $('#service-description').removeClass('fade-up');
+            }, 1000);
+        });
     });
     $(function () {
         var isRTL = $('html').attr('dir') === 'rtl'; // check if language is RTL
@@ -54,6 +69,12 @@
         } else {
             container.addClass('left').removeClass('right'); // align to the left
         }
+
+       let first_service_slide = $('[data-swiper-slide-index="0"] .tab-trigger');
+       first_service_slide.click();
+       first_service_slide.addClass('active');
+       let img = first_service_slide.find('.service-content').attr('data-img');
+       $('#service-img').attr('src', img);
     });
 
 </script>
@@ -72,27 +93,8 @@
             prevEl: '.swiper-button-prev',
         },
 
-        // 4 slides per view
-        slidesPerView: 4,
-        spaceBetween: 30,
-        // Responsive breakpoints
-        breakpoints: {
-            // when window width is >= 320px
-            320: {
-                slidesPerView: 1,
-                spaceBetween: 10
-            },
-            // when window width is >= 480px
-            480: {
-                slidesPerView: 2,
-                spaceBetween: 20
-            },
-            // when window width is >= 640px
-            640: {
-                slidesPerView: 3,
-                spaceBetween: 30
-            }
-        }
+        // 3 slides per view
+        slidesPerView: 3,
     }); 
 </script>
 
@@ -141,3 +143,4 @@
 {{--        showMoreBtn.disabled = false;--}}
 {{--    });--}}
 {{--</script>--}}
+

@@ -13711,7 +13711,7 @@ a.text-dark:focus, a.text-dark:hover {
 
 @media (max-width: 767px) {
     .tabs-section-type-2 .tabs-wrapper .tabs-header .tab-trigger-wrapper {
-        width: 35%;
+        width: 100%;
         margin-bottom: 20px;
         margin-right: 15px;
         margin-left: 15px
@@ -20833,4 +20833,33 @@ footer .footer-inner .footer-body .copyright-wrapper .copyright i {
 .horizontal-gallery .image-item {
     height: 500px;
     margin: 0 15px 15px
+}
+
+.hidden {
+    display: none
+}
+
+.object-fit-cover {
+    object-fit: cover
+}
+
+.b-r5 {
+    border-radius: 5px;
+}
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-up .6s ease-in-out forwards
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px)
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
 }
