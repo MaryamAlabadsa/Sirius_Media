@@ -150,9 +150,9 @@
             justify-content: center;
         }
 
-        @media (max-width: 991px) {
+        @media (max-width: 767px) {
             .swiper-control {
-              display: none;
+              display: none !important;
             }
         }
     </style>
