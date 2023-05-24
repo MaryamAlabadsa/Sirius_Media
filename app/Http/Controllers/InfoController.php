@@ -5,9 +5,58 @@ namespace App\Http\Controllers;
 use App\Models\Info;
 use App\Http\Requests\StoreInfoRequest;
 use App\Http\Requests\UpdateInfoRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 
 class InfoController extends Controller
 {
+    public function createSlider()
+    {
+        //
+    }
+
+    public function indexSlider()
+    {
+        $slider = Info::select('json_data')
+            ->where('json_key', 'slider')
+            ->first();
+        if ($slider) {
+            $sliderData = $slider->slider_control_panel;
+        } else {
+            $sliderData = null;
+        }
+
+        return view('controlPanel.sliderSection.index', compact('sliderData'));
+    }
+
+    public function indexAbout()
+    {
+        $slider = Info::select('json_data')
+            ->where('json_key', 'about')
+            ->first();
+        if ($slider) {
+            $aboutData = $slider->about_control_panel;
+        } else {
+            $aboutData = null;
+        }
+
+        return view('controlPanel.aboutSection.index', compact('aboutData'));
+    }
+
+    public function indexNote()
+    {
+        $slider = Info::select('json_data')
+            ->where('json_key', 'note')
+            ->first();
+        if ($slider) {
+            $sliderData = $slider->note_control_panel;
+        } else {
+            $sliderData = null;
+        }
+
+        return view('controlPanel.noteSection.index', compact('sliderData'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -32,80 +81,137 @@ class InfoController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\StoreInfoRequest $request
-     * @return array
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreInfoRequest $request)
+    public function storeSlider(StoreInfoRequest $request): RedirectResponse
     {
-        if ($request->file('image')){
-            $file = $request->file('image');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('public/Image'), $filename);
+        $validatedData = $request->validate([
+            'video_upload' => 'file|mimes:mp4,mov,avi',
+            'title_en' => 'required',
+            'title_ar' => 'required|string|regex:/^[\p{Arabic}\p{P}\p{N}\s]+$/u',
+            'sub_title_en' => 'required',
+            'sub_title_ar' => 'required|string|regex:/^[\p{Arabic}\p{P}\p{N}\s]+$/u',
+            'json_key' => 'required|string|in:slider,note,about',
+        ]);
+        $videoPath = null;
+        if ($request->hasFile('video_upload')) {
+            $videoPath = $request->file('video_upload')->store('public', 'public');
         }
 
-        switch ($request->json_key) {
-            case 'slider':
-                $info = Info::create([
-                    'json_key' => $request->json_key,
-                    'json_data' =>json_encode([
-                        'image' => $filename
-                        , 'title_en' => $request->title_en
-                        , 'sub_title_en' => $request->sub_title_en
-                        , 'title_ar' => $request->title_ar
-                        , 'sub_title_ar' => $request->sub_title_ar
+        $sliderData = Info::where('json_key', $request->json_key)->value('json_data') ?: [];
 
-                    ])
-                ]);
-                return ['message' => 'added Successfully',
-                    'data' => $info,
-                ];
-            case 'note':
-                $info = Info::create([
-                    'json_key' => $request->json_key,
-                    'json_data' =>json_encode([
-                         'title_en' => $request->title_en
-                        , 'title_ar' => $request->title_ar
-                    ])
-                ]);
-                return ['message' => 'added Successfully',
-                    'data' => $info,
-                ];
-            case 'about':
-                $file2 = $request->file('image2');
-                $filename2 = date('YmdHi') . $file2->getClientOriginalName();
-                $file2->move(public_path('public/Image'), $filename2);
-              $info=  Info::create([
-                    'json_key' => $request->json_key,
-                    'json_data' => json_encode([
-                        'image1' => $filename
-                        , 'image2' => $filename2
-                        , 'title_en1' => $request->title_en1
-                        , 'sub_title_en1' => $request->sub_title_en1
-                        , 'title_ar1' => $request->title_ar1
-                        , 'sub_title1_ar1' => $request->sub_title1_ar1
+        $sliderData = tap($sliderData, function (&$data) use ($videoPath, $validatedData) {
+            if ($videoPath) {
+                optional(Storage::delete($data['video']))->when(isset($data['video']), function () use ($data) {
+                    return Storage::exists($data['video']);
+                });
 
-                        , 'title_en2' => $request->title_en2
-                        , 'sub_title_en2' => $request->sub_title_en2
-                        , 'title_ar2' => $request->title_ar2
-                        , 'sub_title_ar2' => $request->sub_title_ar2
+                $data['video'] = $videoPath;
+            }
 
-                        , 'title_en3' => $request->title_en3
-                        , 'sub_title_en3' => $request->sub_title_en3
-                        , 'title_ar3' => $request->title_ar3
-                        , 'sub_title_ar3' => $request->sub_title_ar3
+            $data['title_en'] = $validatedData['title_en'];
+            $data['title_ar'] = $validatedData['title_ar'];
+            $data['sub_title_en'] = $validatedData['sub_title_en'];
+            $data['sub_title_ar'] = $validatedData['sub_title_ar'];
+        });
 
-                        , 'section_title' => $request->section_title
-                        , 'section_title_ar' => $request->section_title_ar
-                    ])
-                ]);
-                return ['message' => 'added Successfully',
-                    'data' => $info,
-                ];
-            default:
-                dd('ddd');
-
+        if ($request->json_key === 'slider') {
+            Info::updateOrCreate(['json_key' => $request->json_key], ['json_data' => $sliderData]);
+        } else {
+            return redirect()->back()->withErrors(['json_key' => 'Invalid json_key']);
         }
 
+        return redirect()->back()->with('success', ucfirst($request->json_key) . ' ' . (isset($slider) && $slider->wasRecentlyCreated ? 'created' : 'updated') . ' successfully');
     }
+
+    public function storeNote(StoreInfoRequest $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'title_en' => 'required|alpha',
+            'title_ar' => 'required|string|regex:/^[\p{Arabic}\s]+$/u',
+            'json_key' => 'required|string|in:slider,note,about',
+        ]);
+
+        $jsonKey = $validatedData['json_key'];
+        $sliderData = Info::where('json_key', $jsonKey)->value('json_data') ?: [];
+
+        $sliderData['title_en'] = $validatedData['title_en'];
+        $sliderData['title_ar'] = $validatedData['title_ar'];
+
+        if ($jsonKey === 'note') {
+            Info::updateOrCreate(['json_key' => $jsonKey], ['json_data' => $sliderData]);
+        } else {
+            return redirect()->back()->withErrors(['json_key' => 'Invalid json_key']);
+        }
+
+        $action = isset($slider) && $slider->wasRecentlyCreated ? 'created' : 'updated';
+        $message = ucfirst($jsonKey) . ' ' . $action . ' successfully';
+
+        return redirect()->back()->with('success', $message);
+    }
+
+
+    public function storeAbout(StoreInfoRequest $request)
+    {
+        $validatedData = $request->validate([
+            'image1' => 'file|image',
+            'image2' => 'file|image',
+            'title1_en' => 'required|alpha',
+            'title1_ar1' => 'required|string|regex:/^[\p{Arabic}\s]+$/u',
+            'sub_title1_en' => 'required|alpha',
+            'sub_title1_ar1' => 'required|string|regex:/^[\p{Arabic}\s]+$/u',
+            'title2_en' => 'required|alpha',
+            'title2_ar1' => 'required|string|regex:/^[\p{Arabic}\s]+$/u',
+            'sub_title2_en' => 'required|alpha',
+            'sub_title2_ar1' => 'required|string|regex:/^[\p{Arabic}\s]+$/u',
+            'title3_en' => 'required|alpha',
+            'title3_ar1' => 'required|string|regex:/^[\p{Arabic}\s]+$/u',
+            'sub_title3_en' => 'required|alpha',
+            'sub_title3_ar1' => 'required|string|regex:/^[\p{Arabic}\s]+$/u',
+            'section_title_en' => 'required|alpha',
+            'section_title_ar1' => 'required|string|regex:/^[\p{Arabic}\s]+$/u',
+        ]);
+
+        $image1Path = null;
+        if ($request->hasFile('image1')) {
+            $image1Path = $request->file('image1')->store('public', 'public');
+        }
+
+        $image2Path = null;
+        if ($request->hasFile('image2')) {
+            $image2Path = $request->file('image2')->store('public', 'public');
+        }
+
+        $sliderData = [
+            'title1_en' => $validatedData['title1_en'],
+            'title1_ar1' => $validatedData['title1_ar1'],
+            'sub_title1_en' => $validatedData['sub_title1_en'],
+            'sub_title1_ar1' => $validatedData['sub_title1_ar1'],
+            'title2_en' => $validatedData['title2_en'],
+            'title2_ar1' => $validatedData['title2_ar1'],
+            'sub_title2_en' => $validatedData['sub_title2_en'],
+            'sub_title2_ar1' => $validatedData['sub_title2_ar1'],
+            'title3_en' => $validatedData['title3_en'],
+            'title3_ar1' => $validatedData['title3_ar1'],
+            'sub_title3_en' => $validatedData['sub_title3_en'],
+            'sub_title3_ar1' => $validatedData['sub_title3_ar1'],
+            'section_title_en' => $validatedData['section_title_en'],
+            'section_title_ar1' => $validatedData['section_title_ar1'],
+        ];
+
+        if ($image1Path) {
+            $sliderData['image1'] = $image1Path;
+        }
+
+        if ($image2Path) {
+            $sliderData['image2'] = $image2Path;
+        }
+
+        Info::updateOrCreate(['json_key' => 'about'], ['json_data' => $sliderData]);
+
+        return redirect()->back()->with('success', 'About updated successfully');
+    }
+
 
     /**
      * Display the specified resource.

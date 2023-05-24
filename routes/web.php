@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ServiceController;
 use App\Models\Info;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,26 @@ function getSliderData()
         ->first()->slider;
 //    return Info::where('json_key', 'slider')->value('json_data');
 }
+
+//dash board
+Route::get('/controlPanel/sliderSection', [\App\Http\Controllers\InfoController::class, 'indexSlider'])->name('slider');
+Route::post('/controlPanel/sliderSection/store', [\App\Http\Controllers\InfoController::class, 'storeSlider'])->name('slider.update');
+
+Route::get('/controlPanel/aboutSection', [\App\Http\Controllers\InfoController::class, 'indexAbout']);
+Route::post('/controlPanel/aboutSection/store', [\App\Http\Controllers\InfoController::class, 'storeAbout'])->name('about.update');
+
+Route::get('/controlPanel/noteSection', [\App\Http\Controllers\InfoController::class, 'indexNote']);
+Route::post('/controlPanel/noteSection/store', [\App\Http\Controllers\InfoController::class, 'storeNote'])->name('note.update');
+
+//Route::get('/controlPanel/serviceSection', [\App\Http\Controllers\ServiceController::class, 'index']);
+//Route::get('/controlPanel/serviceSection/create', [ServiceController::class, 'create'])->name('service.create');
+
+Route::get('/services', [ServiceController::class,'index'])->name('services.index');
+Route::get('/services/create', [ServiceController::class,'create'])->name('services.create');
+Route::post('/services', [ServiceController::class,'store'])->name('services.store');
+Route::get('/services/{id}/edit', [ServiceController::class,'edit'])->name('services.edit');
+Route::put('/services/{id}', [ServiceController::class,'update'])->name('services.update');
+Route::delete('/services/{id}', [ServiceController::class,'destroy'])->name('services.destroy');
 
 //Route::get('/', function () {
 //    return view('welcome');

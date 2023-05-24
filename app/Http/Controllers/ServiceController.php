@@ -5,97 +5,53 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
+use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $services = Service::all();
+        return view('controlPanel.servicesSection.index', compact('services'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+
+        return view('controlPanel.servicesSection.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreServiceRequest  $request
-     * @return array
-     */
-    public function store(StoreServiceRequest $request)
+    public function store(Request $request)
     {
-        $file= $request->file('name');
-        $filename= date('YmdHi').$file->getClientOriginalName();
-        $file-> move(public_path('public/Image'), $filename);
+        // Validate and store the new service
+        // Example:
+        Service::create($request->all());
 
-        $service = Service::create([
-            'image' => $filename,
-            'title' => $request->title,
-            'title_ar' => $request->title_ar,
-            'icon' => $request->icon,
-            'description' => $request->description,
-            'description_ar' => $request->description_ar,
-        ]);
-
-        return ['message' => 'added Successfully',
-            'data' => $service,
-        ];//
+        return redirect()->route('services.index')->with('success', 'Service created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Service $service)
+    public function edit($id)
     {
-        //
+        $service = Service::findOrFail($id);
+        return view('services.edit', compact('service'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Service $service)
+    public function update(Request $request, $id)
     {
-        //
+        $service = Service::findOrFail($id);
+
+        // Validate and update the service
+        // Example:
+        $service->update($request->all());
+
+        return redirect()->route('services.index')->with('success', 'Service updated successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateServiceRequest  $request
-     * @param  \App\Models\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateServiceRequest $request, Service $service)
+    public function destroy($id)
     {
-        //
-    }
+        $service = Service::findOrFail($id);
+        $service->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Service $service)
-    {
-        //
+        return redirect()->route('services.index')->with('success', 'Service deleted successfully');
     }
 }
