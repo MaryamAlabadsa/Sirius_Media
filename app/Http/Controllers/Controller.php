@@ -25,18 +25,18 @@ class Controller extends BaseController
         $slider = Info::select('json_data')
             ->where('json_key', 'slider')
             ->first()->slider;
-//        $about = Info::select('json_data')
-//            ->where('json_key', 'about')
-//            ->first()->about;
-//        $note = Info::select('json_data')
-//            ->where('json_key', 'note')
-//            ->first()->note;
-//        $services=Service::all();
-//        $services=Service::paginate(4);
+        $about = Info::select('json_data')
+            ->where('json_key', 'about')
+            ->first()->about;
+        $note = Info::select('json_data')
+            ->where('json_key', 'note')
+            ->first()->note;
+        $services=Service::all();
+        $services=Service::paginate(4);
         return view('landing_page.home', compact('slider'
-//            ,'about'
-//            ,'note'
-//            ,'services'
+            ,'about'
+            ,'note'
+            ,'services'
         ));
     }
 }

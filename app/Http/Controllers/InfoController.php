@@ -102,9 +102,9 @@ class InfoController extends Controller
 
         $sliderData = tap($sliderData, function (&$data) use ($videoPath, $validatedData) {
             if ($videoPath) {
-                optional(Storage::delete($data['video']))->when(isset($data['video']), function () use ($data) {
-                    return Storage::exists($data['video']);
-                });
+                if (isset($data['video'])) {
+                    optional(Storage::delete($data['video']))->when(Storage::exists($data['video']));
+                }
 
                 $data['video'] = $videoPath;
             }
@@ -114,6 +114,7 @@ class InfoController extends Controller
             $data['sub_title_en'] = $validatedData['sub_title_en'];
             $data['sub_title_ar'] = $validatedData['sub_title_ar'];
         });
+
 
         if ($request->json_key === 'slider') {
             Info::updateOrCreate(['json_key' => $request->json_key], ['json_data' => $sliderData]);

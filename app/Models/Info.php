@@ -31,13 +31,13 @@ class Info extends Model
 
     public function getSliderAttribute()
     {
-//        $array = json_decode($this->json_data, true);
-        $array = $this->json_data;
+        $array = json_decode($this->json_data, true);
+//        $array = $this->json_data;
 
         $currentLocale = app()->getLocale();
         $video = $array['video'] ?? null;
         $image = $video ? asset('storage/videos/' . $video) : null;
-
+//dd($array);
         if ($currentLocale === 'ar') {
             $title = $array['title_ar'];
             $sub_title = $array['sub_title_ar'];
