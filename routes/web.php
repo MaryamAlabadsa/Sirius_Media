@@ -51,7 +51,7 @@ function getSliderData()
         ->first()->slider;
 //    return Info::where('json_key', 'slider')->value('json_data');
 }
-
+//note
 //dash board
 Route::get('/controlPanel/sliderSection', [\App\Http\Controllers\InfoController::class, 'indexSlider'])->name('slider');
 Route::post('/controlPanel/sliderSection/store', [\App\Http\Controllers\InfoController::class, 'storeSlider'])->name('slider.update');
