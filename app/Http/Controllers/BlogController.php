@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use App\Models\Image;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class BlogController extends Controller
 {
@@ -13,9 +17,11 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        $blogs =  Blog::get();
+        return view('controlPanel.blog.index', ['blogs' => $blogs]);
     }
 
     /**
@@ -25,7 +31,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('controlPanel.blog.create');
     }
 
     /**
@@ -34,9 +40,27 @@ class BlogController extends Controller
      * @param  \App\Http\Requests\StoreBlogRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBlogRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validator = Validator($request->all(), [
+            'title' => 'required | string | min:3 | max:100',
+            'description' => 'string | min:3 | max:250',
+            'completed_time' => 'required',
+        ]);
+        if (!$validator->fails()) {
+            $blog = new Blog();
+            $blog->title = $request->input('title');
+            $blog->description = $request->input('description');
+            $blog->completed_time = $request->input('completed_time');
+            $blog->save();
+            if ($request->hasFile('image')) {
+                // $branch->images[0]->delete();
+                $this->saveImage($request->image, 'images', $blog);
+            }
+            return redirect()->route('blog.index');
+        } else {
+            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+        }
     }
 
     /**
@@ -58,7 +82,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        //
+        return view('controlPanel.blog.edit', ['blog' => $blog]);
     }
 
     /**
@@ -68,9 +92,29 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBlogRequest $request, Blog $blog)
+    public function update(Request $request, Blog $blog)
     {
-        //
+        // dd($blog);
+        $validator = Validator($request->all(), [
+            'title' => 'required | string | min:3 | max:100',
+            'description' => 'string | min:3 | max:250',
+            'completed_time' => 'required',
+        ]);
+        if (!$validator->fails()) {
+            $blog->title = $request->input('title');
+            $blog->description = $request->input('description');
+            $blog->completed_time = $request->input('completed_time');
+            $blog->save();
+            if ($request->hasFile('image')) {
+                foreach ($blog->images as $image) {
+                    File::delete($image->url);
+                }
+                $this->saveImage($request->image, 'images', $blog);
+            }
+            return redirect()->route('blog.index');
+        } else {
+            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+        }
     }
 
     /**
@@ -81,6 +125,23 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+
+        $isDeleted = $blog->delete();
+        if ($isDeleted) {
+            return redirect()->route('blog.index');
+        } else {
+            return redirect()->back()->with('error', 'deteled failed');
+        }
+    }
+
+    function saveImage($image, $path, $obj,  $imageName = null)
+    {
+
+        $file_name = str::random(10) . '_' . time() . '.' . $image->getClientOriginalExtension();
+        $image->move($path, $file_name);
+        $imageModel = new Image();
+        $imageModel->name = $file_name;
+        $imageModel->url = $path . '/' . $file_name;
+        $obj->images()->save($imageModel);
     }
 }

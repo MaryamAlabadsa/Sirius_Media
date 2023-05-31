@@ -20,7 +20,8 @@ class Service extends Model
             return $this->title;
         }
     }
-    public function getDecriptionLangAttribute(){
+    public function getDecriptionLangAttribute()
+    {
         $currentLocale = app()->getLocale();
         if ($currentLocale === 'ar') {
             return $this->description_ar;
@@ -29,4 +30,8 @@ class Service extends Model
         }
     }
 
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

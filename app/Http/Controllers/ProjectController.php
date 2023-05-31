@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Http\Request;
+use App\Models\Image;
+use App\Models\Service;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class ProjectController extends Controller
 {
@@ -15,7 +20,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects =  Project::get();
+        return view('controlPanel.project.index', ['projects' => $projects]);
     }
 
     /**
@@ -25,7 +31,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        // $servies = Service::get();
+        $services =  Service::get();
+        return view('controlPanel.project.create', ['services' => $services]);
     }
 
     /**
@@ -34,9 +42,33 @@ class ProjectController extends Controller
      * @param  \App\Http\Requests\StoreProjectRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProjectRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validator = Validator($request->all(), [
+            'title' => 'required | string | min:3 | max:100',
+            'service_id' => 'string | numeric',
+            'description' => 'string',
+        ]);
+        if (!$validator->fails()) {
+
+            $project = new Project();
+            $project->title = $request->input('title');
+            $project->service_id = $request->input('service_id');
+            $project->description = $request->input('editordata');
+            $project->completed_time = null;
+            // $project->completed_time = 'asdfasdfasd';
+
+            $isSaved = $project->save();
+
+            if ($request->hasFile('image')) {
+                $this->saveImage($request->image, 'images', $project);
+            }
+
+            return redirect()->route('project.index');
+        } else {
+
+            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+        }
     }
 
     /**
@@ -58,7 +90,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $services =  Service::get();
+        return view('controlPanel.project.edit', ['services' => $services, 'project' => $project]);
     }
 
     /**
@@ -68,9 +101,37 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(Request $request, Project $project)
     {
-        //
+
+        $validator = Validator($request->all(), [
+            'title' => 'required | string | min:3 | max:100',
+            'service_id' => 'string | numeric',
+            'description' => 'string',
+        ]);
+        if (!$validator->fails()) {
+
+            // $project = new Project();
+            $project->title = $request->input('title');
+            $project->service_id = $request->input('service_id');
+            $project->description = $request->input('editordata');
+            // $project->completed_time = null;
+            // $project->completed_time = 'asdfasdfasd';
+
+            $isSaved = $project->save();
+
+            if ($request->hasFile('image')) {
+                foreach ($project->images as $image) {
+                    File::delete($image->url);
+                }
+                $this->saveImage($request->image, 'images', $project);
+            }
+
+            return redirect()->route('project.index');
+        } else {
+
+            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+        }
     }
 
     /**
@@ -81,6 +142,22 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $isDeleted = $project->delete();
+        if ($isDeleted) {
+            return redirect()->route('blog.index');
+        } else {
+            return redirect()->back()->with('error', 'deteled failed');
+        }
+    }
+
+    function saveImage($image, $path, $obj,  $imageName = null)
+    {
+
+        $file_name = str::random(10) . '_' . time() . '.' . $image->getClientOriginalExtension();
+        $image->move($path, $file_name);
+        $imageModel = new Image();
+        $imageModel->name = $file_name;
+        $imageModel->url = $path . '/' . $file_name;
+        $obj->images()->save($imageModel);
     }
 }

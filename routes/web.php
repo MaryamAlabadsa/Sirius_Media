@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Models\Info;
 use Illuminate\Support\Facades\Route;
@@ -49,7 +51,7 @@ function getSliderData()
     return Info::select('json_data')
         ->where('json_key', 'slider')
         ->first()->slider;
-//    return Info::where('json_key', 'slider')->value('json_data');
+    //    return Info::where('json_key', 'slider')->value('json_data');
 }
 //note
 //dash board
@@ -65,12 +67,15 @@ Route::post('/controlPanel/noteSection/store', [\App\Http\Controllers\InfoContro
 //Route::get('/controlPanel/serviceSection', [\App\Http\Controllers\ServiceController::class, 'index']);
 //Route::get('/controlPanel/serviceSection/create', [ServiceController::class, 'create'])->name('service.create');
 
-Route::get('/services', [ServiceController::class,'index'])->name('services.index');
-Route::get('/services/create', [ServiceController::class,'create'])->name('services.create');
-Route::post('/services', [ServiceController::class,'store'])->name('services.store');
-Route::get('/services/{id}/edit', [ServiceController::class,'edit'])->name('services.edit');
-Route::put('/services/{id}', [ServiceController::class,'update'])->name('services.update');
-Route::delete('/services/{id}', [ServiceController::class,'destroy'])->name('services.destroy');
+Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
+Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
+Route::get('/services/{id}/edit', [ServiceController::class, 'edit'])->name('services.edit');
+Route::put('/services/{id}', [ServiceController::class, 'update'])->name('services.update');
+Route::delete('/services/{id}', [ServiceController::class, 'destroy'])->name('services.destroy');
+
+Route::resource('blog', BlogController::class);
+Route::resource('project', ProjectController::class);
 
 //Route::get('/', function () {
 //    return view('welcome');

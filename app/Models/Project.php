@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'object', 'object_type', 'object_id', 'id');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }
