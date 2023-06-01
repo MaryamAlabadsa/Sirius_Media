@@ -2,22 +2,26 @@
     <div class="container">
         <div class="button-group button-group-default d-flex justify-content-center">
             <button data-filter="*" class="active-button">Show All</button>
-            <button data-filter=".branding">Branding</button>
-            <button data-filter=".design">Design</button>
+            @foreach ($services as $service)
+            <button data-filter=".{{$service->id}}">{{$service->title}}</button>
+            @endforeach
+
+            {{-- <button data-filter=".design">Design</button>
             <button data-filter=".packaging">Packaging</button>
-            <button data-filter=".advertising">Advertising</button>
+            <button data-filter=".advertising">Advertising</button> --}}
         </div>
     </div>
     <div class="container-fluid">
         <div class="grid row">
-            <div class="grid-item design advertising">
+            @foreach ($projects as $project)
+            <div class="grid-item {{$project->service->id}}">
                 <div class="img-wrapper">
-                    <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
+                    <img src="{{asset($project->images->first()->url)}}" alt="" class="img-fluid">
                     <div class="description-box hover3d-wrapper">
-                        <a href="project-mixed-1.html"
-                           class="content d-flex align-items-end hover3d-child">
+                        <a href="{{route('projectlandingdetails',$project->id)}}"
+                            class="content d-flex align-items-end hover3d-child">
                             <div class="content-wrapper d-flex justify-content-between">
-                                <h6>Cup of coffee</h6>
+                                <h6>{{$project->title}}</h6>
                                 <p class="info">
                                     <span>17<i class="fa fa-comments"></i></span>
                                     <span>24<i class="far fa-heart"></i></span>
@@ -27,12 +31,13 @@
                     </div>
                 </div>
             </div>
-            <div class="grid-item design">
+            @endforeach
+
+            {{-- <div class="grid-item design">
                 <div class="img-wrapper">
                     <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
                     <div class="description-box hover3d-wrapper">
-                        <a href="project-mixed-1.html"
-                           class="content d-flex align-items-end hover3d-child">
+                        <a href="project-mixed-1.html" class="content d-flex align-items-end hover3d-child">
                             <div class="content-wrapper d-flex justify-content-between">
                                 <h6>Notebook Mockup</h6>
                                 <p class="info">
@@ -48,8 +53,7 @@
                 <div class="img-wrapper">
                     <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
                     <div class="description-box hover3d-wrapper">
-                        <a href="project-mixed-1.html"
-                           class="content d-flex align-items-end hover3d-child">
+                        <a href="project-mixed-1.html" class="content d-flex align-items-end hover3d-child">
                             <div class="content-wrapper d-flex justify-content-between">
                                 <h6>Clipboard Stationery</h6>
                                 <p class="info">
@@ -65,8 +69,7 @@
                 <div class="img-wrapper">
                     <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
                     <div class="description-box hover3d-wrapper">
-                        <a href="project-mixed-1.html"
-                           class="content d-flex align-items-end hover3d-child">
+                        <a href="project-mixed-1.html" class="content d-flex align-items-end hover3d-child">
                             <div class="content-wrapper d-flex justify-content-between">
                                 <h6>Paper Bag</h6>
                                 <p class="info">
@@ -82,8 +85,7 @@
                 <div class="img-wrapper">
                     <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
                     <div class="description-box hover3d-wrapper">
-                        <a href="project-mixed-1.html"
-                           class="content d-flex align-items-end hover3d-child">
+                        <a href="project-mixed-1.html" class="content d-flex align-items-end hover3d-child">
                             <div class="content-wrapper d-flex justify-content-between">
                                 <h6>Book Mockup</h6>
                                 <p class="info">
@@ -99,8 +101,7 @@
                 <div class="img-wrapper">
                     <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
                     <div class="description-box hover3d-wrapper">
-                        <a href="project-mixed-1.html"
-                           class="content d-flex align-items-end hover3d-child">
+                        <a href="project-mixed-1.html" class="content d-flex align-items-end hover3d-child">
                             <div class="content-wrapper d-flex justify-content-between">
                                 <h6>Cards Mockup</h6>
                                 <p class="info">
@@ -116,8 +117,7 @@
                 <div class="img-wrapper">
                     <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
                     <div class="description-box hover3d-wrapper">
-                        <a href="project-mixed-1.html"
-                           class="content d-flex align-items-end hover3d-child">
+                        <a href="project-mixed-1.html" class="content d-flex align-items-end hover3d-child">
                             <div class="content-wrapper d-flex justify-content-between">
                                 <h6>Branding Mockup</h6>
                                 <p class="info">
@@ -133,8 +133,7 @@
                 <div class="img-wrapper">
                     <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
                     <div class="description-box hover3d-wrapper">
-                        <a href="project-mixed-1.html"
-                           class="content d-flex align-items-end hover3d-child">
+                        <a href="project-mixed-1.html" class="content d-flex align-items-end hover3d-child">
                             <div class="content-wrapper d-flex justify-content-between">
                                 <h6>Branding Mockup</h6>
                                 <p class="info">
@@ -145,7 +144,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

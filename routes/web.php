@@ -77,6 +77,12 @@ Route::delete('/services/{id}', [ServiceController::class, 'destroy'])->name('se
 Route::resource('blog', BlogController::class);
 Route::resource('project', ProjectController::class);
 
+Route::get('landing/blog', [BlogController::class, 'showLanding'])->name('bloglanding');
+Route::get('landing/blog/{id}', [BlogController::class, 'showDetailsLanding'])->name('bloglandingdetails');
+
+// Route::get('landing/project', [ProjectController::class, 'showLanding'])->name('projectlanding');
+Route::get('landing/project/{id}', [ProjectController::class, 'showDetailsLanding'])->name('projectlandingdetails');
+
 //Route::get('/', function () {
 //    return view('welcome');
 //});

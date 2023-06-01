@@ -61,7 +61,9 @@ class ProjectController extends Controller
             $isSaved = $project->save();
 
             if ($request->hasFile('image')) {
-                $this->saveImage($request->image, 'images', $project);
+                foreach ($request->image as $image) {
+                    $this->saveImage($image, 'images', $project);
+                }
             }
 
             return redirect()->route('project.index');
@@ -124,7 +126,9 @@ class ProjectController extends Controller
                 foreach ($project->images as $image) {
                     File::delete($image->url);
                 }
-                $this->saveImage($request->image, 'images', $project);
+                foreach ($request->image as $image) {
+                    $this->saveImage($request->image, 'images', $project);
+                }
             }
 
             return redirect()->route('project.index');
@@ -159,5 +163,19 @@ class ProjectController extends Controller
         $imageModel->name = $file_name;
         $imageModel->url = $path . '/' . $file_name;
         $obj->images()->save($imageModel);
+    }
+
+    // public function showLanding()
+    // {
+    //     $blogs =  Project::get();
+    //     // dd('asdfs');
+    //     return view('landing_page.project.index', ['blogs' => $blogs]);
+    // }
+
+    public function showDetailsLanding($id)
+    {
+        $project =  Project::find($id);
+        // dd('asdfs');
+        return view('landing_page.project.show', ['project' => $project]);
     }
 }

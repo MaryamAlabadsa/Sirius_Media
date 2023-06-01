@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Info;
+use App\Models\Project;
 use App\Models\Service;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -21,7 +22,7 @@ class Controller extends BaseController
      */
     public function index()
     {
-//        $info = Info::all();
+        //        $info = Info::all();
         $slider = Info::select('json_data')
             ->where('json_key', 'slider')
             ->first()->slider;
@@ -31,12 +32,15 @@ class Controller extends BaseController
         $note = Info::select('json_data')
             ->where('json_key', 'note')
             ->first()->note;
-        $services=Service::all();
-        $services=Service::paginate(4);
-        return view('landing_page.home', compact('slider'
-            ,'about'
-            ,'note'
-            ,'services'
+        $services = Service::all();
+        $projects = Project::all();
+        $services = Service::paginate(4);
+        return view('landing_page.home', compact(
+            'slider',
+            'about',
+            'note',
+            'services',
+            'projects'
         ));
     }
 }

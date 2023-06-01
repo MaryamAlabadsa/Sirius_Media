@@ -106,7 +106,7 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="image">Image 1</label>
                     <div class="col-sm-10">
-                        <input type="file" id="image" name="image" accept="image/*" class="form-control">
+                        <input type="file" id="image" name="image[]" accept="image/*" class="form-control" multiple>
                         @error('image')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

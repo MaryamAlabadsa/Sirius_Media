@@ -1,3 +1,5 @@
+@extends('landing_page.master')
+@section('content')
 <section id="blog" class="recent-posts gray-section large-section"
     style="background-image: url({{ asset('assets/img/assets/absurdity.png')}}">
     <div class="container">
@@ -10,26 +12,27 @@
             </div>
         </div>
         <div class="row blog-wrapper">
+            @foreach ($blogs as $blog)
             <div class="col-lg-4">
                 <div class="blog-card-wrapper hover3d-wrapper">
                     <div class="card-content hover3d-child">
                         <div class="card-blog-header">
                             <div class="img-wrapper d-flex align-items-center justify-content-center">
                                 <a href="blog-single-post-sidebar-layout.html">
-                                    <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid img">
-                                    <div class="tag bg-color-purple">Modern</div>
+                                    <img src="{{asset($blog->images->first()->url)}}" alt="" class="img-fluid img">
+                                    {{-- <div class="tag bg-color-purple">Modern</div> --}}
                                 </a>
                             </div>
                         </div>
                         <div class="card-blog-body">
-                            <h6><a href="#">Web Design trends</a></h6>
-                            <p class="content">Lorem ipsum dolor sit amet, conctetur ping elit. A archcto codi
-                                cumque
-                                dissimos dobus, dolorum eos expbo id iusto lorum<a href="#">[...]</a></p>
+                            <h6><a href="#">{{$blog->title}}</a></h6>
+                            <p class="content">{{$blog->description}}<a
+                                    href="{{route('bloglandingdetails',$blog->id)}}">[...]</a>
+                            </p>
                             <div class="card-blog-footer d-flex justify-content-between align-items-end">
                                 <p class="date d-flex align-items-end">
                                     <i class="fas fa-calendar-alt"></i>
-                                    April 25, 2022
+                                    {{date('Y-m-d', strtotime($blog->completed_time))}}
                                 </p>
                                 <p class="info d-flex align-items-end">
                                     <span><i class="fas fa-comment-alt"></i>26</span>
@@ -40,7 +43,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            @endforeach
+            {{-- <div class="col-lg-4">
                 <div class="blog-card-wrapper hover3d-wrapper">
                     <div class="card-content hover3d-child">
                         <div class="card-blog-header">
@@ -99,7 +103,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
+
+@endsection

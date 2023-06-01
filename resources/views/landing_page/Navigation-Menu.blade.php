@@ -22,7 +22,7 @@
                                     <a href="#comments">What They says</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="#blog">Blog</a>
+                                    <a href="{{route('bloglanding')}}">Blog</a>
                                 </li>
                             </ul>
                         </li>
@@ -41,49 +41,43 @@
 
                     </ul>
                 </div>
-                {{--                socail media --}}
+                {{-- socail media --}}
                 <ul class="social-list">
 
                     <li>
                         <a href="https://www.facebook.com/siriusmediaco">
-                            <i class="fab fa-facebook-f"
-                               style="color: #3B5999;"></i>
+                            <i class="fab fa-facebook-f" style="color: #3B5999;"></i>
                         </a>
                     </li>
                     <li>
                         <a href="https://twitter.com/SiriusMedia_co">
-                            <i class="fab fa-twitter"
-                               style="color: #1DA1F2;"></i>
+                            <i class="fab fa-twitter" style="color: #1DA1F2;"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.behance.net/siriusmediaco?tracking_source=search_users_recommended%7Csirius%20media">
-                            <i class="fab fa-behance"
-                               style="color: #053EFF;"></i>
+                        <a
+                            href="https://www.behance.net/siriusmediaco?tracking_source=search_users_recommended%7Csirius%20media">
+                            <i class="fab fa-behance" style="color: #053EFF;"></i>
                         </a>
                     </li>
                     <li>
                         <a href="https://wa.me/00970598246821">
-                            <i class="fab fa-whatsapp"
-                               style="color: #3dad04;"></i>
+                            <i class="fab fa-whatsapp" style="color: #3dad04;"></i>
                         </a>
                     </li>
                     <li>
                         <a href="https://themeforest.net/user/jd-themes">
-                            <i class="fab fa-dribbble"
-                               style="color: #EA4C89;"></i>
+                            <i class="fab fa-dribbble" style="color: #EA4C89;"></i>
                         </a>
                     </li>
                     <li>
                         <a href="https://www.instagram.com/siriusmediaco/">
-                            <i class="fab fa-instagram"
-                               style="color: #833AB4;"></i>
+                            <i class="fab fa-instagram" style="color: #833AB4;"></i>
                         </a>
                     </li>
                     <li>
                         <a href="https://www.linkedin.com/company/siriusmediaco/">
-                            <i class="fab fa-linkedin"
-                               style="color: #0077B5;"></i>
+                            <i class="fab fa-linkedin" style="color: #0077B5;"></i>
                         </a>
                     </li>
                 </ul>
@@ -97,8 +91,7 @@
         <!-- Logotype -->
         <div class="logotype-wrapper">
             <a href="/">
-                <img src="{{ asset('assets/logo.png')}}"
-                     alt="Logo">
+                <img src="{{ asset('assets/logo.png')}}" alt="Logo">
             </a>
         </div>
         <div class="navigation-side">
@@ -158,32 +151,23 @@
                             Home Canvas
                         </a>
                         <ul class="sub-menu">
-                            <li class="menu-item"><a
-                                    href="home-canvas-default-particles.html">Default
+                            <li class="menu-item"><a href="home-canvas-default-particles.html">Default
                                     Particles</a></li>
-                            <li class="menu-item"><a
-                                    href="home-canvas-color-particles.html">Color
+                            <li class="menu-item"><a href="home-canvas-color-particles.html">Color
                                     Particles</a></li>
-                            <li class="menu-item"><a
-                                    href="home-canvas-circles-particles.html">Circle
+                            <li class="menu-item"><a href="home-canvas-circles-particles.html">Circle
                                     Particles</a></li>
-                            <li class="menu-item"><a
-                                    href="home-canvas-gravity-particles.html">Gravity
+                            <li class="menu-item"><a href="home-canvas-gravity-particles.html">Gravity
                                     Particles</a></li>
-                            <li class="menu-item"><a
-                                    href="home-canvas-3d-particles.html">Particles
+                            <li class="menu-item"><a href="home-canvas-3d-particles.html">Particles
                                     Net</a></li>
-                            <li class="menu-item"><a
-                                    href="home-canvas-connect-particles.html">Connect
+                            <li class="menu-item"><a href="home-canvas-connect-particles.html">Connect
                                     Particles</a></li>
-                            <li class="menu-item"><a
-                                    href="home-canvas-moving-stars.html">Moving
+                            <li class="menu-item"><a href="home-canvas-moving-stars.html">Moving
                                     Particles</a></li>
-                            <li class="menu-item"><a
-                                    href="home-canvas-confetti-particles.html">Confetti
+                            <li class="menu-item"><a href="home-canvas-confetti-particles.html">Confetti
                                     Particles</a></li>
-                            <li class="menu-item"><a
-                                    href="home-canvas-wave-particles.html">Wave
+                            <li class="menu-item"><a href="home-canvas-wave-particles.html">Wave
                                     Particles</a></li>
                         </ul>
                     </li>
@@ -352,14 +336,14 @@
                                         class="fa fa-window-maximize icon-description"></i>Tabs</a></li>
                             <li><a href="elements-accordions.html"><i
                                         class="fa fa-list-alt icon-description"></i>Accordions</a></li>
-                            <li><a href="elements-icon-boxes.html"><i
-                                        class="fa fa-briefcase icon-description"></i>Icon Boxes</a>
+                            <li><a href="elements-icon-boxes.html"><i class="fa fa-briefcase icon-description"></i>Icon
+                                    Boxes</a>
                             </li>
                             <li><a href="elements-pricing-tables.html"><i
                                         class="fas fa-money-bill-alt icon-description"></i>Pricing Tables</a>
                             </li>
-                            <li><a href="elements-forms.html"><i
-                                        class="fa fa-paper-plane icon-description"></i>Contact Forms</a>
+                            <li><a href="elements-forms.html"><i class="fa fa-paper-plane icon-description"></i>Contact
+                                    Forms</a>
                             </li>
                         </ul>
                     </li>
@@ -367,24 +351,21 @@
                         <a class="megamenu-title">Additional</a>
                         <ul class="sub-menu">
                             <li class="menu-item">
-                                <a href="elements-headings.html"><i
-                                        class="fa fa-font icon-description"></i>Headings</a>
+                                <a href="elements-headings.html"><i class="fa fa-font icon-description"></i>Headings</a>
                             </li>
                             <li class="menu-item">
-                                <a href="elements-tables.html"><i
-                                        class="fa fa-table icon-description"></i>Tables</a>
+                                <a href="elements-tables.html"><i class="fa fa-table icon-description"></i>Tables</a>
                             </li>
                             <li class="menu-item">
-                                <a href="elements-lists.html"><i
-                                        class="fa fa-list-ul icon-description"></i>Lists</a>
+                                <a href="elements-lists.html"><i class="fa fa-list-ul icon-description"></i>Lists</a>
                             </li>
                             <li class="menu-item">
                                 <a href="elements-blockquotes.html"><i
                                         class="fa fa-quote-left icon-description"></i>Blockquotes</a>
                             </li>
                             <li class="menu-item">
-                                <a href="elements-social.html"><i
-                                        class="fab fa-twitter icon-description"></i>Social Icons</a>
+                                <a href="elements-social.html"><i class="fab fa-twitter icon-description"></i>Social
+                                    Icons</a>
                             </li>
                             <li class="menu-item">
                                 <a href="elements-columns.html"><i

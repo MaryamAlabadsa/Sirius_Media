@@ -144,4 +144,20 @@ class BlogController extends Controller
         $imageModel->url = $path . '/' . $file_name;
         $obj->images()->save($imageModel);
     }
+
+    public function showLanding()
+    {
+        $blogs =  Blog::get();
+        // dd('asdfs');
+        return view('landing_page.blog.index', ['blogs' => $blogs]);
+    }
+
+    public function showDetailsLanding($id)
+    {
+        $allBlog =  Blog::take(3)->get();
+        $allBlog2 =  Blog::take(5)->get();
+        $blog =  Blog::find($id);
+        // dd('asdfs');
+        return view('landing_page.blog.show', ['blog' => $blog, 'allBlog' => $allBlog, 'allBlog2' => $allBlog2]);
+    }
 }
