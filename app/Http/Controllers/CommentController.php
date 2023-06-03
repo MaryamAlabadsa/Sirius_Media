@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
-use App\Http\Requests\StoreCommentRequest;
-use App\Http\Requests\UpdateCommentRequest;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -34,9 +33,27 @@ class CommentController extends Controller
      * @param  \App\Http\Requests\StoreCommentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCommentRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validator = Validator($request->all(), [
+            'name' => 'required | string | min:3 | max:100',
+            'email' => 'string | string | min:3 | max:100',
+            'comment' => 'string | string | min:3 | max:100',
+        ]);
+        if (!$validator->fails()) {
+
+            $comment = new Comment();
+            $comment->name = $request->input('name');
+            $comment->email = $request->input('email');
+            $comment->comment = $request->input('comment');
+            // $comment->completed_time = 'asdfasdfasd';
+
+            $isSaved = $comment->comments()->save();
+
+            return redirect()->route('project.index');
+        } else {
+            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+        }
     }
 
     /**
@@ -68,7 +85,7 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCommentRequest $request, Comment $comment)
+    public function update(Request $request, Comment $comment)
     {
         //
     }

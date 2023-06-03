@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use App\Models\Comment;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -159,5 +160,28 @@ class BlogController extends Controller
         $blog =  Blog::find($id);
         // dd('asdfs');
         return view('landing_page.blog.show', ['blog' => $blog, 'allBlog' => $allBlog, 'allBlog2' => $allBlog2]);
+    }
+
+    public function storeComment(Request $request, $id)
+    {
+        $validator = Validator($request->all(), [
+            'name' => 'required | string | min:3 | max:100',
+            'email' => 'string | string | min:3 | max:100',
+            'comment' => 'string | string | min:3 | max:100',
+        ]);
+        if (!$validator->fails()) {
+            $blog = Blog::find($id);
+            $comment = new Comment();
+            $comment->name = $request->input('name');
+            $comment->email = $request->input('email');
+            $comment->comment = $request->input('comment');
+            // $comment->completed_time = 'asdfasdfasd';
+
+            $isSaved = $blog->comments()->save($comment);
+
+            return redirect()->back();
+        } else {
+            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+        }
     }
 }

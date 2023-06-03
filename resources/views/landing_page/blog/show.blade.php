@@ -341,7 +341,7 @@
                     <div class="post-comments-wrapper gray-section">
                         <h6 class="comments-title">Comments</h6>
                         <ul class="comments-list">
-                            <li class="comment d-flex flex-column">
+                            {{-- <li class="comment d-flex flex-column">
                                 <div class="d-flex">
                                     <div class="author-wrapper">
                                         <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
@@ -408,7 +408,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li> --}}
+
+                            @foreach ($blog->comments as $comment)
                             <li class="comment d-flex flex-column">
                                 <div class="d-flex">
                                     <div class="author-wrapper">
@@ -417,50 +419,27 @@
                                     <div class="comment-body">
                                         <div class="d-flex justify-content-between">
                                             <div>
-                                                <p class="author-name">Sara Smith</p>
-                                                <p class="date">24 March, 2022 at 3:25 pm</p>
+                                                <p class="author-name">{{$comment->name}}</p>
+                                                <p class="date">{{date('Y-m-d', strtotime($blog->created_at))}}</p>
                                             </div>
                                             <a href="#" class="reply-link"><i class="fa fa-reply"></i>Reply</a>
                                         </div>
                                         <p class="comment-text">
-                                            Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin
-                                            quam.
-                                            Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed
-                                            lectus.
-                                            Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra
-                                            auctor, sem massa mattis sem, at interdum.
+                                            {{$comment->comment}}
                                         </p>
                                     </div>
                                 </div>
                             </li>
-                            <li class="comment d-flex flex-column">
-                                <div class="d-flex">
-                                    <div class="author-wrapper">
-                                        <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
-                                    </div>
-                                    <div class="comment-body">
-                                        <div class="d-flex justify-content-between">
-                                            <div>
-                                                <p class="author-name">Kelly Matew</p>
-                                                <p class="date">24 March, 2022 at 2:15 pm</p>
-                                            </div>
-                                            <a href="#" class="reply-link"><i class="fa fa-reply"></i>Reply</a>
-                                        </div>
-                                        <p class="comment-text">
-                                            Sed non quam in vel mi sit amet augue congue elementum. Morbi in ipsum
-                                            sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                         <h6 class="comments-title">Write a comment</h6>
-                        <form class="comment-form">
+                        <form action="{{route('store.Comment',$blog->id)}}" method="POST" class="comment-form">
+                            @csrf
                             <div class="input-row d-flex">
-                                <input type="text" name="text" placeholder="Name">
+                                <input type="text" name="name" placeholder="Name">
                                 <input type="email" name="email" placeholder="E-mail">
                             </div>
-                            <textarea name="message" placeholder="Your message..."></textarea>
+                            <textarea name="comment" placeholder="Your message..."></textarea>
                             <button type="submit">Send Comment</button>
                         </form>
                     </div>

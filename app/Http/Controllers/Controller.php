@@ -34,13 +34,16 @@ class Controller extends BaseController
             ->first()->note;
         $services = Service::all();
         $projects = Project::all();
+        $projectOne =  Project::first();
+
         $services = Service::paginate(4);
         return view('landing_page.home', compact(
             'slider',
             'about',
             'note',
             'services',
-            'projects'
+            'projects',
+            'projectOne'
         ));
     }
 }

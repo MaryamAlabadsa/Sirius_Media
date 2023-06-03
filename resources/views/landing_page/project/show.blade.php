@@ -18,46 +18,6 @@
                             </div>
                         </div>
                         @endforeach
-                        {{-- <div class="grid-item">
-                            <div class="img-wrapper">
-                                <a href="http://via.placeholder.com/1920x1080" class="image-popup">
-                                    <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
-                                    <i class="fa fa-search plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="grid-item">
-                            <div class="img-wrapper">
-                                <a href="http://via.placeholder.com/1920x1080" class="image-popup">
-                                    <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
-                                    <i class="fa fa-search plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="grid-item">
-                            <div class="img-wrapper">
-                                <a href="http://via.placeholder.com/1920x1080" class="image-popup">
-                                    <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
-                                    <i class="fa fa-search plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="grid-item">
-                            <div class="img-wrapper">
-                                <a href="http://via.placeholder.com/1920x1080" class="image-popup">
-                                    <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
-                                    <i class="fa fa-search plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="grid-item">
-                            <div class="img-wrapper">
-                                <a href="http://via.placeholder.com/1920x1080" class="image-popup">
-                                    <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
-                                    <i class="fa fa-search plus"></i>
-                                </a>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
                 <div class="col-lg-5 description-project-default">
@@ -70,35 +30,134 @@
                                 <a href="#" class="button-default-black"><i class="fa fa-link"></i>View website</a>
                             </div>
                         </div>
-                        {{-- <div>
-                            <ul class="project-information">
-                                <li>
-                                    <p class="title">Client: </p>
-                                    <p class="info-text">Jonathan Doe inc.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="white-section blog-section single-post-section">
+        <div class="container-fluid gray-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col comments-col">
+                        <div class="post-comments-wrapper gray-section">
+                            <h6 class="comments-title">Comments</h6>
+                            <ul class="comments-list">
+                                {{-- <li class="comment d-flex flex-column">
+                                    <div class="d-flex">
+                                        <div class="author-wrapper">
+                                            <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
+                                        </div>
+                                        <div class="comment-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <p class="author-name">Emily Wiliams</p>
+                                                    <p class="date">25 March, 2022 at 5:54 pm</p>
+                                                </div>
+                                                <a href="#" class="reply-link"><i class="fa fa-reply"></i>Reply</a>
+                                            </div>
+                                            <p class="comment-text">
+                                                Vesulum tidunt malesuada tellus. Ut ultrices ultrices enim.
+                                                Curabitur sit amet mauris morbi in dui quis est pulvinar ullamcorper.
+                                                Sed aliquet risus a tortor integer id quam morbi mi quisque nisl
+                                                felis, venenatis tristique.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="comment comment-reply d-flex flex-column">
+                                        <div class="d-flex">
+                                            <div class="author-wrapper">
+                                                <img src="http://via.placeholder.com/1920x1080" alt=""
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="comment-body">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <p class="author-name">Frank Horrigan</p>
+                                                        <p class="date">25 March, 2022 at 6:13 pm</p>
+                                                    </div>
+                                                    <a href="#" class="reply-link"><i class="fa fa-reply"></i>Reply</a>
+                                                </div>
+                                                <p class="comment-text">
+                                                    Sed non quam. In vel mi sit amet augue congue elementum. Morbi in
+                                                    ipsum
+                                                    sit
+                                                    amet pede facilisis laoreet.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="comment comment-reply d-flex flex-column">
+                                            <div class="d-flex">
+                                                <div class="author-wrapper">
+                                                    <img src="http://via.placeholder.com/1920x1080" alt=""
+                                                        class="img-fluid">
+                                                </div>
+                                                <div class="comment-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <p class="author-name">Alex Gray</p>
+                                                            <p class="date">25 March, 2022 at 6:48 pm</p>
+                                                        </div>
+                                                        <a href="#" class="reply-link"><i
+                                                                class="fa fa-reply"></i>Reply</a>
+                                                    </div>
+                                                    <p class="comment-text">
+                                                        Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien.
+                                                        Proin quam.
+                                                        Etiam ultrices. Suspendisse in justo eu magna luctus suscipit.
+                                                        Sed lectus.
+                                                        Integer euismod lacus luctus magna.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li> --}}
+
+                                @foreach ($project->comments as $comment)
+                                <li class="comment d-flex flex-column">
+                                    <div class="d-flex">
+                                        <div class="author-wrapper">
+                                            <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
+                                        </div>
+                                        <div class="comment-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <p class="author-name">{{$comment->name}}</p>
+                                                    <p class="date">{{date('Y-m-d', strtotime($comment->created_at))}}
+                                                    </p>
+                                                </div>
+                                                <a href="#" class="reply-link"><i class="fa fa-reply"></i>Reply</a>
+                                            </div>
+                                            <p class="comment-text">
+                                                {{$comment->comment}}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </li>
-                                <li>
-                                    <p class="title">Date: </p>
-                                    <p class="info-text">2022-04-25</p>
-                                </li>
-                                <li>
-                                    <p class="title">Website: </p>
-                                    <p class="info-text"><a href="#">Example.com</a></p>
-                                </li>
-                                <li>
-                                    <p class="title">Categories: </p>
-                                    <p class="info-text">Development, Modern, Design</p>
-                                </li>
-                                <li>
-                                    <p class="title">Price: </p>
-                                    <p class="info-text">1500$</p>
-                                </li>
+                                @endforeach
                             </ul>
-                        </div> --}}
+                            <h6 class="comments-title">Write a comment</h6>
+                            <form action="{{route('store.Comment.project',$project->id)}}" method="POST"
+                                class="comment-form">
+                                @csrf
+                                <div class="input-row d-flex">
+                                    <input type="text" name="name" placeholder="Name">
+                                    <input type="email" name="email" placeholder="E-mail">
+                                </div>
+                                <textarea name="comment" placeholder="Your message..."></textarea>
+                                <button type="submit">Send Comment</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- [5] Navigation Project -->
     {{-- <section class="navigation-project white-section border-bottom-simple border-top-simple">
         <div class="container-fluid" data-aos="fade" data-aos-delay="100" data-aos-anchor-placement="top-bottom"

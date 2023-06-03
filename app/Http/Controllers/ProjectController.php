@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Image;
 use App\Models\Service;
@@ -21,6 +22,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects =  Project::get();
+
         return view('controlPanel.project.index', ['projects' => $projects]);
     }
 
@@ -177,5 +179,28 @@ class ProjectController extends Controller
         $project =  Project::find($id);
         // dd('asdfs');
         return view('landing_page.project.show', ['project' => $project]);
+    }
+
+    public function storeComment(Request $request, $id)
+    {
+        $validator = Validator($request->all(), [
+            'name' => 'required | string | min:3 | max:100',
+            'email' => 'string | string | min:3 | max:100',
+            'comment' => 'string | string | min:3 | max:100',
+        ]);
+        if (!$validator->fails()) {
+            $project = Project::find($id);
+            $comment = new Comment();
+            $comment->name = $request->input('name');
+            $comment->email = $request->input('email');
+            $comment->comment = $request->input('comment');
+            // $comment->completed_time = 'asdfasdfasd';
+
+            $isSaved = $project->comments()->save($comment);
+
+            return redirect()->back();
+        } else {
+            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+        }
     }
 }

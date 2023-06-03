@@ -14,6 +14,11 @@ class Project extends Model
         return $this->morphMany(Image::class, 'object', 'object_type', 'object_id', 'id');
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'object', 'object_type', 'object_id', 'id');
+    }
+
     public function service()
     {
         return $this->belongsTo(Service::class);

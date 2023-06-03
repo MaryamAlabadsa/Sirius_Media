@@ -79,9 +79,11 @@ Route::resource('project', ProjectController::class);
 
 Route::get('landing/blog', [BlogController::class, 'showLanding'])->name('bloglanding');
 Route::get('landing/blog/{id}', [BlogController::class, 'showDetailsLanding'])->name('bloglandingdetails');
+Route::post('landing/blog/comment/{id}', [BlogController::class, 'storeComment'])->name('store.Comment');
 
 // Route::get('landing/project', [ProjectController::class, 'showLanding'])->name('projectlanding');
 Route::get('landing/project/{id}', [ProjectController::class, 'showDetailsLanding'])->name('projectlandingdetails');
+Route::post('landing/project/comment/{id}', [ProjectController::class, 'storeComment'])->name('store.Comment.project');
 
 //Route::get('/', function () {
 //    return view('welcome');
