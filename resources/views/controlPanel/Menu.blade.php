@@ -94,6 +94,13 @@
             </a>
         </li>
 
+        <li class="menu-item active">
+            <a href="{{route('payment.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Payments</div>
+            </a>
+        </li>
+
 
     </ul>
 </aside>

@@ -1,10 +1,8 @@
 <div class="layout-page">
     <!-- Navbar -->
 
-    <nav
-        class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-        id="layout-navbar"
-    >
+    <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+        id="layout-navbar">
         <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
             <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                 <i class="bx bx-menu bx-sm"></i>
@@ -16,12 +14,8 @@
             <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                     <i class="bx bx-search fs-4 lh-0"></i>
-                    <input
-                        type="text"
-                        class="form-control border-0 shadow-none"
-                        placeholder="Search..."
-                        aria-label="Search..."
-                    />
+                    <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
+                        aria-label="Search..." />
                 </div>
             </div>
             <!-- /Search -->
@@ -29,23 +23,16 @@
             <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
                 <li class="nav-item lh-1 me-3">
-                    <a
-                        class="github-button"
-                        href="https://github.com/themeselection/sneat-html-admin-template-free"
-                        data-icon="octicon-star"
-                        data-size="large"
-                        data-show-count="true"
-                        aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-                    >Star</a
-                    >
+                    <a class="github-button" href="https://github.com/themeselection/sneat-html-admin-template-free"
+                        data-icon="octicon-star" data-size="large" data-show-count="true"
+                        aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
                 </li>
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                       data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         <div class="avatar avatar-online">
-                            <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"/>
+                            <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -55,7 +42,7 @@
                                     <div class="flex-shrink-0 me-3">
                                         <div class="avatar avatar-online">
                                             <img src="../assets/img/avatars/1.png" alt
-                                                 class="w-px-40 h-auto rounded-circle"/>
+                                                class="w-px-40 h-auto rounded-circle" />
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
@@ -82,11 +69,12 @@
                         </li>
                         <li>
                             <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
+                                <span class="d-flex align-items-center align-middle">
+                                    <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                                    <span class="flex-grow-1 align-middle">Billing</span>
+                                    <span
+                                        class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                                </span>
                             </a>
                         </li>
                         <li>
@@ -95,7 +83,7 @@
                         <li>
                             <a class="dropdown-item" href="auth-login-basic.html">
                                 <i class="bx bx-power-off me-2"></i>
-                                <span class="align-middle">Log Out</span>
+                                <span class="align-middle">Log Out ..</span>
                             </a>
                         </li>
                     </ul>
@@ -131,13 +119,9 @@
                             </div>
                             <div class="col-sm-5 text-center text-sm-left">
                                 <div class="card-body pb-0 px-0 px-md-4">
-                                    <img
-                                        src="../assets/img/illustrations/man-with-laptop-light.png"
-                                        height="140"
-                                        alt="View Badge User"
-                                        data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                                        data-app-light-img="illustrations/man-with-laptop-light.png"
-                                    />
+                                    <img src="../assets/img/illustrations/man-with-laptop-light.png" height="140"
+                                        alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                        data-app-light-img="illustrations/man-with-laptop-light.png" />
                                 </div>
                             </div>
                         </div>
@@ -150,25 +134,15 @@
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
                                         <div class="avatar flex-shrink-0">
-                                            <img
-                                                src="../assets/img/icons/unicons/chart-success.png"
-                                                alt="chart success"
-                                                class="rounded"
-                                            />
+                                            <img src="../assets/img/icons/unicons/chart-success.png" alt="chart success"
+                                                class="rounded" />
                                         </div>
                                         <div class="dropdown">
-                                            <button
-                                                class="btn p-0"
-                                                type="button"
-                                                id="cardOpt3"
-                                                data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                            >
+                                            <button class="btn p-0" type="button" id="cardOpt3"
+                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
-                                            <div class="dropdown-menu dropdown-menu-end"
-                                                 aria-labelledby="cardOpt3">
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
                                                 <a class="dropdown-item" href="javascript:void(0);">View
                                                     More</a>
                                                 <a class="dropdown-item" href="javascript:void(0);">Delete</a>
@@ -187,25 +161,15 @@
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
                                         <div class="avatar flex-shrink-0">
-                                            <img
-                                                src="../assets/img/icons/unicons/wallet-info.png"
-                                                alt="Credit Card"
-                                                class="rounded"
-                                            />
+                                            <img src="../assets/img/icons/unicons/wallet-info.png" alt="Credit Card"
+                                                class="rounded" />
                                         </div>
                                         <div class="dropdown">
-                                            <button
-                                                class="btn p-0"
-                                                type="button"
-                                                id="cardOpt6"
-                                                data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                            >
+                                            <button class="btn p-0" type="button" id="cardOpt6"
+                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
-                                            <div class="dropdown-menu dropdown-menu-end"
-                                                 aria-labelledby="cardOpt6">
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
                                                 <a class="dropdown-item" href="javascript:void(0);">View
                                                     More</a>
                                                 <a class="dropdown-item" href="javascript:void(0);">Delete</a>
@@ -233,18 +197,13 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <div class="dropdown">
-                                            <button
-                                                class="btn btn-sm btn-outline-primary dropdown-toggle"
-                                                type="button"
-                                                id="growthReportId"
-                                                data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                            >
+                                            <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button"
+                                                id="growthReportId" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
                                                 2022
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-end"
-                                                 aria-labelledby="growthReportId">
+                                                aria-labelledby="growthReportId">
                                                 <a class="dropdown-item" href="javascript:void(0);">2021</a>
                                                 <a class="dropdown-item" href="javascript:void(0);">2020</a>
                                                 <a class="dropdown-item" href="javascript:void(0);">2019</a>
@@ -259,8 +218,8 @@
                                     class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
                                     <div class="d-flex">
                                         <div class="me-2">
-                                                    <span class="badge bg-label-primary p-2"><i
-                                                            class="bx bx-dollar text-primary"></i></span>
+                                            <span class="badge bg-label-primary p-2"><i
+                                                    class="bx bx-dollar text-primary"></i></span>
                                         </div>
                                         <div class="d-flex flex-column">
                                             <small>2022</small>
@@ -269,8 +228,8 @@
                                     </div>
                                     <div class="d-flex">
                                         <div class="me-2">
-                                                    <span class="badge bg-label-info p-2"><i
-                                                            class="bx bx-wallet text-info"></i></span>
+                                            <span class="badge bg-label-info p-2"><i
+                                                    class="bx bx-wallet text-info"></i></span>
                                         </div>
                                         <div class="d-flex flex-column">
                                             <small>2021</small>
@@ -291,21 +250,14 @@
                                     <div class="card-title d-flex align-items-start justify-content-between">
                                         <div class="avatar flex-shrink-0">
                                             <img src="../assets/img/icons/unicons/paypal.png" alt="Credit Card"
-                                                 class="rounded"/>
+                                                class="rounded" />
                                         </div>
                                         <div class="dropdown">
-                                            <button
-                                                class="btn p-0"
-                                                type="button"
-                                                id="cardOpt4"
-                                                data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                            >
+                                            <button class="btn p-0" type="button" id="cardOpt4"
+                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
-                                            <div class="dropdown-menu dropdown-menu-end"
-                                                 aria-labelledby="cardOpt4">
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
                                                 <a class="dropdown-item" href="javascript:void(0);">View
                                                     More</a>
                                                 <a class="dropdown-item" href="javascript:void(0);">Delete</a>
@@ -324,18 +276,12 @@
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
                                         <div class="avatar flex-shrink-0">
-                                            <img src="../assets/img/icons/unicons/cc-primary.png"
-                                                 alt="Credit Card" class="rounded"/>
+                                            <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card"
+                                                class="rounded" />
                                         </div>
                                         <div class="dropdown">
-                                            <button
-                                                class="btn p-0"
-                                                type="button"
-                                                id="cardOpt1"
-                                                data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                            >
+                                            <button class="btn p-0" type="button" id="cardOpt1"
+                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="cardOpt1">
@@ -362,13 +308,11 @@
                                             class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                                             <div class="card-title">
                                                 <h5 class="text-nowrap mb-2">Profile Report</h5>
-                                                <span
-                                                    class="badge bg-label-warning rounded-pill">Year 2021</span>
+                                                <span class="badge bg-label-warning rounded-pill">Year 2021</span>
                                             </div>
                                             <div class="mt-sm-auto">
-                                                <small class="text-success text-nowrap fw-semibold"
-                                                ><i class="bx bx-chevron-up"></i> 68.2%</small
-                                                >
+                                                <small class="text-success text-nowrap fw-semibold"><i
+                                                        class="bx bx-chevron-up"></i> 68.2%</small>
                                                 <h3 class="mb-0">$84,686k</h3>
                                             </div>
                                         </div>
@@ -390,14 +334,8 @@
                                 <small class="text-muted">42.82k Total Sales</small>
                             </div>
                             <div class="dropdown">
-                                <button
-                                    class="btn p-0"
-                                    type="button"
-                                    id="orederStatistics"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
+                                <button class="btn p-0" type="button" id="orederStatistics" data-bs-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
@@ -418,9 +356,8 @@
                             <ul class="p-0 m-0">
                                 <li class="d-flex mb-4 pb-1">
                                     <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-primary"
-                            ><i class="bx bx-mobile-alt"></i
-                                ></span>
+                                        <span class="avatar-initial rounded bg-label-primary"><i
+                                                class="bx bx-mobile-alt"></i></span>
                                     </div>
                                     <div
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -435,8 +372,8 @@
                                 </li>
                                 <li class="d-flex mb-4 pb-1">
                                     <div class="avatar flex-shrink-0 me-3">
-                                                <span class="avatar-initial rounded bg-label-success"><i
-                                                        class="bx bx-closet"></i></span>
+                                        <span class="avatar-initial rounded bg-label-success"><i
+                                                class="bx bx-closet"></i></span>
                                     </div>
                                     <div
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -451,8 +388,8 @@
                                 </li>
                                 <li class="d-flex mb-4 pb-1">
                                     <div class="avatar flex-shrink-0 me-3">
-                                                <span class="avatar-initial rounded bg-label-info"><i
-                                                        class="bx bx-home-alt"></i></span>
+                                        <span class="avatar-initial rounded bg-label-info"><i
+                                                class="bx bx-home-alt"></i></span>
                                     </div>
                                     <div
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -467,9 +404,8 @@
                                 </li>
                                 <li class="d-flex">
                                     <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-secondary"
-                            ><i class="bx bx-football"></i
-                                ></span>
+                                        <span class="avatar-initial rounded bg-label-secondary"><i
+                                                class="bx bx-football"></i></span>
                                     </div>
                                     <div
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -494,15 +430,9 @@
                         <div class="card-header">
                             <ul class="nav nav-pills" role="tablist">
                                 <li class="nav-item">
-                                    <button
-                                        type="button"
-                                        class="nav-link active"
-                                        role="tab"
-                                        data-bs-toggle="tab"
+                                    <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
                                         data-bs-target="#navs-tabs-line-card-income"
-                                        aria-controls="navs-tabs-line-card-income"
-                                        aria-selected="true"
-                                    >
+                                        aria-controls="navs-tabs-line-card-income" aria-selected="true">
                                         Income
                                     </button>
                                 </li>
@@ -516,11 +446,10 @@
                         </div>
                         <div class="card-body px-0">
                             <div class="tab-content p-0">
-                                <div class="tab-pane fade show active" id="navs-tabs-line-card-income"
-                                     role="tabpanel">
+                                <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
                                     <div class="d-flex p-4 pt-3">
                                         <div class="avatar flex-shrink-0 me-3">
-                                            <img src="../assets/img/icons/unicons/wallet.png" alt="User"/>
+                                            <img src="../assets/img/icons/unicons/wallet.png" alt="User" />
                                         </div>
                                         <div>
                                             <small class="text-muted d-block">Total Balance</small>
@@ -556,14 +485,8 @@
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <h5 class="card-title m-0 me-2">Transactions</h5>
                             <div class="dropdown">
-                                <button
-                                    class="btn p-0"
-                                    type="button"
-                                    id="transactionID"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
+                                <button class="btn p-0" type="button" id="transactionID" data-bs-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
@@ -577,8 +500,7 @@
                             <ul class="p-0 m-0">
                                 <li class="d-flex mb-4 pb-1">
                                     <div class="avatar flex-shrink-0 me-3">
-                                        <img src="../assets/img/icons/unicons/paypal.png" alt="User"
-                                             class="rounded"/>
+                                        <img src="../assets/img/icons/unicons/paypal.png" alt="User" class="rounded" />
                                     </div>
                                     <div
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -594,8 +516,7 @@
                                 </li>
                                 <li class="d-flex mb-4 pb-1">
                                     <div class="avatar flex-shrink-0 me-3">
-                                        <img src="../assets/img/icons/unicons/wallet.png" alt="User"
-                                             class="rounded"/>
+                                        <img src="../assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
                                     </div>
                                     <div
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -611,8 +532,7 @@
                                 </li>
                                 <li class="d-flex mb-4 pb-1">
                                     <div class="avatar flex-shrink-0 me-3">
-                                        <img src="../assets/img/icons/unicons/chart.png" alt="User"
-                                             class="rounded"/>
+                                        <img src="../assets/img/icons/unicons/chart.png" alt="User" class="rounded" />
                                     </div>
                                     <div
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -629,7 +549,7 @@
                                 <li class="d-flex mb-4 pb-1">
                                     <div class="avatar flex-shrink-0 me-3">
                                         <img src="../assets/img/icons/unicons/cc-success.png" alt="User"
-                                             class="rounded"/>
+                                            class="rounded" />
                                     </div>
                                     <div
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -645,8 +565,7 @@
                                 </li>
                                 <li class="d-flex mb-4 pb-1">
                                     <div class="avatar flex-shrink-0 me-3">
-                                        <img src="../assets/img/icons/unicons/wallet.png" alt="User"
-                                             class="rounded"/>
+                                        <img src="../assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
                                     </div>
                                     <div
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -663,7 +582,7 @@
                                 <li class="d-flex">
                                     <div class="avatar flex-shrink-0 me-3">
                                         <img src="../assets/img/icons/unicons/cc-warning.png" alt="User"
-                                             class="rounded"/>
+                                            class="rounded" />
                                     </div>
                                     <div
                                         class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
@@ -695,26 +614,19 @@
                         document.write(new Date().getFullYear());
                     </script>
                     , made with ❤️ by
-                    <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+                    <a href="https://themeselection.com" target="_blank"
+                        class="footer-link fw-bolder">ThemeSelection</a>
                 </div>
                 <div>
                     <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
                     <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
                         Themes</a>
 
-                    <a
-                        href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                        target="_blank"
-                        class="footer-link me-4"
-                    >Documentation</a
-                    >
+                    <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                        target="_blank" class="footer-link me-4">Documentation</a>
 
-                    <a
-                        href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                        target="_blank"
-                        class="footer-link me-4"
-                    >Support</a
-                    >
+                    <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank"
+                        class="footer-link me-4">Support</a>
                 </div>
             </div>
         </footer>
