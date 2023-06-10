@@ -16,6 +16,7 @@ class CreateBlogsTable extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
+            $table->text('short_description')->nullable();
             $table->text('description')->nullable();
             $table->dateTime('completed_time')->nullable();
             $table->timestamps();

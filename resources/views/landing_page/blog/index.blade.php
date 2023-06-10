@@ -26,7 +26,7 @@
                         </div>
                         <div class="card-blog-body">
                             <h6><a href="#">{{$blog->title}}</a></h6>
-                            <p class="content">{{$blog->description}}<a
+                            <p class="content">{{$blog->short_description}}<a
                                     href="{{route('bloglandingdetails',$blog->id)}}">[...]</a>
                             </p>
                             <div class="card-blog-footer d-flex justify-content-between align-items-end">
@@ -35,8 +35,8 @@
                                     {{date('Y-m-d', strtotime($blog->completed_time))}}
                                 </p>
                                 <p class="info d-flex align-items-end">
-                                    <span><i class="fas fa-comment-alt"></i>26</span>
-                                    <span><i class="fas fa-heart"></i>15</span>
+                                    <span><i class="fas fa-comment-alt"></i>{{$blog->comments()->count()}}</span>
+                                    {{-- <span><i class="fas fa-heart"></i>15</span> --}}
                                 </p>
                             </div>
                         </div>

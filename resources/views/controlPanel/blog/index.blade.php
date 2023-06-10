@@ -21,9 +21,9 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>title </th>
-                    <th>description </th>
-                    <th>completed time</th>
+                    <th>Title </th>
+                    <th>Short Description </th>
+                    <th>Completed time</th>
                     {{-- <th>sub title (Arabic)</th> --}}
 
                     <th>Actions</th>
@@ -33,7 +33,7 @@
                 @foreach($blogs as $blog)
                 <tr>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$blog->title}}</strong></td>
-                    <td>{{$blog->description}}</td>
+                    <td>{{$blog->short_description}}</td>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$blog->completed_time}}</strong>
                     </td>
 

@@ -50,6 +50,19 @@
                 </div>
                 {{-- End title --}}
 
+                {{-- Start short_description --}}
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="short_description">Short description</label>
+                    <div class="col-sm-10">
+                        <textarea id="short_description" name="short_description"
+                            class="form-control">{{ $blog->short_description }}</textarea>
+                        @error('short_description')
+                        <div class="invalid-feedback">{{ $errors->first('short_description') }}</div>
+                        @enderror
+                    </div>
+                </div>
+                {{-- End short_description --}}
+
                 {{-- Start description --}}
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="description">description</label>

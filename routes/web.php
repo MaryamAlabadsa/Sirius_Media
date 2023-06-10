@@ -90,7 +90,9 @@ Route::get('landing/blog', [BlogController::class, 'showLanding'])->name('blogla
 Route::get('landing/blog/{id}', [BlogController::class, 'showDetailsLanding'])->name('bloglandingdetails');
 Route::post('landing/blog/comment/{id}', [BlogController::class, 'storeComment'])->name('store.Comment');
 Route::get('landing/project/{id}', [ProjectController::class, 'showDetailsLanding'])->name('projectlandingdetails');
-Route::post('landing/project/comment/{id}', [ProjectController::class, 'storeComment'])->name('store.Comment.project');
+Route::post('landing/project/comment/{id}', [ProjectController::class, 'storeComment'])->name('store.comment.project');
+
+Route::post('landing/comment', [Controller::class, 'storeComment'])->name('store.comment.info');
 
 Route::get('landing/pricing/create', [PaymentController::class, 'create'])->name('payment.create');
 Route::post('landing/pricing/store', [PaymentController::class, 'stripeOrder'])->name('stripe.order');

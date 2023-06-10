@@ -32,12 +32,12 @@ class Info extends Model
     public function getSliderAttribute()
     {
         $array = json_decode($this->json_data, true);
-//        $array = $this->json_data;
+        //        $array = $this->json_data;
 
         $currentLocale = app()->getLocale();
         $video = $array['video'] ?? null;
         $image = $video ? asset('storage/videos/' . $video) : null;
-//dd($array);
+        //dd($array);
         if ($currentLocale === 'ar') {
             $title = $array['title_ar'];
             $sub_title = $array['sub_title_ar'];
@@ -47,7 +47,6 @@ class Info extends Model
         }
 
         return [$title, $sub_title, $image];
-
     }
 
     public function getNoteControlPanelAttribute()
@@ -57,7 +56,6 @@ class Info extends Model
         $title_ar = $array['title_ar'];
         $title = $array['title_en'];
         return [$title, $title_ar];
-
     }
 
     public function getNoteAttribute()
@@ -71,7 +69,6 @@ class Info extends Model
             $title = $array['title_en'];
         }
         return [$title];
-
     }
 
     public function getAboutControlPanelAttribute()
@@ -124,6 +121,10 @@ class Info extends Model
             $section_title = $array['section_title'];
         }
         return [$title1, $sub_title1, $title2, $sub_title2, $title3, $sub_title3, $image1, $image2, $section_title];
+    }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'object', 'object_type', 'object_id', 'id');
     }
 }

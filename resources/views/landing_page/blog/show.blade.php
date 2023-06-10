@@ -151,7 +151,7 @@
                                     </div>
                                     <div class="card-blog-body">
                                         <h6><a href="#">{{$blog->title}}</a></h6>
-                                        <p class="content">{{$blog->description}}<a
+                                        <p class="content">{{$blog->short_description}}<a
                                                 href="{{route('bloglandingdetails',$blog->id)}}">[...]</a>
                                         </p>
                                         <div class="card-blog-footer d-flex justify-content-between align-items-end">
@@ -160,8 +160,9 @@
                                                 {{date('Y-m-d', strtotime($blog->completed_time))}}
                                             </p>
                                             <p class="info d-flex align-items-end">
-                                                <span><i class="fas fa-comment-alt"></i>26</span>
-                                                <span><i class="fas fa-heart"></i>15</span>
+                                                <span><i
+                                                        class="fas fa-comment-alt"></i>{{$blog->comments()->count()}}</span>
+                                                {{-- <span><i class="fas fa-heart"></i>15</span> --}}
                                             </p>
                                         </div>
                                     </div>
@@ -422,7 +423,8 @@
                                                 <p class="author-name">{{$comment->name}}</p>
                                                 <p class="date">{{date('Y-m-d', strtotime($blog->created_at))}}</p>
                                             </div>
-                                            <a href="#" class="reply-link"><i class="fa fa-reply"></i>Reply</a>
+                                            {{-- <a href="#" class="reply-link"><i class="fa fa-reply"></i>Reply</a>
+                                            --}}
                                         </div>
                                         <p class="comment-text">
                                             {{$comment->comment}}
@@ -433,7 +435,7 @@
                             @endforeach
                         </ul>
                         <h6 class="comments-title">Write a comment</h6>
-                        <form action="{{route('store.Comment',$blog->id)}}" method="POST" class="comment-form">
+                        <form action="{{route('store.comment',$blog->id)}}" method="POST" class="comment-form">
                             @csrf
                             <div class="input-row d-flex">
                                 <input type="text" name="name" placeholder="Name">

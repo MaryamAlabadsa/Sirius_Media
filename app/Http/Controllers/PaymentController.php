@@ -39,6 +39,7 @@ class PaymentController extends Controller
         $payments = Payment::get();
         return view('controlPanel.payment.index', ['payments' => $payments, 'arrprice' => $arrprice]);
     }
+
     public function create()
     {
         return view('landing_page.payment.payment');
@@ -50,7 +51,7 @@ class PaymentController extends Controller
             'text' => 'required | string | min:3 | max:100',
             'email' => 'required | string | min:3 | max:250',
             'phone' => 'required | numeric',
-            // 'select_price' => 'required | numeric',
+            'pricing' => 'required',
         ]);
         if (!$validator->fails()) {
 

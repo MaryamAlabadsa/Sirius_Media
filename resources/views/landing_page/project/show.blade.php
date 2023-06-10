@@ -141,7 +141,7 @@
                                 @endforeach
                             </ul>
                             <h6 class="comments-title">Write a comment</h6>
-                            <form action="{{route('store.Comment.project',$project->id)}}" method="POST"
+                            <form action="{{route('store.comment.project',$project->id)}}" method="POST"
                                 class="comment-form">
                                 @csrf
                                 <div class="input-row d-flex">

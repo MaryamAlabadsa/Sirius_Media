@@ -63,7 +63,7 @@
                                         <input type="email" name="email" placeholder="E-mail" required>
                                         <input type="text" name="phone" placeholder="Phone Numbrt" required>
                                     </div>
-                                    <select name="pricing[]" id="countries" multiple>
+                                    <select name="pricing[]" id="countries" multiple required>
                                         <option value="1">Starter</option>
                                         <option value="2">Silver</option>
                                         <option value="3">Gold</option>

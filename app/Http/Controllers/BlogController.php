@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
-use App\Http\Requests\StoreBlogRequest;
-use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Comment;
 use App\Models\Image;
 use Illuminate\Http\Request;
@@ -45,13 +43,15 @@ class BlogController extends Controller
     {
         $validator = Validator($request->all(), [
             'title' => 'required | string | min:3 | max:100',
-            'description' => 'string | min:3 | max:250',
+            'description' => 'required',
+            'short_description' => 'required | string | min:3 | max:250',
             'completed_time' => 'required',
         ]);
         if (!$validator->fails()) {
             $blog = new Blog();
             $blog->title = $request->input('title');
             $blog->description = $request->input('description');
+            $blog->short_description = $request->input('short_description');
             $blog->completed_time = $request->input('completed_time');
             $blog->save();
             if ($request->hasFile('image')) {
@@ -99,11 +99,13 @@ class BlogController extends Controller
         $validator = Validator($request->all(), [
             'title' => 'required | string | min:3 | max:100',
             'description' => 'string | min:3 | max:250',
+            'short_description' => 'string | min:3 | max:250',
             'completed_time' => 'required',
         ]);
         if (!$validator->fails()) {
             $blog->title = $request->input('title');
             $blog->description = $request->input('description');
+            $blog->short_description = $request->input('short_description');
             $blog->completed_time = $request->input('completed_time');
             $blog->save();
             if ($request->hasFile('image')) {
