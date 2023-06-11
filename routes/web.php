@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProjectController;
@@ -36,10 +37,7 @@ Route::get('/faq', function () {
     return view('landing_page.faq', compact('slider'));
 });
 
-Route::get('/clients', function () {
-    $slider = getSliderData();
-    return view('landing_page.clients', compact('slider'));
-});
+Route::get('/clients', [ClientController::class, 'showInLanding'])->name('landing.client');
 
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
@@ -79,29 +77,32 @@ Route::middleware(['auth'])->group(
 
         Route::resource('blog', BlogController::class);
         Route::resource('project', ProjectController::class);
+        Route::resource('client', ClientController::class);
 
 
 
         Route::get('payment', [PaymentController::class, 'index'])->name('payment.index');
     }
 );
-// Route::get('landing/project', [ProjectController::class, 'showLanding'])->name('projectlanding');
+// blog in landing
 Route::get('landing/blog', [BlogController::class, 'showLanding'])->name('bloglanding');
 Route::get('landing/blog/{id}', [BlogController::class, 'showDetailsLanding'])->name('bloglandingdetails');
-Route::post('landing/blog/comment/{id}', [BlogController::class, 'storeComment'])->name('store.Comment');
-Route::get('landing/project/{id}', [ProjectController::class, 'showDetailsLanding'])->name('projectlandingdetails');
-Route::post('landing/project/comment/{id}', [ProjectController::class, 'storeComment'])->name('store.comment.project');
+Route::post('landing/blog/comment/{id}', [BlogController::class, 'store_Comment'])->name('store.comment');
 
+// project in landing
+Route::get('landing/project/{id}', [ProjectController::class, 'showDetailsLanding'])->name('projectlandingdetails');
+Route::post('landing/project/comment/{id}', [ProjectController::class, 'store_Comment'])->name('store.comment.project');
+
+// comments for landing
 Route::post('landing/comment', [Controller::class, 'storeComment'])->name('store.comment.info');
 
+// payment getway
 Route::get('landing/pricing/create', [PaymentController::class, 'create'])->name('payment.create');
 Route::post('landing/pricing/store', [PaymentController::class, 'stripeOrder'])->name('stripe.order');
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

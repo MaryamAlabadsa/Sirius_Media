@@ -128,7 +128,6 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-
         $isDeleted = $blog->delete();
         if ($isDeleted) {
             return redirect()->route('blog.index');
@@ -155,16 +154,7 @@ class BlogController extends Controller
         return view('landing_page.blog.index', ['blogs' => $blogs]);
     }
 
-    public function showDetailsLanding($id)
-    {
-        $allBlog =  Blog::take(3)->get();
-        $allBlog2 =  Blog::take(5)->get();
-        $blog =  Blog::find($id);
-        // dd('asdfs');
-        return view('landing_page.blog.show', ['blog' => $blog, 'allBlog' => $allBlog, 'allBlog2' => $allBlog2]);
-    }
-
-    public function storeComment(Request $request, $id)
+    public function store_Comment(Request $request, $id)
     {
         $validator = Validator($request->all(), [
             'name' => 'required | string | min:3 | max:100',
@@ -185,5 +175,14 @@ class BlogController extends Controller
         } else {
             return redirect()->back()->with('error', $validator->getMessageBag()->first());
         }
+    }
+
+    public function showDetailsLanding($id)
+    {
+        $allBlog =  Blog::take(3)->get();
+        $allBlog2 =  Blog::take(5)->get();
+        $blog =  Blog::find($id);
+        // dd('asdfs');
+        return view('landing_page.blog.show', ['blog' => $blog, 'allBlog' => $allBlog, 'allBlog2' => $allBlog2]);
     }
 }

@@ -33,7 +33,7 @@
                             <a href="/faq">faq</a>
                         </li>
                         <li class="menu-item ">
-                            <a href="/clients">clients</a>
+                            <a href="{{route('landing.client')}}">clients</a>
                         </li>
                         <li class="menu-item ">
                             <a href="/contact-us">contact us</a>

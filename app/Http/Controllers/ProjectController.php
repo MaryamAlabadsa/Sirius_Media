@@ -181,7 +181,7 @@ class ProjectController extends Controller
         return view('landing_page.project.show', ['project' => $project]);
     }
 
-    public function storeComment(Request $request, $id)
+    public function store_Comment(Request $request, $id)
     {
         $validator = Validator($request->all(), [
             'name' => 'required | string | min:3 | max:100',

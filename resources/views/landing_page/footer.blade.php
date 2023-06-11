@@ -1,3 +1,7 @@
+<?php
+    use App\Models\Blog;
+    $blogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
+?>
 <footer>
     <div class="container-fluid footer-inner">
         <div class="footer-top">
@@ -13,26 +17,23 @@
                     <ul class="social-list">
                         <li>
                             <a href="https://www.facebook.com/siriusmediaco">
-                                <i class="fab fa-facebook-f"
-                                   style="color: #3B5999;"></i>
+                                <i class="fab fa-facebook-f" style="color: #3B5999;"></i>
                             </a>
                         </li>
                         <li>
                             <a href=https://twitter.com/SiriusMedia_co">
-                                <i class="fab fa-twitter"
-                                   style="color: #1DA1F2;"></i>
+                                <i class="fab fa-twitter" style="color: #1DA1F2;"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.behance.net/siriusmediaco?tracking_source=search_users_recommended%7Csirius%20media">
-                                <i class="fab fa-behance"
-                                   style="color: #053EFF;"></i>
+                            <a
+                                href="https://www.behance.net/siriusmediaco?tracking_source=search_users_recommended%7Csirius%20media">
+                                <i class="fab fa-behance" style="color: #053EFF;"></i>
                             </a>
                         </li>
                         <li>
                             <a href="https://www.instagram.com/siriusmediaco/">
-                                <i class="fab fa-instagram"
-                                   style="color: #EA4C89;"></i>
+                                <i class="fab fa-instagram" style="color: #EA4C89;"></i>
                             </a>
                         </li>
 
@@ -60,45 +61,52 @@
                             <div class="sidebar-widget latest-posts-widget">
                                 <h6 class="sidebar-title">Latest Blog Posts</h6>
                                 <ul class="post-list">
+
+                                    @foreach ($blogs as $blog)
                                     <li class="post">
                                         <a href="#">
                                             <div class="img-wrapper">
-                                                <img src="http://via.placeholder.com/1920x1080" alt=""
-                                                     class="img-fluid">
+                                                <img src="{{asset($blog->images->first()->url)}}" alt=""
+                                                    class="img-fluid">
                                             </div>
                                         </a>
                                         <div class="post-body">
-                                            <h6 class="post-title"><a href="#">Good design is obvious</a></h6>
-                                            <div class="description-box"><p class="date">25 April 2022 | by <a
-                                                        href="#">Alex Gray</a></p></div>
+                                            <h6 class="post-title"><a href="#">{{$blog->title}}</a></h6>
+                                            <div class="description-box">
+                                                <p class="date">{{date('Y-m-d', strtotime($blog->created_at))}}
+                                                </p>
+                                            </div>
                                         </div>
                                     </li>
-                                    <li class="post">
+                                    @endforeach
+                                    {{-- <li class="post">
                                         <a href="#">
                                             <div class="img-wrapper">
                                                 <img src="http://via.placeholder.com/1920x1080" alt=""
-                                                     class="img-fluid">
+                                                    class="img-fluid">
                                             </div>
                                         </a>
                                         <div class="post-body">
                                             <h6 class="post-title"><a href="#">Guide to UX prototyping</a></h6>
-                                            <div class="description-box"><p class="date">26 April 2022 | by <a
-                                                        href="#">Sara Smith</a></p></div>
+                                            <div class="description-box">
+                                                <p class="date">26 April 2022 | by <a href="#">Sara Smith</a></p>
+                                            </div>
                                         </div>
                                     </li>
                                     <li class="post">
                                         <a href="#">
                                             <div class="img-wrapper">
                                                 <img src="http://via.placeholder.com/1920x1080" alt=""
-                                                     class="img-fluid">
+                                                    class="img-fluid">
                                             </div>
                                         </a>
                                         <div class="post-body">
                                             <h6 class="post-title"><a href="#">Social Media Today</a></h6>
-                                            <div class="description-box"><p class="date">27 April 2022 | by <a
-                                                        href="#">Frank Doe</a></p></div>
+                                            <div class="description-box">
+                                                <p class="date">27 April 2022 | by <a href="#">Frank Doe</a></p>
+                                            </div>
                                         </div>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -109,10 +117,13 @@
                                     vitae pharetra auctor, sem massa
                                     mattis sem, at interdum magna augue eget diam.</p>
                                 <ul class="contact-info">
-{{--                                    <li><i class="fa fa-map-marker"></i>--}}
-{{--                                        <p>123 North West, Florida, USA</p></li>--}}
-                                    <li><i class="fa fa-envelope"></i><a href="mailto:info@siriusmediaco.com">info@siriusmediaco.com</a></li>
-                                    <li><i class="fa fa-phone"></i><a href="https://wa.me/00970598246821">00970598246821</a></li>
+                                    {{-- <li><i class="fa fa-map-marker"></i>--}}
+                                        {{-- <p>123 North West, Florida, USA</p>
+                                    </li>--}}
+                                    <li><i class="fa fa-envelope"></i><a
+                                            href="mailto:info@siriusmediaco.com">info@siriusmediaco.com</a></li>
+                                    <li><i class="fa fa-phone"></i><a
+                                            href="https://wa.me/00970598246821">00970598246821</a></li>
                                 </ul>
                             </div>
                         </div>

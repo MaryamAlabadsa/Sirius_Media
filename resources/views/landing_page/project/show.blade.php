@@ -130,7 +130,8 @@
                                                     <p class="date">{{date('Y-m-d', strtotime($comment->created_at))}}
                                                     </p>
                                                 </div>
-                                                <a href="#" class="reply-link"><i class="fa fa-reply"></i>Reply</a>
+                                                {{-- <a href="#" class="reply-link"><i class="fa fa-reply"></i>Reply</a>
+                                                --}}
                                             </div>
                                             <p class="comment-text">
                                                 {{$comment->comment}}

@@ -30,6 +30,8 @@
 <link rel="stylesheet" href="{{ asset('controlPanel/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
 
 <link rel="stylesheet" href="{{ asset('controlPanel/assets/vendor/libs/apex-charts/apex-charts.css')}}" />
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
 <!-- Page CSS -->
 
