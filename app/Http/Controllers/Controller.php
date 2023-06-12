@@ -37,11 +37,12 @@ class Controller extends BaseController
             ->where('json_key', 'note')
             ->first()->note;
         $services = Service::all();
+        // dd($services);
         $projects = Project::all();
         $blogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
         $projectOne =  Project::first();
 
-        $services = Service::paginate(4);
+        // $services = Service::paginate(4);
         return view('landing_page.home', compact(
             'slider',
             'info',

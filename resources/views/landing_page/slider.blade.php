@@ -7,12 +7,12 @@
     <div class="container hero-content hero-center d-flex align-items-center">
         <div class="content-default">
             <h1 class="display-3 content-heading bold-heading z-index-100" data-aos="zoom-in" data-aos-delay="900"
-                data-aos-easing="ease-in-out" {{-- data-aos-duration="700">{{$slider[0]}} --}}
+                data-aos-easing="ease-in-out" data-aos-duration="700">{{$slider[0]}}
                 <span class="highlight">.</span>
             </h1>
             <p class="subtitle z-index-100" data-aos="zoom-in" data-aos-delay="1100" data-aos-easing="ease-in-out"
                 data-aos-duration="700">
-                {{-- {{$slider[1]}} --}}
+                {{$slider[1]}}
             </p>
             <div class="social-type-2 d-flex flex-wrap justify-content-center" data-aos="zoom-in" data-aos-delay="1300"
                 data-aos-easing="ease-in-out" data-aos-duration="700">
@@ -33,9 +33,9 @@
                     <i class="fab fa-linkedin-in"></i>
                 </a>
 
-                {{-- <a class="social-box twitter-h" href="mailto:info@siriusmediaco.com">--}}
-                    {{-- <i class="fab fa-envelope"></i>--}}
-                    {{-- </a>--}}
+                <a class="social-box twitter-h" href="mailto:info@siriusmediaco.com">
+                    <i class="fab fa-envelope"></i>
+                </a>
             </div>
             <div class="button-wrapper d-flex justify-content-center" data-aos="zoom-in" style="margin-top: 16px">
                 <a href="#" class="button-default-color-2">Start new Projects</a>

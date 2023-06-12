@@ -30,7 +30,8 @@
                                             <div class="tab-trigger" data-tab="tab-{{$service->id}}">
                                                 <i class="fa fa-{{$service->icon}}"></i>
                                                 <h6>{{!is_rtl() ? $service->title : $service->title_ar}}</h6>
-                                                <span class="service-content hidden" data-img="{{asset('/public/image/'.$service->image)}}">
+                                                <span class="service-content hidden"
+                                                    data-img="{{asset($service->image)}}">
                                                     {{!is_rtl() ? $service->description : $service->description_ar}}
                                                 </span>
                                             </div>
@@ -41,10 +42,10 @@
                             </div>
                             <!-- If we need navigation buttons -->
                             <div class="swiper-control d-flex align-items-center">
-                              <div class="swiper-button-prev"></div>
-                              <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
                             </div>
-                            
+
 
                             <!-- If we need scrollbar -->
                             <div class="swiper-scrollbar"></div>

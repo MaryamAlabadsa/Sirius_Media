@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
-use App\Http\Requests\StoreServiceRequest;
-use App\Http\Requests\UpdateServiceRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class ServiceController extends Controller
 {
@@ -23,35 +23,73 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
-        // Validate and store the new service
-        // Example:
-        Service::create($request->all());
+        $data = $request->all();
+        $validator = Validator($request->all(), [
+            'title' => 'required | string | min:3 | max:100',
+            'title_ar' => 'required | string | string | min:3 | max:100',
+            'description' => 'required | string | string | min:3',
+            'description_ar' => 'required | string | string | min:3',
+            'image' => 'required',
+        ]);
+        if (!$validator->fails()) {
+            if ($request->hasFile('image')) {
 
-        return redirect()->route('services.index')->with('success', 'Service created successfully');
+                $file_name = str::random(10) . '_' . time() . '.' . $request->image->getClientOriginalExtension();
+                $request->image->move('images', $file_name);
+                $url = 'images' . '/' . $file_name;
+                $data['image'] = $url;
+            }
+            Service::create($data);
+
+            return redirect()->route('services.index')->with('success', 'Service created successfully');
+        } else {
+            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+        }
     }
 
     public function edit($id)
     {
         $service = Service::findOrFail($id);
-        return view('services.edit', compact('service'));
+        return view('controlPanel.servicesSection.edit', compact('service'));
     }
 
     public function update(Request $request, $id)
     {
-        $service = Service::findOrFail($id);
+        $data = $request->all();
+        $validator = Validator($request->all(), [
+            'title' => 'required | string | min:3 | max:100',
+            'title_ar' => 'required | string | string | min:3 | max:100',
+            'description' => 'required | string | string | min:3',
+            'description_ar' => 'required | string | string | min:3',
+        ]);
+        if (!$validator->fails()) {
 
-        // Validate and update the service
-        // Example:
-        $service->update($request->all());
+            $service = Service::findOrFail($id);
+            if ($request->hasFile('image')) {
+                File::delete($service->image);
+                //
+                $file_name = str::random(10) . '_' . time() . '.' . $request->image->getClientOriginalExtension();
+                $request->image->move('images', $file_name);
+                $url = 'images' . '/' . $file_name;
+                $data['image'] = $url;
+            }
+            $service->update($data);
 
-        return redirect()->route('services.index')->with('success', 'Service updated successfully');
+            return redirect()->route('services.index')->with('success', 'Service updated successfully');
+        } else {
+            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+        }
     }
 
     public function destroy($id)
     {
         $service = Service::findOrFail($id);
-        $service->delete();
 
-        return redirect()->route('services.index')->with('success', 'Service deleted successfully');
+        $isDeleted = $service->delete();
+        if ($isDeleted) {
+            return redirect()->route('services.index')->with('success', 'Service deleted successfully');
+        } else {
+            return redirect()->back()->with('error', 'deteled failed');
+        }
     }
 }
