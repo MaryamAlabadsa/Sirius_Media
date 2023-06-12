@@ -53,8 +53,8 @@ class Info extends Model
     {
         $array = $this->json_data;
 
-        $title_ar = $array['title_ar'];
-        $title = $array['title_en'];
+        $title_ar = $array['title_ar'] ?? null;
+        $title = $array['title_en'] ?? null;
         return [$title, $title_ar];
     }
 
@@ -74,8 +74,8 @@ class Info extends Model
     public function getAboutControlPanelAttribute()
     {
         $array = $this->json_data;
-        $image1 = $array['image1'] ? url('/storage/' . $array['image1']) : null;
-        $image2 = $array['image2'] ? url('/storage/' . $array['image2']) : null;
+        $image1 = $array['image1'] ?? null;
+        $image2 = $array['image2'] ?? null;
         $title1_ar1 = $array['title1_ar1'] ?? null;
         $sub_title1_ar1 = $array['sub_title1_ar1'] ?? null;
         $title2_ar1 = $array['title2_ar1'] ?? null;
