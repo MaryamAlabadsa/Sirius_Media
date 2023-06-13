@@ -15,19 +15,19 @@ class Info extends Model
         'json_data' => 'array',
     ];
 
-    public function getSliderControlPanelAttribute()
-    {
-        $array = $this->json_data;
-        $video = $array['video'] ?? null;
-        $image = $video ? asset('storage/videos/' . $video) : null;
+    // public function getSliderControlPanelAttribute()
+    // {
+    //     $array = $this->json_data;
+    //     $video = $array['video'] ?? null;
+    //     $image = $video ? asset('storage/videos/' . $video) : null;
 
-        $title_ar = $array['title_ar'] ?? null;
-        $sub_title_ar = $array['sub_title_ar'] ?? null;
-        $title = $array['title_en'] ?? null;
-        $sub_title = $array['sub_title_en'] ?? null;
+    //     $title_ar = $array['title_ar'] ?? null;
+    //     $sub_title_ar = $array['sub_title_ar'] ?? null;
+    //     $title = $array['title_en'] ?? null;
+    //     $sub_title = $array['sub_title_en'] ?? null;
 
-        return [$title, $title_ar, $sub_title, $sub_title_ar, $image];
-    }
+    //     return [$title, $title_ar, $sub_title, $sub_title_ar, $image];
+    // }
 
     public function getSliderAttribute()
     {
@@ -47,6 +47,32 @@ class Info extends Model
         }
 
         return [$title, $sub_title, $image];
+    }
+
+    public function getLinkAttribute()
+    {
+
+        $array = $this->json_data; // Assuming $this->json_data is already an array
+
+        $facebook_link = isset($array['facebook_link']) ? $array['facebook_link'] : null;
+        $twitter_link = isset($array['twitter_link']) ? $array['twitter_link'] : null;
+        $behance_link = isset($array['behance_link']) ? $array['behance_link'] : null;
+        $whatsapp_link = isset($array['whatsapp_link']) ? $array['whatsapp_link'] : null;
+        $dribbble_link = isset($array['dribbble_link']) ? $array['dribbble_link'] : null;
+        $instegram_link = isset($array['instegram_link']) ? $array['instegram_link'] : null;
+        $linkedin_link = isset($array['linkedin_link']) ? $array['linkedin_link'] : null;
+
+        return [$facebook_link, $twitter_link, $behance_link, $whatsapp_link, $dribbble_link, $instegram_link, $linkedin_link];
+        // $array = json_decode($this->json_data, true);
+        // $facebook_link = $array['facebook_link'];
+        // $twitter_link = $array['twitter_link'];
+
+        // $behance_link = $array['behance_link'];
+        // $whatsapp_link = $array['whatsapp_link'];
+        // $instegram_link = $array['instegram_link'];
+        // $linkedin_link = $array['linkedin_link'];
+
+        // return [$facebook_link, $twitter_link, $behance_link, $whatsapp_link, $instegram_link, $linkedin_link];
     }
 
     public function getNoteControlPanelAttribute()

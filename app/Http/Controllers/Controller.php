@@ -29,6 +29,10 @@ class Controller extends BaseController
         $slider = Info::select('json_data')
             ->where('json_key', 'slider')
             ->first()->slider;
+        $link = Info::select('json_data')
+            ->where('json_key', 'link')
+            ->first()->link;
+        // dd($link);
         $info = Info::first();
         $about = Info::select('json_data')
             ->where('json_key', 'about')
@@ -51,6 +55,7 @@ class Controller extends BaseController
             'services',
             'projects',
             'blogs',
+            'link',
             'projectOne'
         ));
     }

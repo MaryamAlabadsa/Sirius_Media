@@ -75,6 +75,14 @@
                 <div data-i18n="Analytics">note section</div>
             </a>
         </li>
+
+        <li class="menu-item active">
+            <a href="{{route('link.edit')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Link section</div>
+            </a>
+        </li>
+
         <li class="menu-item active">
             <a href="/services" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>

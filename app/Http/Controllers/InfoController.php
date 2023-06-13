@@ -57,6 +57,20 @@ class InfoController extends Controller
         return view('controlPanel.noteSection.index', compact('sliderData'));
     }
 
+    public function indexLink()
+    {
+        $slider = Info::select('json_data')
+            ->where('json_key', 'link')
+            ->first();
+        if ($slider) {
+            $sliderData = $slider->note_control_panel;
+        } else {
+            $sliderData = null;
+        }
+
+        return view('controlPanel.links.index', compact('sliderData'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -211,6 +225,42 @@ class InfoController extends Controller
         Info::updateOrCreate(['json_key' => 'about'], ['json_data' => $sliderData]);
 
         return redirect()->back()->with('success', 'About updated successfully');
+    }
+
+    public function storeLink(StoreInfoRequest $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'facebook_link' => 'required | string',
+            'twitter_link' => 'required | string',
+            'behance_link' => 'required | string',
+            'whatsapp_link' => 'required | string',
+            'dribbble_link' => 'required | string',
+            'instegram_link' => 'required | string',
+            'linkedin_link' => 'required | string',
+            'json_key' => 'required | string',
+        ]);
+
+        $jsonKey = $validatedData['json_key'];
+        $sliderData = Info::where('json_key', $jsonKey)->value('json_data') ?: [];
+
+        $sliderData['facebook_link'] = $validatedData['facebook_link'];
+        $sliderData['twitter_link'] = $validatedData['twitter_link'];
+        $sliderData['behance_link'] = $validatedData['behance_link'];
+        $sliderData['whatsapp_link'] = $validatedData['whatsapp_link'];
+        $sliderData['dribbble_link'] = $validatedData['dribbble_link'];
+
+        $sliderData['instegram_link'] = $validatedData['instegram_link'];
+        $sliderData['linkedin_link'] = $validatedData['linkedin_link'];
+        // if ($jsonKey === 'note') {
+        Info::updateOrCreate(['json_key' => $jsonKey], ['json_data' => $sliderData]);
+        // } else {
+        //     return redirect()->back()->withErrors(['json_key' => 'Invalid json_key']);
+        // }
+
+        $action = isset($slider) && $slider->wasRecentlyCreated ? 'created' : 'updated';
+        $message = ucfirst($jsonKey) . ' ' . $action . ' successfully';
+
+        return redirect()->back()->with('success', $message);
     }
 
 

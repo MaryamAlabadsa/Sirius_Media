@@ -45,38 +45,37 @@
                 <ul class="social-list">
 
                     <li>
-                        <a href="https://www.facebook.com/siriusmediaco">
+                        <a href="{{$link[0]}}">
                             <i class="fab fa-facebook-f" style="color: #3B5999;"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://twitter.com/SiriusMedia_co">
+                        <a href="{{$link[1]}}">
                             <i class="fab fa-twitter" style="color: #1DA1F2;"></i>
                         </a>
                     </li>
                     <li>
-                        <a
-                            href="https://www.behance.net/siriusmediaco?tracking_source=search_users_recommended%7Csirius%20media">
+                        <a href="{{$link[2]}}">
                             <i class="fab fa-behance" style="color: #053EFF;"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://wa.me/00970598246821">
+                        <a href="{{$link[3]}}">
                             <i class="fab fa-whatsapp" style="color: #3dad04;"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://themeforest.net/user/jd-themes">
+                        <a href="{{$link[4]}}">
                             <i class="fab fa-dribbble" style="color: #EA4C89;"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/siriusmediaco/">
+                        <a href="{{$link[5]}}">
                             <i class="fab fa-instagram" style="color: #833AB4;"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.linkedin.com/company/siriusmediaco/">
+                        <a href="{{$link[6]}}">
                             <i class="fab fa-linkedin" style="color: #0077B5;"></i>
                         </a>
                     </li>

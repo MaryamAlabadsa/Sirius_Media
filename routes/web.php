@@ -65,6 +65,9 @@ Route::middleware(['auth'])->group(
         Route::get('/controlPanel/noteSection', [\App\Http\Controllers\InfoController::class, 'indexNote']);
         Route::post('/controlPanel/noteSection/store', [\App\Http\Controllers\InfoController::class, 'storeNote'])->name('note.update');
 
+        Route::get('/controlPanel/linkSection', [\App\Http\Controllers\InfoController::class, 'indexLink'])->name('link.edit');
+        Route::post('/controlPanel/linkSection/store', [\App\Http\Controllers\InfoController::class, 'storeLink'])->name('link.update');
+
         //Route::get('/controlPanel/serviceSection', [\App\Http\Controllers\ServiceController::class, 'index']);
         //Route::get('/controlPanel/serviceSection/create', [ServiceController::class, 'create'])->name('service.create');
 
