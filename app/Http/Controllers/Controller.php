@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Illuminate\Support\Facades\Cookie;
 
 class Controller extends BaseController
 {
@@ -27,6 +28,11 @@ class Controller extends BaseController
      */
     public function index()
     {
+
+        if (!Cookie::has('user_id')) {
+            $userId = rand(); // Implement your logic to generate a unique identifier
+            Cookie::queue('user_id', $userId, 60 * 24 * 30); // Set the cookie to expire in 30 days
+        }
         //        $info = Info::all();
         $slider = Info::select('json_data')
             ->where('json_key', 'slider')
@@ -128,7 +134,7 @@ class Controller extends BaseController
                 . '<br> <b>  Message : ' . $msg . ' </b>';
 
             $mail->send();
-            echo 'sent';
+            // echo 'sent';
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }

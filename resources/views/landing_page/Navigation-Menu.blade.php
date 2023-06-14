@@ -33,7 +33,7 @@ use App\Models\Info;
                             </ul>
                         </li>
                         <li class="menu-item ">
-                            <a href="/pricing">pricing</a>
+                            <a href="{{route('landing.pricing.show')}}">pricing</a>
                         </li>
                         <li class="menu-item ">
                             <a href="/faq">faq</a>
@@ -43,6 +43,10 @@ use App\Models\Info;
                         </li>
                         <li class="menu-item ">
                             <a href="/contact-us">contact us</a>
+                        </li>
+                        <li class="menu-item ">
+                            <a href="{{route('cart.show.payment')}}"><i class="fa fa-shopping-cart"
+                                    style="font-size:26px"></i></a>
                         </li>
 
                     </ul>

@@ -55,6 +55,35 @@
                         <div class="col comments-col">
                             <div class="post-comments-wrapper gray-section">
                                 <h6 class="comments-title">Payment</h6>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr class="cart_menu">
+                                            <td>Name</td>
+                                            <td>Price</td>
+                                            <td>Action</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($carts as $cart)
+                                        <tr>
+                                            <td>
+                                                {{$cart->pricing->name_en}}
+                                            </td>
+                                            <td>
+                                                {{$cart->pricing->price}}
+                                            </td>
+                                            <td class="cart_delete">
+                                                <form action="{{route('cart.delete',$cart->id)}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="cart_quantity_delete"><i
+                                                            class="fa fa-times"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table><br>
                                 <form action="{{route('stripe.order')}}" method="post" id="payment-form"
                                     class="comment-form">
                                     @csrf
@@ -63,12 +92,7 @@
                                         <input type="email" name="email" placeholder="E-mail" required>
                                         <input type="text" name="phone" placeholder="Phone Numbrt" required>
                                     </div>
-                                    <select name="pricing[]" id="countries" multiple required>
-                                        <option value="1">Starter</option>
-                                        <option value="2">Silver</option>
-                                        <option value="3">Gold</option>
-                                        <option value="4">Platium</option>
-                                    </select>
+
                                     <div class="form-row2">
                                         <label for="card-element">
                                             Credit or debit card
@@ -95,10 +119,6 @@
 
     @include('landing_page.scripts')
     <script type="text/javascript">
-        new MultiSelectTag('countries', {
-        rounded: true, // default true
-        shadow: true // default false
-        })
         // Create a Stripe client.
             var stripe = Stripe('pk_test_51NFbr7E0grVaVRvA2o1T8Q9pE87UQQvM93zpHeZkc7Ho1SjgN2o8D3EjRDHVJeoPJLwoC0SIkZLEDJFC05ksnxjK00nHbBhm6B');
             // Create an instance of Elements.

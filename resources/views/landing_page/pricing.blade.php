@@ -13,33 +13,25 @@
     </div>
     <div class="container">
         <div class="row">
+            @foreach ($pricing as $price)
             <div class="col-sm-6 col-lg-3 pricing-table-wrapper">
                 <div class="pricing-table" data-aos="fade-up" data-aos-delay="100"
                     data-aos-anchor-placement="top-bottom" data-aos-easing="ease-in-out" data-aos-duration="700">
                     <div class="pricing-header">
-                        <p class="pricing-type">Starter</p>
-                        <h2 class="price"><span>$</span>19</h2>
+                        <p class="pricing-type">{{$price->name_en}}</p>
+                        <h2 class="price"><span>$</span>{{$price->price}}</h2>
                     </div>
                     <ul class="features-list">
-                        <li>
-                            <p>Free Setup</p>
-                        </li>
-                        <li>
-                            <p>Powerful Customization</p>
-                        </li>
-                        <li>
-                            <p>Unlimited Items</p>
-                        </li>
-                        <li>
-                            <p>24/7 Support</p>
-                        </li>
+                        {{$price->description_en}}
                     </ul>
                     <div class="btn-wrapper d-flex">
-                        <a href="{{route('payment.create')}}">Sign up</a>
+                        {{-- <form action=""></form> --}}
+                        <a href="{{route('cart.store',$price->id)}}">Add to cart</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3 pricing-table-wrapper">
+            @endforeach
+            {{-- <div class="col-sm-6 col-lg-3 pricing-table-wrapper">
                 <div class="pricing-table" data-aos="fade-up" data-aos-delay="200"
                     data-aos-anchor-placement="top-bottom" data-aos-easing="ease-in-out" data-aos-duration="700">
                     <div class="pricing-header">
@@ -117,7 +109,7 @@
                         <a href="{{route('payment.create')}}">Sign up</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

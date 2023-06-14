@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Models\Info;
@@ -29,10 +31,8 @@ Route::get('/contact-us', function () {
 
 Route::post('/contact-us', [\App\Http\Controllers\Controller::class, 'sendEmail'])->name('sendemail.contact');
 
-Route::get('/pricing', function () {
-    $slider = getSliderData();
-    return view('landing_page.pricing', compact('slider'));
-});
+Route::get('/pricing/plan', [\App\Http\Controllers\PricingController::class, 'showLanding'])->name('landing.pricing.show');
+Route::get('/cart/{id}', [CartController::class, 'store'])->name('cart.store');
 
 Route::get('/faq', function () {
     $slider = getSliderData();
@@ -72,9 +72,6 @@ Route::middleware(['auth'])->group(
         Route::get('/controlPanel/linkSection', [\App\Http\Controllers\InfoController::class, 'indexLink'])->name('link.edit');
         Route::post('/controlPanel/linkSection/store', [\App\Http\Controllers\InfoController::class, 'storeLink'])->name('link.update');
 
-        //Route::get('/controlPanel/serviceSection', [\App\Http\Controllers\ServiceController::class, 'index']);
-        //Route::get('/controlPanel/serviceSection/create', [ServiceController::class, 'create'])->name('service.create');
-
         Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
         Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
         Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
@@ -85,10 +82,13 @@ Route::middleware(['auth'])->group(
         Route::resource('blog', BlogController::class);
         Route::resource('project', ProjectController::class);
         Route::resource('client', ClientController::class);
-
-
+        Route::resource('pricing', PricingController::class);
 
         Route::get('payment', [PaymentController::class, 'index'])->name('payment.index');
+
+        //Route::get('/controlPanel/serviceSection', [\App\Http\Controllers\ServiceController::class, 'index']);
+        //Route::get('/controlPanel/serviceSection/create', [ServiceController::class, 'create'])->name('service.create');
+
     }
 );
 // blog in landing
@@ -104,7 +104,8 @@ Route::post('landing/project/comment/{id}', [ProjectController::class, 'store_Co
 Route::post('landing/comment', [Controller::class, 'storeComment'])->name('store.comment.info');
 
 // payment getway
-Route::get('landing/pricing/create', [PaymentController::class, 'create'])->name('payment.create');
+Route::get('landing/pricing/create', [CartController::class, 'indexCart'])->name('cart.show.payment');
+Route::delete('landing/pricing/delete/{id}', [CartController::class, 'destroy'])->name('cart.delete');
 Route::post('landing/pricing/store', [PaymentController::class, 'stripeOrder'])->name('stripe.order');
 
 
