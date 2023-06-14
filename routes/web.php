@@ -27,6 +27,8 @@ Route::get('/contact-us', function () {
     return view('landing_page.contact-us', compact('slider'));
 });
 
+Route::post('/contact-us', [\App\Http\Controllers\Controller::class, 'sendEmail'])->name('sendemail.contact');
+
 Route::get('/pricing', function () {
     $slider = getSliderData();
     return view('landing_page.pricing', compact('slider'));
@@ -44,6 +46,8 @@ Route::get('language/{locale}', function ($locale) {
     session()->put('locale', $locale);
     return back();
 });
+
+
 
 function getSliderData()
 {

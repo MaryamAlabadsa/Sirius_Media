@@ -1,3 +1,9 @@
+<?php
+use App\Models\Info;
+                $link = Info::select('json_data')
+                ->where('json_key', 'link')
+                ->first()->link;
+                ?>
 <nav class="navigation navigation-type-2">
     <div class="inner-wrapper">
         <div class="navigation-wrapper">
