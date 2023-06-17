@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pricing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PricingController extends Controller
 {
@@ -52,13 +53,11 @@ class PricingController extends Controller
             $pricing->description_en = $request->input('description_en');
             $pricing->description_ar = $request->input('description_ar');
             $pricing->price = $request->input('price');
-
             $isSaved = $pricing->save();
 
-            return redirect()->route('pricing.index')->with('success', 'pricing created successfully');
+            return redirect()->route('pricing.index')->with('success', 'Created successfully');
         } else {
-
-            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+            return Redirect::back()->withErrors($validator)->withInput();
         }
     }
 
@@ -110,10 +109,9 @@ class PricingController extends Controller
 
             $isSaved = $pricing->save();
 
-            return redirect()->route('pricing.index')->with('success', 'pricing updated successfully');
+            return redirect()->route('pricing.index')->with('success', 'Updated successfully');
         } else {
-
-            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+            return Redirect::back()->withErrors($validator)->withInput();
         }
     }
 
@@ -127,16 +125,15 @@ class PricingController extends Controller
     {
         $isDeleted = $pricing->delete();
         if ($isDeleted) {
-            return redirect()->route('landing.pricing.show')->with('success', 'Pricing deleted successfully');
+            return redirect()->route('pricing.index')->with('success', 'Deleted successfully');
         } else {
-            return redirect()->back()->with('error', 'deteled failed');
+            return redirect()->back()->with('error', 'Deteled failed');
         }
     }
 
     public function showLanding(Request $request)
     {
         $pricing =  Pricing::get();
-        $slider = getSliderData();
-        return view('landing_page.pricing', ['pricing' => $pricing, 'slider' => $slider]);
+        return view('landing_page.pricing', ['pricing' => $pricing]);
     }
 }

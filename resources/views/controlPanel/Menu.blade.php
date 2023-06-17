@@ -90,6 +90,12 @@
             </a>
         </li>
         <li class="menu-item active">
+            <a href="{{route('client.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Client</div>
+            </a>
+        </li>
+        <li class="menu-item active">
             <a href="{{route('blog.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Blog</div>

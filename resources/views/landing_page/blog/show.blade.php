@@ -204,12 +204,12 @@
                             @foreach ($allBlog2 as $blog)
                             <li>
                                 <div class="img-wrapper">
-                                    <a href="#">
+                                    <a href="{{route('bloglandingdetails',$blog->id)}}">
                                         <img src="{{asset($blog->images->first()->url)}}" alt="" class="img-fluid">
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="#">{{$blog->title}}</a>
+                                    <a href="{{route('bloglandingdetails',$blog->id)}}">{{$blog->title}}</a>
                                     <p>Posted on {{date('Y-m-d', strtotime($blog->completed_time))}}</p>
                                 </div>
                             </li>
@@ -437,12 +437,47 @@
                         <h6 class="comments-title">Write a comment</h6>
                         <form action="{{route('store.comment',$blog->id)}}" method="POST" class="comment-form">
                             @csrf
-                            <div class="input-row d-flex">
-                                <input type="text" name="name" placeholder="Name">
-                                <input type="email" name="email" placeholder="E-mail">
+
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="validationServer01" name="name"
+                                        placeholder="Name" value="{{ old('name') }}">
+                                    @error('name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    {{-- <div class="valid-feedback">
+                                        Looks good!
+                                    </div> --}}
+                                </div>
+                                <div class="col-md-6 mb-3">
+
+                                    <input type="email" class="form-control" id="validationServer02" name="email"
+                                        placeholder="E-mail" value="{{ old('email') }}">
+                                    @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    {{-- <div class="valid-feedback">
+                                        Looks good!
+                                    </div> --}}
+                                </div>
                             </div>
-                            <textarea name="comment" placeholder="Your message..."></textarea>
-                            <button type="submit">Send Comment</button>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <textarea name="comment" placeholder="Your message..."
+                                        class="form-control is-invalid" id="validationServer03"
+                                        aria-describedby="validationServer03Feedback"></textarea>
+                                    @error('comment')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    {{-- <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Please provide a valid city.
+                                    </div> --}}
+                                </div>
+
+                            </div>
+
+                            <button class="btn btn-primary" type="submit">Submit form</button>
+
                         </form>
                     </div>
                 </div>

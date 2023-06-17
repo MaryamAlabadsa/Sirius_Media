@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Redirect;
+
 
 class ClientController extends Controller
 {
@@ -47,12 +49,13 @@ class ClientController extends Controller
             $client = new Client();
             $client->name = $request->input('name');
             $client->save();
+            //image
             if ($request->hasFile('image')) {
                 $this->saveImage($request->image, 'images', $client);
             }
-            return redirect()->route('client.index')->with('success', 'created successfully');
+            return redirect()->route('client.index')->with('success', 'Created successfully');
         } else {
-            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+            return Redirect::back()->withErrors($validator)->withInput();
         }
     }
 
@@ -94,15 +97,16 @@ class ClientController extends Controller
         if (!$validator->fails()) {
             $client->name = $request->input('name');
             $client->save();
+            //image
             if ($request->hasFile('image')) {
                 foreach ($client->images as $image) {
                     File::delete($image->url);
                 }
                 $this->saveImage($request->image, 'images', $client);
             }
-            return redirect()->route('client.index')->with('success', 'updated successfully');
+            return redirect()->route('client.index')->with('success', 'Updated successfully');
         } else {
-            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+            return Redirect::back()->withErrors($validator)->withInput();
         }
     }
 
@@ -116,7 +120,7 @@ class ClientController extends Controller
     {
         $isDeleted = $client->delete();
         if ($isDeleted) {
-            return redirect()->route('client.index')->with('success', 'deleted successfully');
+            return redirect()->route('client.index')->with('success', 'Deleted successfully');
         } else {
             return redirect()->back()->with('error', 'deteled failed');
         }

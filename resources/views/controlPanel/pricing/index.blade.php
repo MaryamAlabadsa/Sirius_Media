@@ -2,6 +2,17 @@
 @section('content')
 <!-- Hoverable Table rows -->
 <div class="card" style="margin: 25px">
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <h5 class="card-header">
         Hoverable rows
         <a href=" {{route('pricing.create')}} " class="btn btn-primary float-end">Create New Item</a>
@@ -13,15 +24,11 @@
                     <th>Name</th>
                     <th>Price</th>
                     <th>Created_at</th>
-                    {{--
-
-                    <th>title (Arabic)</th>--}}
-                    {{-- <th>sub title (Arabic)</th> --}}
-
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
+                @if (!$pricing->isEmpty())
                 @foreach($pricing as $pri)
                 <tr>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$pri->name_en}}</strong>
@@ -55,6 +62,11 @@
                     </td>
                 </tr>
                 @endforeach
+                @else
+                <tr>
+                    <td colspan="3" align="center">no data found</td>
+                </tr>
+                @endif
                 {{-- <tr>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
 

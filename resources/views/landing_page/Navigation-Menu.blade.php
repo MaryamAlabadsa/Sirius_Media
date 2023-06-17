@@ -1,9 +1,7 @@
 <?php
 use App\Models\Info;
-                $link = Info::select('json_data')
-                ->where('json_key', 'link')
-                ->first()->link;
-                ?>
+    $link = Info::select('json_data')->where('json_key', 'link')->first()->link;
+?>
 <nav class="navigation navigation-type-2">
     <div class="inner-wrapper">
         <div class="navigation-wrapper">
@@ -46,7 +44,7 @@ use App\Models\Info;
                         </li>
                         <li class="menu-item ">
                             <a href="{{route('cart.show.payment')}}"><i class="fa fa-shopping-cart"
-                                    style="font-size:26px"></i></a>
+                                    style="font-size:20px"></i></a>
                         </li>
 
                     </ul>

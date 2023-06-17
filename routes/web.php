@@ -25,8 +25,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Controller::class, 'index'])->name('landing.home.page');
 
 Route::get('/contact-us', function () {
-    $slider = getSliderData();
-    return view('landing_page.contact-us', compact('slider'));
+    // $slider = getSliderData();
+    return view('landing_page.contact-us');
 });
 
 Route::post('/contact-us', [\App\Http\Controllers\Controller::class, 'sendEmail'])->name('sendemail.contact');
@@ -35,8 +35,8 @@ Route::get('/pricing/plan', [\App\Http\Controllers\PricingController::class, 'sh
 Route::get('/cart/{id}', [CartController::class, 'store'])->name('cart.store');
 
 Route::get('/faq', function () {
-    $slider = getSliderData();
-    return view('landing_page.faq', compact('slider'));
+    // $slider = getSliderData();
+    return view('landing_page.faq');
 });
 
 Route::get('/clients', [ClientController::class, 'showInLanding'])->name('landing.client');
@@ -49,14 +49,28 @@ Route::get('language/{locale}', function ($locale) {
 
 
 
-function getSliderData()
-{
-    return Info::select('json_data')
-        ->where('json_key', 'slider')
-        ->first()->slider;
-    //    return Info::where('json_key', 'slider')->value('json_data');
-}
-//note
+// function getSliderData()
+// {
+
+// }
+
+// blog in landing
+Route::get('landing/blog', [BlogController::class, 'showLanding'])->name('bloglanding');
+Route::get('landing/blog/{id}', [BlogController::class, 'showDetailsLanding'])->name('bloglandingdetails');
+Route::post('landing/blog/comment/{id}', [BlogController::class, 'store_Comment'])->name('store.comment');
+
+// project in landing
+Route::get('landing/project/{id}', [ProjectController::class, 'showDetailsLanding'])->name('projectlandingdetails');
+Route::post('landing/project/comment/{id}', [ProjectController::class, 'store_Comment'])->name('store.comment.project');
+
+// comments for landing
+Route::post('landing/comment', [Controller::class, 'storeComment'])->name('store.comment.info');
+
+// payment getway
+Route::get('landing/pricing/create', [CartController::class, 'indexCart'])->name('cart.show.payment');
+Route::delete('landing/pricing/delete/{id}', [CartController::class, 'destroy'])->name('cart.delete');
+Route::post('landing/pricing/store', [PaymentController::class, 'stripeOrder'])->name('stripe.order');
+
 //dash board
 Route::middleware(['auth'])->group(
     function () {
@@ -91,26 +105,5 @@ Route::middleware(['auth'])->group(
 
     }
 );
-// blog in landing
-Route::get('landing/blog', [BlogController::class, 'showLanding'])->name('bloglanding');
-Route::get('landing/blog/{id}', [BlogController::class, 'showDetailsLanding'])->name('bloglandingdetails');
-Route::post('landing/blog/comment/{id}', [BlogController::class, 'store_Comment'])->name('store.comment');
-
-// project in landing
-Route::get('landing/project/{id}', [ProjectController::class, 'showDetailsLanding'])->name('projectlandingdetails');
-Route::post('landing/project/comment/{id}', [ProjectController::class, 'store_Comment'])->name('store.comment.project');
-
-// comments for landing
-Route::post('landing/comment', [Controller::class, 'storeComment'])->name('store.comment.info');
-
-// payment getway
-Route::get('landing/pricing/create', [CartController::class, 'indexCart'])->name('cart.show.payment');
-Route::delete('landing/pricing/delete/{id}', [CartController::class, 'destroy'])->name('cart.delete');
-Route::post('landing/pricing/store', [PaymentController::class, 'stripeOrder'])->name('stripe.order');
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

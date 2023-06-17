@@ -4,7 +4,7 @@
 
 <div class="col-xxl" style="margin: 25px">
     <!-- Example of displaying validation errors in a Blade template -->
-    @if ($errors->any())
+    {{-- @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -12,7 +12,7 @@
             @endforeach
         </ul>
     </div>
-    @endif
+    @endif --}}
 
     @if (session('success'))
     <div class="alert alert-success">
@@ -41,9 +41,10 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="title">Title</label>
                     <div class="col-sm-10">
-                        <textarea id="title" name="title" class="form-control">{{ $project->title }}</textarea>
+                        <textarea id="title" name="title"
+                            class="form-control">{{ old('title', $project->title) }}</textarea>
                         @error('title')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -56,29 +57,13 @@
 
                     <div class="col-sm-10">
                         <textarea id="summernote" name="editordata"
-                            class="form-control">{!!$project->description !!}</textarea>
-                        {{-- <textarea id="title_en" name="title_en"
-                            class="form-control">{{ old('title_en', $sliderData[0] ?? '') }}</textarea>
-                        @error('title_en')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror --}}
+                            class="form-control">{{old('editordata', $project->description) }}</textarea>
+                        @error('editordata')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 {{-- End description --}}
-
-
-                {{-- Start sub title --}}
-                {{-- <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="description">Sub Title</label>
-                    <div class="col-sm-10">
-                        <textarea id="description" name="description"
-                            class="form-control">{{ old('description', $sliderData[2] ?? '') }}</textarea>
-                        @error('sub_title_en')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div> --}}
-                {{-- End sub title --}}
 
                 {{-- Start sub title ar --}}
                 <div class="row mb-3">
@@ -93,10 +78,8 @@
                             </option>
                             @endforeach
                         </select>
-                        {{-- <textarea id="sub_title_ar" name="sub_title_ar"
-                            class="form-control">{{ old('sub_title_ar', $sliderData[3] ?? '') }}</textarea> --}}
-                        @error('sub_title_ar')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        @error('service_id')
+                        <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -106,16 +89,17 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="image">Image 1</label>
                     <div class="col-sm-10">
-                        <input type="file" id="image" name="image[]" accept="image/*" class="form-control" multiple>
+                        <input type="file" id="image" name="image[]" accept="image/*" class="form-control" multiple
+                            required>
                         @error('image')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 {{-- End Image 1 field --}}
                 <div class="row justify-content-end">
                     <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">CREATE</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </div>
             </form>

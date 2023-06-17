@@ -1,6 +1,11 @@
+<?php
+    use App\Models\Info;
+    $slider = Info::select('json_data')->where('json_key', 'slider')->first()->slider;
+?>
 <section class="hero-header hero-default color_overlay bg_img">
     <div class="html-video">
         <video autoplay muted loop>
+
             <source src="{{ $slider[2]??  url('assets/video/basic_video.mp4')}}" type="video/mp4">
         </video>
     </div>

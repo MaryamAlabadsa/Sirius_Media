@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Payment;
-use App\Models\pricing;
+use App\Models\Pricing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -13,34 +13,35 @@ class PaymentController extends Controller
 
     public function index()
     {
-        $arrprice = [
-            '1' =>
-            [
-                'id' => '1',
-                'name' => 'Starter',
-                'price' => '19'
-            ],
-            '2' =>
-            [
-                'id' => '2',
-                'name' => 'Silver',
-                'price' => '39'
-            ],
-            '3' =>
-            [
-                'id' => '3',
-                'name' => 'Gold',
-                'price' => '49'
-            ],
-            '4' =>
-            [
-                'id' => '4',
-                'name' => 'Platium',
-                'price' => '99'
-            ],
-        ];
+        // $arrprice = [
+        //     '1' =>
+        //     [
+        //         'id' => '1',
+        //         'name' => 'Starter',
+        //         'price' => '19'
+        //     ],
+        //     '2' =>
+        //     [
+        //         'id' => '2',
+        //         'name' => 'Silver',
+        //         'price' => '39'
+        //     ],
+        //     '3' =>
+        //     [
+        //         'id' => '3',
+        //         'name' => 'Gold',
+        //         'price' => '49'
+        //     ],
+        //     '4' =>
+        //     [
+        //         'id' => '4',
+        //         'name' => 'Platium',
+        //         'price' => '99'
+        //     ],
+        // ];
         $payments = Payment::get();
-        return view('controlPanel.payment.index', ['payments' => $payments, 'arrprice' => $arrprice]);
+        $pricing = Pricing::get();
+        return view('controlPanel.payment.index', ['payments' => $payments, 'pricing' => $pricing]);
     }
 
     public function create()
@@ -58,51 +59,21 @@ class PaymentController extends Controller
         ]);
         if (!$validator->fails()) {
 
-            $arrprice = [
-                '1' =>
-                [
-                    'id' => '1',
-                    'name' => 'Starter',
-                    'price' => '19'
-                ],
-                '2' =>
-                [
-                    'id' => '2',
-                    'name' => 'Silver',
-                    'price' => '39'
-                ],
-                '3' =>
-                [
-                    'id' => '3',
-                    'name' => 'Gold',
-                    'price' => '49'
-                ],
-                '4' =>
-                [
-                    'id' => '4',
-                    'name' => 'Platium',
-                    'price' => '99'
-                ],
-            ];
-            // $carts = Cart::where('user_id', $request->cookie('user_id'))->sum();
-            // $sum = Cart::with('pricing')->sum('pricing.price');
             $carts = Cart::where('user_id', $request->cookie('user_id'))->withSum('pricing', 'price')->get();
+            if ($carts->isEmpty()) {
+                return redirect()->back()->with('error', 'Cart is Empty');
+            }
             $sum = $carts->pluck('pricing_sum_price')->sum();
-            // dd($sum);
-            // $total = 0;
-            $selectedOptions[] = null;
-            // $selectedOptions = $request->input('pricing', []);
+
+            $selectedOptions = [];
             foreach ($carts as $cart) {
-                array_push($selectedOptions, $cart->id);
+                array_push($selectedOptions, $cart->pricing_id);
             }
 
-            // foreach ($selectedOptions as $arr) {
-            //     $total = $total + $arrprice[$arr]['price'];
-            // }
             \Stripe\Stripe::setApiKey('sk_test_51NFbr7E0grVaVRvAWpuk6mX723Me7vddau2IrIaVsipMx72fGlVXldUFzAZNYDXMafNwIGfYERsEf33J96PWbfaV007hyWLbLJ');
 
             $token = $_POST['stripeToken'];
-            // dd($total);
+
             $charge = \Stripe\Charge::create([
                 'amount' => $sum * 100,
                 'currency' => 'usd',
@@ -128,7 +99,6 @@ class PaymentController extends Controller
 
             return redirect()->route('landing.home.page')->with('success', 'Payment Successfully');
         } else {
-            return redirect()->back()->with('error', $validator->getMessageBag()->first());
         }
     } // End Method
 

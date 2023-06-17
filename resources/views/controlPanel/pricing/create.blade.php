@@ -4,7 +4,7 @@
 
 <div class="col-xxl" style="margin: 25px">
     <!-- Example of displaying validation errors in a Blade template -->
-    @if ($errors->any())
+    {{-- @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -12,7 +12,7 @@
             @endforeach
         </ul>
     </div>
-    @endif
+    @endif --}}
 
     @if (session('success'))
     <div class="alert alert-success">
@@ -43,7 +43,7 @@
                     <div class="col-sm-10">
                         <textarea id="name_en" name="name_en" class="form-control">{{ old('name_en') }}</textarea>
                         @error('name_en')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                     <div class="col-sm-10">
                         <textarea id="name_ar" name="name_ar" class="form-control">{{ old('name_ar') }}</textarea>
                         @error('name_ar')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -63,22 +63,28 @@
 
                 {{-- Start description_en --}}
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="title_en">English Description</label>
-
+                    <label class="col-sm-2 col-form-label" for="description_en">English Description</label>
                     <div class="col-sm-10">
-                        <textarea name="description_en" class="form-control"></textarea>
+                        <textarea name="description_en" class="form-control">{{old('description_en')}}</textarea>
+                        @error('description_en')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+
                 </div>
                 {{-- End description_en --}}
 
                 {{-- Start description_ar --}}
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="title_en">Arabic Description</label>
+                    <label class="col-sm-2 col-form-label" for="description_ar">Arabic Description</label>
 
                     <div class="col-sm-10">
-                        <textarea name="description_ar" class="form-control"></textarea>
-
+                        <textarea name="description_ar" class="form-control">{{old('description_ar')}}</textarea>
+                        @error('description_ar')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+
                 </div>
                 {{-- End description_ar --}}
 
@@ -87,9 +93,12 @@
                     <label class="col-sm-2 col-form-label" for="price">Price</label>
 
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="price" name="price" required>
-
+                        <input type="text" class="form-control" id="price" name="price" value="{{old('price')}}"
+                            required>
                     </div>
+                    @error('price')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 {{-- End price --}}
 

@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use App\Http\Requests\StoreProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Image;
 use App\Models\Service;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Redirect;
 
 class ProjectController extends Controller
 {
@@ -48,8 +47,8 @@ class ProjectController extends Controller
     {
         $validator = Validator($request->all(), [
             'title' => 'required | string | min:3 | max:100',
-            'service_id' => 'string | numeric',
-            'description' => 'string',
+            'service_id' => 'required | string | numeric',
+            'editordata' => 'required | string',
         ]);
         if (!$validator->fails()) {
 
@@ -58,20 +57,19 @@ class ProjectController extends Controller
             $project->service_id = $request->input('service_id');
             $project->description = $request->input('editordata');
             $project->completed_time = null;
-            // $project->completed_time = 'asdfasdfasd';
-
             $isSaved = $project->save();
 
+            //image
             if ($request->hasFile('image')) {
                 foreach ($request->image as $image) {
                     $this->saveImage($image, 'images', $project);
                 }
             }
 
-            return redirect()->route('project.index');
+            return redirect()->route('project.index')->with('success', 'Created Successfully');
         } else {
 
-            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+            return Redirect::back()->withErrors($validator)->withInput();
         }
     }
 

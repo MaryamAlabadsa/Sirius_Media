@@ -64,14 +64,16 @@
 
                                     @foreach ($blogs as $blog)
                                     <li class="post">
-                                        <a href="#">
+                                        <a href="{{route('bloglandingdetails',$blog->id)}}">
                                             <div class="img-wrapper">
                                                 <img src="{{asset($blog->images->first()->url)}}" alt=""
                                                     class="img-fluid">
                                             </div>
                                         </a>
                                         <div class="post-body">
-                                            <h6 class="post-title"><a href="#">{{$blog->title}}</a></h6>
+                                            <h6 class="post-title"><a
+                                                    href="{{route('bloglandingdetails',$blog->id)}}">{{$blog->title}}</a>
+                                            </h6>
                                             <div class="description-box">
                                                 <p class="date">{{date('Y-m-d', strtotime($blog->created_at))}}
                                                 </p>

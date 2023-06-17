@@ -35,16 +35,15 @@
             <form method="POST" action="{{ route('blog.update',$blog->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                {{-- <input type="hidden" name="json_key" value="slider"> <!-- Add this line to include the json_key -->
-                --}}
 
                 {{-- Start title --}}
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="title">Title</label>
                     <div class="col-sm-10">
-                        <textarea id="title" name="title" class="form-control">{{ $blog->title }}</textarea>
+                        <textarea id="title" name="title"
+                            class="form-control">{{ old('title', $blog->title) }}</textarea>
                         @error('title')
-                        <div class="invalid-feedback">{{ $errors->first('title') }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -55,9 +54,9 @@
                     <label class="col-sm-2 col-form-label" for="short_description">Short description</label>
                     <div class="col-sm-10">
                         <textarea id="short_description" name="short_description"
-                            class="form-control">{{ $blog->short_description }}</textarea>
+                            class="form-control">{{ old('short_description', $blog->short_description) }}</textarea>
                         @error('short_description')
-                        <div class="invalid-feedback">{{ $errors->first('short_description') }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -68,9 +67,9 @@
                     <label class="col-sm-2 col-form-label" for="description">description</label>
                     <div class="col-sm-10">
                         <textarea id="description" name="description"
-                            class="form-control">{{ $blog->description }}</textarea>
+                            class="form-control">{{ old('description', $blog->description) }}</textarea>
                         @error('description')
-                        <div class="invalid-feedback">{{ $errors->first('description') }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -80,53 +79,14 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="description">completed time</label>
                     <div class="col-sm-10">
-                        <input type="date" value="{{$blog->completed_time}}" id="completed_time" name="completed_time"
-                            class="form-control">
+                        <input type="date" value="{{old('completed_time', $blog->completed_time)}}" id="completed_time"
+                            name="completed_time" class="form-control">
                         @error('completed_time')
-                        <div class="invalid-feedback">{{ $errors->first('completed_time') }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 {{-- End completed_time --}}
-
-                {{-- Start title ar --}}
-                {{-- <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="title_ar">Title Arabic</label>
-                    <div class="col-sm-10">
-                        <textarea id="title_ar" name="title_ar"
-                            class="form-control">{{ old('title_ar', $sliderData[1] ?? '') }}</textarea>
-                        @error('title_ar')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div> --}}
-                {{-- End title ar --}}
-
-                {{-- Start sub title --}}
-                {{-- <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="description">Sub Title</label>
-                    <div class="col-sm-10">
-                        <textarea id="description" name="description"
-                            class="form-control">{{ old('description', $sliderData[2] ?? '') }}</textarea>
-                        @error('sub_title_en')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div> --}}
-                {{-- End sub title --}}
-
-                {{-- Start sub title ar --}}
-                {{-- <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="sub_title_ar">Sub Title Arabic</label>
-                    <div class="col-sm-10">
-                        <textarea id="sub_title_ar" name="sub_title_ar"
-                            class="form-control">{{ old('sub_title_ar', $sliderData[3] ?? '') }}</textarea>
-                        @error('sub_title_ar')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div> --}}
-                {{-- End sub title ar --}}
 
                 {{-- Image 1 field --}}
                 <div class="row mb-3">
@@ -134,14 +94,14 @@
                     <div class="col-sm-10">
                         <input type="file" id="image" name="image" accept="image/*" class="form-control">
                         @error('image')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 {{-- End Image 1 field --}}
                 <div class="row justify-content-end">
                     <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">CREATE</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </div>
             </form>

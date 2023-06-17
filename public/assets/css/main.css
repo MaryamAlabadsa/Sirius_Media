@@ -19718,7 +19718,7 @@ footer .footer-inner .footer-body .copyright-wrapper .copyright i {
     display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center
+    /* align-items: center */
 }
 
 .blog-section .post-comments-wrapper .comments-list .comment .author-wrapper {

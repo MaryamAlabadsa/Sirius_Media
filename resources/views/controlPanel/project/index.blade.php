@@ -1,7 +1,18 @@
 @extends('controlPanel.index')
 @section('content')
-<!-- Hoverable Table rows -->
 <div class="card" style="margin: 25px">
+
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <h5 class="card-header">
         Hoverable rows
         <a href=" {{route('project.create')}} " class="btn btn-primary float-end">Create New Item</a>
@@ -10,27 +21,18 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>title</th>
-                    <th>service</th>
-                    {{--
-                    <th>sub title (English)</th>
-                    <th>title (Arabic)</th>--}}
-                    {{-- <th>sub title (Arabic)</th> --}}
-
+                    <th>Title</th>
+                    <th>Service</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
+                @if (!$projects->isEmpty())
                 @foreach($projects as $project)
                 <tr>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$project->title}}</strong>
                     </td>
                     <td>{{$project->service->title}}</td>
-                    {{-- <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                        <strong>{{$service->title_ar}}</strong>
-                    </td>
-                    <td>{{$service->description}}</td> --}}
-
                     <td><span class="badge bg-label-primary me-1">Active</span></td>
                     <td>
                         <div class="dropdown">
@@ -53,9 +55,13 @@
                     </td>
                 </tr>
                 @endforeach
+                @else
                 <tr>
+                    <td colspan="3" align="center">no data found</td>
+                </tr>
+                @endif
+                {{-- <tr>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
-                    {{-- <td>Albert Cook</td> --}}
                     <td>
                         <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                             <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
@@ -86,11 +92,10 @@
                             </div>
                         </div>
                     </td>
-                </tr>
+                </tr> --}}
 
             </tbody>
         </table>
     </div>
 </div>
-<!--/ Hoverable Table rows -->
 @endsection

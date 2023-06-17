@@ -1,6 +1,5 @@
 @extends('controlPanel.index')
 @section('content')
-<!-- Hoverable Table rows -->
 <div class="card" style="margin: 25px">
     @if (session('success'))
     <div class="alert alert-success">
@@ -30,6 +29,8 @@
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
+                @if (!$blogs->isEmpty())
+
                 @foreach($blogs as $blog)
                 <tr>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$blog->title}}</strong></td>
@@ -59,7 +60,12 @@
                     </td>
                 </tr>
                 @endforeach
+                @else
                 <tr>
+                    <td colspan="3" align="center">no data found</td>
+                </tr>
+                @endif
+                {{-- <tr>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
                     <td>Albert Cook</td>
                     <td>
@@ -92,7 +98,7 @@
                             </div>
                         </div>
                     </td>
-                </tr>
+                </tr> --}}
 
             </tbody>
         </table>

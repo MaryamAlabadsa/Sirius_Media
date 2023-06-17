@@ -16,7 +16,7 @@
                     <div class="card-content hover3d-child">
                         <div class="card-blog-header">
                             <div class="img-wrapper d-flex align-items-center justify-content-center">
-                                <a href="blog-single-post-sidebar-layout.html">
+                                <a href="{{route('bloglandingdetails',$blog->id)}}">
                                     <img src="{{asset($blog->images->first()->url)}}" alt="" class="img-fluid img">
                                     {{-- <div class="tag bg-color-purple">Modern</div> --}}
                                 </a>

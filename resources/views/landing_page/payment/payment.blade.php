@@ -49,6 +49,16 @@
         @include('landing_page.Navigation-Menu')
 
         <section class="white-section blog-section single-post-section">
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
+            @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+            @endif
             <div class="container-fluid gray-section">
                 <div class="container">
                     <div class="row">

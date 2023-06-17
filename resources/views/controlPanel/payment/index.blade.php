@@ -35,6 +35,7 @@
             <tbody class="table-border-bottom-0">
                 @foreach($payments as $payment)
                 <tr>
+
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$payment->name}}</strong></td>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$payment->email}}</strong>
                     </td>
@@ -44,14 +45,15 @@
                     </td>
                     <td>
 
-                        @foreach (json_decode($payment->service) as $service)
-                        {{-- {{dd($service)}} --}}
-                        <strong>{{$arrprice[$service]['name']}}</strong>
+                        @foreach (json_decode($payment->service) as $item)
+                        @foreach ($pricing as $price)
+                        @if ($item == $price->id)
+                        {{$price->name_en}}
+                        @endif
+                        @endforeach
                         @endforeach
 
-
                     </td>
-
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{date('Y-m-d',
                             strtotime($payment->created_at))}}</strong>
                     </td>

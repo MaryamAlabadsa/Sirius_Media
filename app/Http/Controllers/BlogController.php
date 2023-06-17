@@ -8,6 +8,7 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Redirect;
 
 class BlogController extends Controller
 {
@@ -54,13 +55,13 @@ class BlogController extends Controller
             $blog->short_description = $request->input('short_description');
             $blog->completed_time = $request->input('completed_time');
             $blog->save();
+            //image
             if ($request->hasFile('image')) {
-                // $branch->images[0]->delete();
                 $this->saveImage($request->image, 'images', $blog);
             }
-            return redirect()->route('blog.index');
+            return redirect()->route('blog.index')->with('success', 'Created Successfully');
         } else {
-            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+            return Redirect::back()->withErrors($validator)->withInput();
         }
     }
 
@@ -95,11 +96,10 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        // dd($blog);
         $validator = Validator($request->all(), [
             'title' => 'required | string | min:3 | max:100',
-            'description' => 'string | min:3 | max:250',
-            'short_description' => 'string | min:3 | max:250',
+            'description' => 'required | string | min:3 | max:250',
+            'short_description' => 'required | string | min:3 | max:250',
             'completed_time' => 'required',
         ]);
         if (!$validator->fails()) {
@@ -114,9 +114,9 @@ class BlogController extends Controller
                 }
                 $this->saveImage($request->image, 'images', $blog);
             }
-            return redirect()->route('blog.index');
+            return redirect()->route('blog.index')->with('success', 'Updated Successfully');
         } else {
-            return redirect()->back()->with('error', $validator->getMessageBag()->first());
+            return Redirect::back()->withErrors($validator)->withInput();
         }
     }
 
@@ -130,7 +130,7 @@ class BlogController extends Controller
     {
         $isDeleted = $blog->delete();
         if ($isDeleted) {
-            return redirect()->route('blog.index');
+            return redirect()->route('blog.index')->with('success', 'Deleted Successfully');
         } else {
             return redirect()->back()->with('error', 'deteled failed');
         }
@@ -150,39 +150,36 @@ class BlogController extends Controller
     public function showLanding()
     {
         $blogs =  Blog::get();
-        // dd('asdfs');
         return view('landing_page.blog.index', ['blogs' => $blogs]);
-    }
-
-    public function store_Comment(Request $request, $id)
-    {
-        $validator = Validator($request->all(), [
-            'name' => 'required | string | min:3 | max:100',
-            'email' => 'string | string | min:3 | max:100',
-            'comment' => 'string | string | min:3 | max:100',
-        ]);
-        if (!$validator->fails()) {
-            $blog = Blog::find($id);
-            $comment = new Comment();
-            $comment->name = $request->input('name');
-            $comment->email = $request->input('email');
-            $comment->comment = $request->input('comment');
-            // $comment->completed_time = 'asdfasdfasd';
-
-            $isSaved = $blog->comments()->save($comment);
-
-            return redirect()->back();
-        } else {
-            return redirect()->back()->with('error', $validator->getMessageBag()->first());
-        }
     }
 
     public function showDetailsLanding($id)
     {
         $allBlog =  Blog::take(3)->get();
         $allBlog2 =  Blog::take(5)->get();
-        $blog =  Blog::find($id);
-        // dd('asdfs');
+        $blog =  Blog::findOrFail($id);
         return view('landing_page.blog.show', ['blog' => $blog, 'allBlog' => $allBlog, 'allBlog2' => $allBlog2]);
+    }
+
+    public function store_Comment(Request $request, $id)
+    {
+        $validator = Validator($request->all(), [
+            'name' => 'required | string | min:3 | max:100',
+            'email' => 'required | string | string | min:3 | max:100',
+            'comment' => 'required | string | string | min:3 | max:100',
+        ]);
+        if (!$validator->fails()) {
+            $blog = Blog::findOrFail($id);
+            $comment = new Comment();
+            $comment->name = $request->input('name');
+            $comment->email = $request->input('email');
+            $comment->comment = $request->input('comment');
+
+            $isSaved = $blog->comments()->save($comment);
+
+            return redirect()->route('bloglandingdetails', $blog->id)->with('success', 'Add Comment successfully');
+        } else {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
     }
 }

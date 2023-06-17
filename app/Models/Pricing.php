@@ -21,4 +21,9 @@ class Pricing extends Model
     {
         return $this->hasMany(Cart::class);
     }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class, 'clinic_uuid', 'clinic_uuid');
+    }
 }

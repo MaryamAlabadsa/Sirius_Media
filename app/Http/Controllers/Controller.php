@@ -33,28 +33,19 @@ class Controller extends BaseController
             $userId = rand(); // Implement your logic to generate a unique identifier
             Cookie::queue('user_id', $userId, 60 * 24 * 30); // Set the cookie to expire in 30 days
         }
-        //        $info = Info::all();
-        $slider = Info::select('json_data')
-            ->where('json_key', 'slider')
-            ->first()->slider;
-        // $link = Info::select('json_data')
-        //     ->where('json_key', 'link')
-        //     ->first()->link;
-        // dd($link);
+
+        $slider = Info::select('json_data')->where('json_key', 'slider')->first()->slider;
+
         $info = Info::first();
-        $about = Info::select('json_data')
-            ->where('json_key', 'about')
-            ->first()->about;
-        $note = Info::select('json_data')
-            ->where('json_key', 'note')
-            ->first()->note;
+        $about = Info::select('json_data')->where('json_key', 'about')->first()->about;
+
+        $note = Info::select('json_data')->where('json_key', 'note')->first()->note;
+
         $services = Service::all();
-        // dd($services);
+
         $projects = Project::all();
         $blogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
-        $projectOne =  Project::first();
-
-        // $services = Service::paginate(4);
+        $projectOne =  Project::first();;
         return view('landing_page.home', compact(
             'slider',
             'info',
@@ -63,7 +54,6 @@ class Controller extends BaseController
             'services',
             'projects',
             'blogs',
-            // 'link',
             'projectOne'
         ));
     }
@@ -118,7 +108,7 @@ class Controller extends BaseController
             //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('maryamalabadsa@gmail.com', $name);
+            $mail->setFrom($email, $name);
             $mail->addAddress('info@springfltd.co.uk', 'spring field');     //Add a recipient
             $mail->addReplyTo($email, 'Information');
 
@@ -135,6 +125,8 @@ class Controller extends BaseController
 
             $mail->send();
             // echo 'sent';
+
+            return redirect()->route('landing.home.page')->with('success', 'Send Message successfully');
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
