@@ -27,6 +27,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <script src="https://js.stripe.com/v3/"></script>
     <style>
+        .privacy-list {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .privacy-list:hover {
+
+            color: #f3b01b;
+        }
+
         .swiper-button-next,
         .swiper-button-prev {
             position: relative;

@@ -1,6 +1,7 @@
 <?php
     use App\Models\Info;
     $slider = Info::select('json_data')->where('json_key', 'slider')->first()->slider;
+    $link = Info::select('json_data')->where('json_key', 'link')->first()->link;
 ?>
 <section class="hero-header hero-default color_overlay bg_img">
     <div class="html-video">
@@ -42,9 +43,17 @@
                     <i class="fab fa-envelope"></i>
                 </a>
             </div>
-            <div class="button-wrapper d-flex justify-content-center" data-aos="zoom-in" style="margin-top: 16px">
-                <a href="#" class="button-default-color-2">Start new Projects</a>
-            </div>
+
+            <div class="social-type-2 d-flex flex-wrap justify-content-center" data-aos="zoom-in" data-aos-delay="1300"
+                data-aos-easing="ease-in-out" data-aos-duration="700">
+                <a class="button-default-color-2" href="{{$link[3]}}">
+                    Start new Projects
+                </a>
+            </div><br><br><br><br>
+
+            {{-- <div class="button-wrapper" style="margin-top: 16px">
+                <a href="{{$link[3]}}" class="button-default-color-2">Start new Projects</a>
+            </div><br><br> --}}
 
         </div>
         <div class="angle-down" data-aos="zoom-in" data-aos-delay="1300" data-aos-anchor=".hero-header"

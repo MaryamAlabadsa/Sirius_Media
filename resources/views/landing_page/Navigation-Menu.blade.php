@@ -1,6 +1,7 @@
 <?php
 use App\Models\Info;
     $link = Info::select('json_data')->where('json_key', 'link')->first()->link;
+    $logo = Info::select('json_data')->where('json_key', 'style')->first()->logo;
 ?>
 <nav class="navigation navigation-type-2">
     <div class="inner-wrapper">

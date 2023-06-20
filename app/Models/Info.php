@@ -97,6 +97,42 @@ class Info extends Model
         return [$title];
     }
 
+    public function getPrivacyAttribute()
+    {
+        $currentLocale = app()->getLocale();
+        $array = $this->json_data;
+
+        if ($currentLocale === 'en') {
+            $privacy_policy = $array['privacy_policy_en'];
+        } else {
+            $privacy_policy = $array['privacy_policy_ar'];
+        }
+        return [$privacy_policy];
+    }
+
+    public function getLogoAttribute()
+    {
+
+        $array = $this->json_data;
+        $logo = $array['logo'];
+        return [$image1];
+    }
+
+    public function getConditionsAttribute()
+    {
+        $currentLocale = app()->getLocale();
+        $array = $this->json_data;
+
+        if ($currentLocale === 'en') {
+
+            $term_condition = $array['term_condition_en'];
+        } else {
+
+            $term_condition = $array['term_condition_ar'];
+        }
+        return [$term_condition];
+    }
+
     public function getAboutControlPanelAttribute()
     {
         $array = $this->json_data;

@@ -3,6 +3,7 @@
     $blogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
 ?>
 <footer>
+
     <div class="container-fluid footer-inner">
         <div class="footer-top">
             <div class="container footer-top-inner">
@@ -132,7 +133,15 @@
                     </div>
                 </div>
                 <div class="copyright-wrapper">
-                    <p class="copyright"><i class="fa fa-copyright"></i>2023 sirius media. All rights reserved.</p>
+                    <p class="copyright">
+                        <a class="privacy-list" href="{{route('show.landing.privacy')}}">
+                            <i class="fas fa-dot-circle"></i>privacy policy.
+                        </a>
+                        <a class="privacy-list" href="{{route('show.landing.condition')}}">
+                            <i class="fas fa-dot-circle"></i>Terms and Conditions.
+                        </a>
+                        <i class="fa fa-copyright"></i>2023 sirius media. All rights reserved.
+                    </p>
                 </div>
             </div>
         </div>

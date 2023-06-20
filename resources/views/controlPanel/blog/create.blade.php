@@ -68,8 +68,8 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="description">completed time</label>
                     <div class="col-sm-10">
-                        <input type="date" id="completed_time" name="completed_time" class="form-control" {{
-                            old('completed_time') }}>
+                        <input type="date" id="completed_time" name="completed_time" class="form-control"
+                            value="{{old('completed_time') }}">
                         @error('completed_time')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror

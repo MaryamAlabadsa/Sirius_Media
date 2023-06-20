@@ -23,6 +23,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [Controller::class, 'index'])->name('landing.home.page');
+Route::get('language/{locale}', [Controller::class, 'change'])->name('change.language');
+Route::get('language/home', [LangController::class, 'index']);
+Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
 
 Route::get('/contact-us', function () {
     // $slider = getSliderData();
@@ -41,19 +44,6 @@ Route::get('/faq', function () {
 
 Route::get('/clients', [ClientController::class, 'showInLanding'])->name('landing.client');
 
-Route::get('language/{locale}', function ($locale) {
-    app()->setLocale($locale);
-    session()->put('locale', $locale);
-    return back();
-});
-
-
-
-// function getSliderData()
-// {
-
-// }
-
 // blog in landing
 Route::get('landing/blog', [BlogController::class, 'showLanding'])->name('bloglanding');
 Route::get('landing/blog/{id}', [BlogController::class, 'showDetailsLanding'])->name('bloglandingdetails');
@@ -71,6 +61,12 @@ Route::get('landing/pricing/create', [CartController::class, 'indexCart'])->name
 Route::delete('landing/pricing/delete/{id}', [CartController::class, 'destroy'])->name('cart.delete');
 Route::post('landing/pricing/store', [PaymentController::class, 'stripeOrder'])->name('stripe.order');
 
+//privacy
+Route::get('landing/privacy-policy', [Controller::class, 'showLandingPrivacyPolicy'])->name('show.landing.privacy');
+Route::get('landing/term-condition', [Controller::class, 'showLandingTermCondition'])->name('show.landing.condition');
+
+
+
 //dash board
 Route::middleware(['auth'])->group(
     function () {
@@ -85,6 +81,12 @@ Route::middleware(['auth'])->group(
 
         Route::get('/controlPanel/linkSection', [\App\Http\Controllers\InfoController::class, 'indexLink'])->name('link.edit');
         Route::post('/controlPanel/linkSection/store', [\App\Http\Controllers\InfoController::class, 'storeLink'])->name('link.update');
+
+        Route::get('/controlPanel/StyleSection', [\App\Http\Controllers\InfoController::class, 'indexStyle'])->name('style.edit');
+        Route::post('/controlPanel/StyleSection/store', [\App\Http\Controllers\InfoController::class, 'storeStyle'])->name('style.update');
+
+        Route::get('/controlPanel/PrivacySection', [\App\Http\Controllers\InfoController::class, 'indexPrivacy'])->name('privacy.edit');
+        Route::post('/controlPanel/PrivacySection/store', [\App\Http\Controllers\InfoController::class, 'storePrivacy'])->name('privacy.update');
 
         Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
         Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');

@@ -7,13 +7,10 @@ use App\Http\Requests\StoreInfoRequest;
 use App\Http\Requests\UpdateInfoRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class InfoController extends Controller
 {
-    public function createSlider()
-    {
-        //
-    }
 
     public function indexSlider()
     {
@@ -71,32 +68,36 @@ class InfoController extends Controller
         return view('controlPanel.links.index', compact('sliderData'));
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function indexStyle()
     {
-        //
+        $slider = Info::select('json_data')
+            ->where('json_key', 'style')
+            ->first();
+        if ($slider) {
+            $sliderData = $slider->note_control_panel;
+        } else {
+            $sliderData = null;
+        }
+
+        return view('controlPanel.style.index', compact('sliderData'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function indexPrivacy()
     {
-        //
+        $slider = Info::select('json_data')
+            ->where('json_key', 'privacy')
+            ->first();
+        if ($slider) {
+            $sliderData = $slider->note_control_panel;
+        } else {
+            $sliderData = null;
+        }
+
+        return view('controlPanel.style.index', compact('sliderData'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \App\Http\Requests\StoreInfoRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+    //store
+
     public function storeSlider(StoreInfoRequest $request): RedirectResponse
     {
         $validatedData = $request->validate([
@@ -263,49 +264,81 @@ class InfoController extends Controller
         return redirect()->back()->with('success', $message);
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Info $info
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Info $info)
+    public function storeStyle(StoreInfoRequest $request): RedirectResponse
     {
-        //
+        $validatedData = $request->validate([
+            // 'first_color' => 'required | string',
+            // 'second_color' => 'required | string',
+            'logo' => 'required',
+            'comment_image' => 'required',
+            'contact_image' => 'required',
+            'json_key' => 'required | string',
+        ]);
+
+        $jsonKey = $validatedData['json_key'];
+        $sliderData = Info::where('json_key', $jsonKey)->value('json_data') ?: [];
+
+        // $sliderData['first_color'] = $validatedData['first_color'];
+        // $sliderData['second_color'] = $validatedData['second_color'];
+
+        $logoPath = null;
+        if ($request->hasFile('logo')) {
+            $logoPath = $request->file('logo')->store('public', 'public');
+        }
+
+        $commentImagePath = null;
+        if ($request->hasFile('comment_image')) {
+            $commentImagePath = $request->file('comment_image')->store('public', 'public');
+        }
+
+        $contactImagePath = null;
+        if ($request->hasFile('contact_image')) {
+            $contactImagePath = $request->file('contact_image')->store('public', 'public');
+        }
+
+        if ($logoPath) {
+            $sliderData['logo'] = $logoPath;
+        }
+
+        if ($commentImagePath) {
+            $sliderData['comment_image'] = $commentImagePath;
+        }
+
+        if ($contactImagePath) {
+            $sliderData['contact_image'] = $contactImagePath;
+        }
+
+        Info::updateOrCreate(['json_key' => $jsonKey], ['json_data' => $sliderData]);
+
+        $action = isset($slider) && $slider->wasRecentlyCreated ? 'created' : 'updated';
+        $message = ucfirst($jsonKey) . ' ' . $action . ' successfully';
+
+        return redirect()->back()->with('success', $message);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Info $info
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Info $info)
+    public function storePrivacy(StoreInfoRequest $request): RedirectResponse
     {
-        //
-    }
+        $validatedData = $request->validate([
+            'privacy_policy_en' => 'required | string',
+            'privacy_policy_ar' => 'required | string',
+            'term_condition_en' => 'required | string',
+            'term_condition_ar' => 'required | string',
+            'json_key' => 'required | string',
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \App\Http\Requests\UpdateInfoRequest $request
-     * @param \App\Models\Info $info
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateInfoRequest $request, Info $info)
-    {
-        //
-    }
+        $jsonKey = $validatedData['json_key'];
+        $sliderData = Info::where('json_key', $jsonKey)->value('json_data') ?: [];
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Info $info
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Info $info)
-    {
-        //
+        $sliderData['privacy_policy_en'] = $validatedData['privacy_policy_en'];
+        $sliderData['privacy_policy_ar'] = $validatedData['privacy_policy_ar'];
+        $sliderData['term_condition_en'] = $validatedData['term_condition_en'];
+        $sliderData['term_condition_ar'] = $validatedData['term_condition_ar'];
+
+        Info::updateOrCreate(['json_key' => $jsonKey], ['json_data' => $sliderData]);
+
+        $action = isset($slider) && $slider->wasRecentlyCreated ? 'created' : 'updated';
+        $message = ucfirst($jsonKey) . ' ' . $action . ' successfully';
+
+        return redirect()->back()->with('success', $message);
     }
 }

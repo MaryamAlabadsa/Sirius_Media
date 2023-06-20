@@ -4,6 +4,7 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -2857,7 +2858,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 .btn-dark:hover {
     color: #fff;
     background-color: #23272b;
-    border-color: #3f1e52
+    border-color: var(--black-color)
 }
 
 .btn-dark.focus, .btn-dark:focus {
@@ -2873,7 +2874,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-dark:not(:disabled):not(.disabled).active, .btn-dark:not(:disabled):not(.disabled):active, .show > .btn-dark.dropdown-toggle {
     color: #fff;
-    background-color: #3f1e52;
+    background-color: var(--black-color);
     border-color: #171a1d
 }
 
@@ -4950,10 +4951,14 @@ tbody.collapse.show {
     background-color: #343a40
 }
 
+#about_large_section {
+    background-color: var(--black-color);
+}
+
 .badge-dark[href]:focus, .badge-dark[href]:hover {
     color: #fff;
     text-decoration: none;
-    background-color: #3f1e52
+    background-color: var(--black-color)
 }
 
 .jumbotron {
@@ -6147,7 +6152,7 @@ a.bg-light:focus, a.bg-light:hover, button.bg-light:focus, button.bg-light:hover
 }
 
 a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
-    background-color: #3f1e52 !important
+    background-color: var(--black-color) !important
 }
 
 .bg-white {
@@ -9051,7 +9056,7 @@ a.text-light:focus, a.text-light:hover {
 }
 
 a.text-dark:focus, a.text-dark:hover {
-    color: #3f1e52 !important
+    color: var(--black-color) !important
 }
 
 .text-muted {
@@ -9145,20 +9150,18 @@ a.text-dark:focus, a.text-dark:hover {
 }
 
 :root {
+    /* update */
     --primary-color: #f3b01b;
+    /* end update */
     --primary-font: "GRANADIA-BOLD";
     --secondary-font: "GRANADIA-BOOK";
     --white-section: #fff;
     --gray-section: #f5f5f5;
-    --black-section: #3f1e52;
     --light-gray-section: #fcfcfc;
     --selection_background: #dcdcdc;
-    --selection_color: #3f1e52;
     --navbar_toolbar_background: #f8f8f8;
     --navbar_background: #fff;
     --loader_background: #eee;
-    --toggle_color: rgba(#3f1e52, 0.8);
-    --footer-top: #3f1e52;
     --navbar-height: 80px;
     --navbar_small_height: 60px;
     --logo-width: 160px;
@@ -9170,7 +9173,6 @@ a.text-dark:focus, a.text-dark:hover {
     --dark_overlay: rgba(20, 20, 20, 0.4);
     --black_overlay: rgba(33, 33, 33, 0.5);
     --default-border: hsla(0, 0%, 59.2%, 0.2);
-    --primary-font-color: #3f1e52;
     --gray-font-color: #dcdcdc;
     --gray-default-font: #7f7f7f;
     --light-font-color: #f3f3f3;
@@ -9183,8 +9185,16 @@ a.text-dark:focus, a.text-dark:hover {
     --text-shadow-medium: rgba(31, 31, 31, 0.2);
     --text-shadow-light: rgba(31, 31, 31, 0.1);
     --button-shadow-light: rgba(11, 11, 11, 0.15);
+    /* update */
     --black-color: #3f1e52;
+    --black-section: #3f1e52;
+    --selection_color: #3f1e52;
+    --toggle_color: rgba(#3f1e52, 0.8);
+    --footer-top: #3f1e52;
+    --primary-font-color: #3f1e52;
+    /* end update */
     --white-color: #fff
+
 }
 
 .accordion-type-1 .accordion {
@@ -16012,7 +16022,7 @@ footer .footer-inner .footer-body .copyright-wrapper .copyright i {
 }
 
 .bg-color-pink {
-    background-color: #f3b01b
+    /* background-color: #f3b01b */
 }
 
 .bg-color-red {

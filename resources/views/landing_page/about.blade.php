@@ -1,10 +1,10 @@
-<section class="about-creative-section large-section" style="background-color: #3f1e52">
+<section class="about-creative-section large-section" id="about_large_section">
     <div class="container">
         <div class="container">
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <h2 class="section-title text-center title-divider"
-                        style="color: white">{{$about[8]}}<span class="highlight">.</span>
+                    <h2 class="section-title text-center title-divider" style="color: white">{{$about[8]}}<span
+                            class="highlight">.</span>
                     </h2>
                 </div>
             </div>
@@ -12,7 +12,8 @@
         <div class="row images-wrapper">
             <div class="col-lg-8 col-12 d-flex align-items-center">
                 <div class="img-wrapper">
-                    <img loading="lazy" style="height: 486px;" src="{{$about[6]}}" alt="" class="img-fluid object-fit-cover">
+                    <img loading="lazy" style="height: 486px;" src="{{$about[6]}}" alt=""
+                        class="img-fluid object-fit-cover">
                 </div>
             </div>
             <div class="col-lg-4 two-side align-items-center">

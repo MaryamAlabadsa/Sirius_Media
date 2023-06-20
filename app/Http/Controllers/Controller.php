@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Http\RedirectResponse;
+use App;
 
 class Controller extends BaseController
 {
@@ -130,5 +132,22 @@ class Controller extends BaseController
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
+    }
+    public function showLandingPrivacyPolicy()
+    {
+        $privacy = Info::select('json_data')->where('json_key', 'privacy')->first()->privacy;
+        return view('landing_page.privacy.privacy', ['privacy' => $privacy]);
+    }
+    public function showLandingTermCondition(Request $request)
+    {
+        $conditions = Info::select('json_data')->where('json_key', 'privacy')->first()->conditions;
+        return view('landing_page.privacy.conditions', ['conditions' => $conditions]);
+    }
+
+    public function change($locale)
+    {
+        app()->setLocale($locale);
+        session()->put('locale', $locale);
+        return back();
     }
 }
