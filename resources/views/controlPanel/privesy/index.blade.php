@@ -31,74 +31,62 @@
             <small class="text-muted float-end">Default Label</small>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('style.update') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('privacy.update') }}" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
-                <input type="hidden" name="json_key" value="style"> <!-- Add this line to include the json_key -->
+                <input type="hidden" name="json_key" value="privacy"> <!-- Add this line to include the json_key -->
 
-                {{-- Start First Color --}}
-                {{-- <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="first_color">First Color</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="first_color" name="first_color"
-                            value="{{old('first_color', $sliderData[0] ?? '') }}" required>
-                        @error('first_color')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div> --}}
-                {{-- End First Color --}}
-
-                {{-- Start second_color --}}
-                {{-- <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="second_color">First Color</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="second_color" name="second_color"
-                            value="{{old('second_color', $sliderData[0] ?? '') }}" required>
-                        @error('second_color')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div> --}}
-                {{-- End second_color --}}
-
-                {{-- Start logo --}}
+                {{-- Start privacy_policy_en --}}
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="logo">logo</label>
+                    <label class="col-sm-2 col-form-label">English privacy policy</label>
+
                     <div class="col-sm-10">
-                        <input type="file" id="logo" name="logo" accept="logo/*" class="form-control" required>
-                        @error('logo')
+                        <textarea id="privacy_policy_en" name="privacy_policy_en" class="form-control"></textarea>
+                        @error('privacy_policy_en')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                {{-- End logo --}}
+                {{-- End privacy_policy_en --}}
 
-                {{-- Start comment_image --}}
+                {{-- Start privacy_policy_ar --}}
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="comment_image">Comment Image</label>
+                    <label class="col-sm-2 col-form-label">Arabic privacy policy</label>
+
                     <div class="col-sm-10">
-                        <input type="file" id="comment_image" name="comment_image" accept="comment_image/*"
-                            class="form-control" required>
-                        @error('comment_image')
+                        <textarea id="privacy_policy_ar" name="privacy_policy_ar" class="form-control"></textarea>
+                        @error('privacy_policy_ar')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                {{-- End comment_image --}}
+                {{-- End privacy_policy_ar --}}
 
-                {{-- Start contact_image --}}
+                {{-- Start term_condition_en --}}
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="contact_image">Contact Us Image</label>
+                    <label class="col-sm-2 col-form-label">English Terms and Conditions</label>
+
                     <div class="col-sm-10">
-                        <input type="file" id="contact_image" name="contact_image" accept="contact_image/*"
-                            class="form-control" required>
-                        @error('contact_image')
+                        <textarea id="term_condition_en" name="term_condition_en" class="form-control"></textarea>
+                        @error('term_condition_en')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                {{-- End contact_image --}}
+                {{-- End term_condition_en --}}
+
+                {{-- Start term_condition_ar --}}
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Arabic Terms and Conditions</label>
+
+                    <div class="col-sm-10">
+                        <textarea id="term_condition_ar" name="term_condition_ar" class="form-control"></textarea>
+                        @error('term_condition_ar')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                {{-- End term_condition_ar --}}
 
                 <div class="row justify-content-end">
                     <div class="col-sm-10">
@@ -109,4 +97,26 @@
         </div>
     </div>
 </div>
+<script>
+    $('#privacy_policy_en').summernote({
+        // placeholder: 'project details',
+        tabsize: 2,
+        height: 100
+    });
+    $('#privacy_policy_ar').summernote({
+    // placeholder: 'project details',
+    tabsize: 2,
+    height: 100
+    });
+    $('#term_condition_en').summernote({
+    // placeholder: 'project details',
+    tabsize: 2,
+    height: 100
+    });
+    $('#term_condition_ar').summernote({
+    // placeholder: 'project details',
+    tabsize: 2,
+    height: 100
+    });
+</script>
 @endsection

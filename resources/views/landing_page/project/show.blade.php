@@ -1,3 +1,7 @@
+<?php
+use App\Models\Info;
+    $comment_image = Info::select('json_data')->where('json_key', 'style')->first()->comment_image;
+?>
 @extends('landing_page.master')
 @section('content')
 <section class="single-project-wrapper" style="background-color: white">
@@ -121,7 +125,7 @@
                                 <li class="comment d-flex flex-column">
                                     <div class="d-flex">
                                         <div class="author-wrapper">
-                                            <img src="http://via.placeholder.com/1920x1080" alt="" class="img-fluid">
+                                            <img src="{{asset($comment_image[0])}}" alt="" class="img-fluid">
                                         </div>
                                         <div class="comment-body">
                                             <div class="d-flex justify-content-between">

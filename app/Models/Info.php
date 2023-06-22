@@ -115,7 +115,23 @@ class Info extends Model
 
         $array = $this->json_data;
         $logo = $array['logo'];
-        return [$image1];
+        return [$logo];
+    }
+
+    public function getCommentImageAttribute()
+    {
+
+        $array = $this->json_data;
+        $comment_image = $array['comment_image'];
+        return [$comment_image];
+    }
+
+    public function getContactImageAttribute()
+    {
+
+        $array = $this->json_data;
+        $contact_image = $array['contact_image'];
+        return [$contact_image];
     }
 
     public function getConditionsAttribute()

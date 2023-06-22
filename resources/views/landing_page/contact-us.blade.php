@@ -1,7 +1,11 @@
+<?php
+use App\Models\Info;
+    $contact_image = Info::select('json_data')->where('json_key', 'style')->first()->contact_image;
+?>
 @extends('landing_page.master')
 @section('content')
 <section class="contact-form-section parallax-window color_overlay dark_overlay_gradient"
-    data-src="http://via.placeholder.com/1920x1080" data-speed="0.5">
+    data-src="{{asset($contact_image[0])}}" data-speed="0.5">
     <div class="container heading">
         <div class="row">
             <div class="col d-flex justify-content-center">
@@ -15,8 +19,7 @@
         <div class="row d-flex flex-column" data-aos="fade-up" data-aos-delay="100"
             data-aos-anchor-placement="top-bottom" data-aos-easing="ease-in-out" data-aos-duration="800">
 
-            <form action="{{route('sendemail.contact')}}" method="POST"
-                class="primary-contact-form d-flex flex-column">
+            <form action="{{route('sendemail.contact')}}" method="POST" class="primary-contact-form d-flex flex-column">
                 @csrf
                 <div class="input-row">
                     <input class="form-name" type="text" name="name" placeholder="Name*" required>

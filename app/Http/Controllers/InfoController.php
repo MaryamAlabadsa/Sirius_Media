@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateInfoRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class InfoController extends Controller
 {
@@ -93,7 +94,7 @@ class InfoController extends Controller
             $sliderData = null;
         }
 
-        return view('controlPanel.style.index', compact('sliderData'));
+        return view('controlPanel.privesy.index', compact('sliderData'));
     }
 
     //store
@@ -267,33 +268,39 @@ class InfoController extends Controller
     public function storeStyle(StoreInfoRequest $request): RedirectResponse
     {
         $validatedData = $request->validate([
-            // 'first_color' => 'required | string',
-            // 'second_color' => 'required | string',
-            'logo' => 'required',
-            'comment_image' => 'required',
-            'contact_image' => 'required',
+            'logo' => 'required | file | image',
+            'comment_image' => 'required | file | image',
+            'contact_image' => 'required | file | image',
             'json_key' => 'required | string',
         ]);
 
         $jsonKey = $validatedData['json_key'];
-        $sliderData = Info::where('json_key', $jsonKey)->value('json_data') ?: [];
-
-        // $sliderData['first_color'] = $validatedData['first_color'];
-        // $sliderData['second_color'] = $validatedData['second_color'];
+        $sliderData = [];
 
         $logoPath = null;
         if ($request->hasFile('logo')) {
-            $logoPath = $request->file('logo')->store('public', 'public');
+            $path = 'images';
+            $file_name = str::random(10) . '_' . time() . '.' . $request->logo->getClientOriginalExtension();
+            $request->logo->move($path, $file_name);
+            $logoPath = $path . '/' . $file_name;
         }
 
         $commentImagePath = null;
         if ($request->hasFile('comment_image')) {
-            $commentImagePath = $request->file('comment_image')->store('public', 'public');
+            $path = 'images';
+            $file_name = str::random(10) . '_' . time() . '.' . $request->comment_image->getClientOriginalExtension();
+            $request->comment_image->move($path, $file_name);
+            $commentImagePath = $path . '/' . $file_name;
+            // $commentImagePath = $request->file('comment_image')->store('public', 'public');
         }
 
         $contactImagePath = null;
         if ($request->hasFile('contact_image')) {
-            $contactImagePath = $request->file('contact_image')->store('public', 'public');
+            $path = 'images';
+            $file_name = str::random(10) . '_' . time() . '.' . $request->contact_image->getClientOriginalExtension();
+            $request->contact_image->move($path, $file_name);
+            $contactImagePath = $path . '/' . $file_name;
+            // $contactImagePath = $request->file('contact_image')->store('public', 'public');
         }
 
         if ($logoPath) {

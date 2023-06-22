@@ -2,13 +2,14 @@
 use App\Models\Info;
     $link = Info::select('json_data')->where('json_key', 'link')->first()->link;
     $logo = Info::select('json_data')->where('json_key', 'style')->first()->logo;
+
 ?>
 <nav class="navigation navigation-type-2">
     <div class="inner-wrapper">
         <div class="navigation-wrapper">
             <div class="logotype-wrapper">
                 <a href="/">
-                    <img src="{{ asset('assets/logo.png')}}" alt="Logo">
+                    <img src="{{ asset($logo[0])}}" alt="Logo">
                 </a>
             </div>
             <div class="right-side">
