@@ -35,37 +35,37 @@ use App\Models\Info;
         </div>
     </div>
 </section>
-<section class="follow-us-section large-section gray-section">
-    <div class="container">
-        <div class="row">
-            <div class="col d-flex justify-content-center">
-                <h2 class="section-title text-center title-divider" data-aos="fade-up" data-aos-delay="100"
-                    data-aos-anchor-placement="top-bottom" data-aos-easing="ease-in-out" data-aos-duration="700">Follow
-                    Us <span class="highlight">.</span></h2>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="d-flex justify-content-center">
-            <div class="social-wrapper d-flex" data-aos="flip-down" data-aos-delay="100" data-aos-anchor=".map-section "
-                data-aos-easing="ease-in-out" data-aos-duration="800">
-                <a class="social-box facebook-h" href="#">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a class="social-box instagram-h" href="#">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a class="social-box twitter-h" href="#">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a class="social-box linkedin-h" href="#">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a class="social-box google-plus-h" href="#">
-                    <i class="fab fa-google-plus-g"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+{{--<section class="follow-us-section large-section gray-section">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col d-flex justify-content-center">--}}
+{{--                <h2 class="section-title text-center title-divider" data-aos="fade-up" data-aos-delay="100"--}}
+{{--                    data-aos-anchor-placement="top-bottom" data-aos-easing="ease-in-out" data-aos-duration="700">Follow--}}
+{{--                    Us <span class="highlight">.</span></h2>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--    <div class="container">--}}
+{{--        <div class="d-flex justify-content-center">--}}
+{{--            <div class="social-wrapper d-flex" data-aos="flip-down" data-aos-delay="100" data-aos-anchor=".map-section "--}}
+{{--                data-aos-easing="ease-in-out" data-aos-duration="800">--}}
+{{--                <a class="social-box facebook-h" href="#">--}}
+{{--                    <i class="fab fa-facebook-f"></i>--}}
+{{--                </a>--}}
+{{--                <a class="social-box instagram-h" href="#">--}}
+{{--                    <i class="fab fa-instagram"></i>--}}
+{{--                </a>--}}
+{{--                <a class="social-box twitter-h" href="#">--}}
+{{--                    <i class="fab fa-twitter"></i>--}}
+{{--                </a>--}}
+{{--                <a class="social-box linkedin-h" href="#">--}}
+{{--                    <i class="fab fa-linkedin-in"></i>--}}
+{{--                </a>--}}
+{{--                <a class="social-box google-plus-h" href="#">--}}
+{{--                    <i class="fab fa-google-plus-g"></i>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 @endsection

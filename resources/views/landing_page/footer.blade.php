@@ -48,9 +48,9 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="sidebar-widget text-widget">
-                                <h6 class="sidebar-title">About Us</h6>
-                                <p>Lorem ipsum dolor sit amet, contetur pising elit. Ab acus ariam erntur codi ctus
-                                    dolous est, fugiat ipsum mostias natus</p>
+{{--                                <h6 class="sidebar-title">About Us</h6>--}}
+{{--                                <p>Lorem ipsum dolor sit amet, contetur pising elit. Ab acus ariam erntur codi ctus--}}
+{{--                                    dolous est, fugiat ipsum mostias natus</p>--}}
                                 <h6 class="sidebar-title">Subscribe newsletter</h6>
                                 <form class="newsletter-form-widget">
                                     <input type="email" placeholder="Email*" required>
@@ -116,9 +116,9 @@
                         <div class="col-lg-4">
                             <div class="sidebar-widget contact-info-widget">
                                 <h6 class="sidebar-title">Contact Info</h6>
-                                <p class="description">Integer euismod lacus luctus magna. Quisque cursus, metus
-                                    vitae pharetra auctor, sem massa
-                                    mattis sem, at interdum magna augue eget diam.</p>
+{{--                                <p class="description">Integer euismod lacus luctus magna. Quisque cursus, metus--}}
+{{--                                    vitae pharetra auctor, sem massa--}}
+{{--                                    mattis sem, at interdum magna augue eget diam.</p>--}}
                                 <ul class="contact-info">
                                     {{-- <li><i class="fa fa-map-marker"></i>--}}
                                         {{-- <p>123 North West, Florida, USA</p>

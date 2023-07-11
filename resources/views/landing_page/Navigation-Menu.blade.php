@@ -1,4 +1,4 @@
-<?php
+    <?php
 use App\Models\Info;
     $link = Info::select('json_data')->where('json_key', 'link')->first()->link;
     $logo = Info::select('json_data')->where('json_key', 'style')->first()->logo;
@@ -15,29 +15,31 @@ use App\Models\Info;
             <div class="right-side">
                 <div class="menu-list-wrapper">
                     <ul class="menu-list">
-                        <li class="menu-item menu-item-has-children">
+                        <li class="menu-item ">
                             <a href="/">Home</a>
-                            <ul class="sub-menu">
-                                <li class="menu-item">
-                                    <a href="#projects">Projects</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#content">Content</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#comments">What They says</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="{{route('bloglanding')}}">Blog</a>
-                                </li>
-                            </ul>
+{{--                            <ul class="sub-menu">--}}
+
+{{--                                <li class="menu-item">--}}
+{{--                                    <a href="/#content">Content</a>--}}
+{{--                                </li>--}}
+{{--                                <li class="menu-item">--}}
+{{--                                    <a href="/#comments">What They says</a>--}}
+{{--                                </li>--}}
+
+{{--                            </ul>--}}
+                        </li>
+                        <li class="menu-item">
+                            <a href="/#projects">Projects</a>
                         </li>
                         <li class="menu-item ">
                             <a href="{{route('landing.pricing.show')}}">pricing</a>
                         </li>
-                        <li class="menu-item ">
-                            <a href="/faq">faq</a>
+                        <li class="menu-item">
+                            <a href="{{route('bloglanding')}}">Blog</a>
                         </li>
+{{--                        <li class="menu-item ">--}}
+{{--                            <a href="/faq">faq</a>--}}
+{{--                        </li>--}}
                         <li class="menu-item ">
                             <a href="{{route('landing.client')}}">clients</a>
                         </li>

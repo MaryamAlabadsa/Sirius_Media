@@ -37,10 +37,10 @@ Route::post('/contact-us', [\App\Http\Controllers\Controller::class, 'sendEmail'
 Route::get('/pricing/plan', [\App\Http\Controllers\PricingController::class, 'showLanding'])->name('landing.pricing.show');
 Route::get('/cart/{id}', [CartController::class, 'store'])->name('cart.store');
 
-Route::get('/faq', function () {
-    // $slider = getSliderData();
-    return view('landing_page.faq');
-});
+//Route::get('/faq', function () {
+//    // $slider = getSliderData();
+//    return view('landing_page.faq');
+//});
 
 Route::get('/clients', [ClientController::class, 'showInLanding'])->name('landing.client');
 

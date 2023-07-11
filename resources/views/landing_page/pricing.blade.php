@@ -114,24 +114,24 @@
     </div>
 </section>
 <!-- [5] Call to action -->
-<section class="call-to-action-type-1 white-section bg-attachment-fixed small-section bg_img border-top-simple"
-    style="background-image: url('assets/img/assets/axiom-pattern.png')">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h2 class="title">
-                    We'd love to hear about your project
-                </h2>
-                <p class="message">
-                    Eum ea dolorum ceteros mea ullum errem oportere eu, usu ei epicuri omittam satatus, ne mei
-                    doctus appetere. Pro
+{{--<section class="call-to-action-type-1 white-section bg-attachment-fixed small-section bg_img border-top-simple"--}}
+{{--    style="background-image: url('assets/img/assets/axiom-pattern.png')">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col">--}}
+{{--                <h2 class="title">--}}
+{{--                    We'd love to hear about your project--}}
+{{--                </h2>--}}
+{{--                <p class="message">--}}
+{{--                    Eum ea dolorum ceteros mea ullum errem oportere eu, usu ei epicuri omittam satatus, ne mei--}}
+{{--                    doctus appetere. Pro--}}
 
-                </p>
-                <div class="button-wrapper d-flex justify-content-center">
-                    <a href="#" class="button-default-color-2">Start new Projects</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+{{--                </p>--}}
+{{--                <div class="button-wrapper d-flex justify-content-center">--}}
+{{--                    <a href="#" class="button-default-color-2">Start new Projects</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 @endsection
