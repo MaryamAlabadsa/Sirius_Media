@@ -177,26 +177,27 @@ class Info extends Model
     public function getAboutAttribute()
     {
         $currentLocale = app()->getLocale();
-        $array = json_decode($this->json_data, true);
+        $array = $this->json_data;
+//        $array = json_decode($this->json_data, true);
 
         $image1 =   url('/storage/' . $array['image1']);
         $image2 =   url('/storage/' . $array['image2']);
         if ($currentLocale === 'ar') {
-            $title1 = $array['title_ar1'];
+            $title1 = $array['title1_ar1'];
             $sub_title1 = $array['sub_title1_ar1'];
-            $title2 = $array['title_ar2'];
-            $sub_title2 = $array['sub_title_ar2'];
-            $title3 = $array['title_ar3'];
-            $sub_title3 = $array['sub_title_ar3'];
-            $section_title = $array['section_title_ar'];
+            $title2 = $array['title2_ar1'];
+            $sub_title2 = $array['sub_title2_ar1'];
+            $title3 = $array['title3_ar1'];
+            $sub_title3 = $array['sub_title3_ar1'];
+            $section_title = $array['section_title_ar1'];
         } else {
-            $title1 = $array['title_en1'];
-            $sub_title1 = $array['sub_title_en1'];
-            $title2 = $array['title_en2'];
-            $sub_title2 = $array['sub_title_en2'];
-            $title3 = $array['title_en3'];
-            $sub_title3 = $array['sub_title_en3'];
-            $section_title = $array['section_title'];
+            $title1 = $array['title1_en'];
+            $sub_title1 = $array['sub_title1_en'];
+            $title2 = $array['title2_en'];
+            $sub_title2 = $array['sub_title2_en'];
+            $title3 = $array['title3_en'];
+            $sub_title3 = $array['sub_title3_en'];
+            $section_title = $array['section_title_en'];
         }
         return [$title1, $sub_title1, $title2, $sub_title2, $title3, $sub_title3, $image1, $image2, $section_title];
     }
